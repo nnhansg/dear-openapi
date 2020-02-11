@@ -151,11 +151,11 @@ components:
     accountID:
       type: apiKey
       in: header
-      name: api_auth_accountid
+      name: api-auth-accountid
     appKey:
       type: apiKey
       in: header
-      name: api_auth_applicationkey
+      name: api-auth-applicationkey
   parameters:
     pageParam:
       in: query
