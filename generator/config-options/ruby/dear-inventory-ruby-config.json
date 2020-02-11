@@ -1,0 +1,16 @@
+{
+  "gemAuthor": "Nhan Nguyen",
+  "gemAuthorEmail": "nnhansg@gmail.com",
+  "gemDescription": "DEAR Inventory Ruby SDK generated from DEAR-OpenAPI Spec 3.0 for https://inventory.dearsystems.com",
+  "gemHomepage": "https://inventory.dearsystems.com",
+  "gemLicense": "MIT",
+  "gemMetadataBugTrackerUri": "https://github.com/nnhansg/dear-ruby/issues",
+  "gemMetadataChangelogUri": "https://github.com/nnhansg/dear-ruby/blob/master/CHANGELOG.md",
+  "gemMetadataSourceCodeUri": "https://github.com/nnhansg/dear-ruby",
+  "gemName": "dear-inventory-ruby",
+  "gemSummary": "DEAR Inventory Ruby SDK generated from DEAR-OpenAPI Spec 3.0 for https://inventory.dearsystems.com",
+  "gemVersion": "0.1.0",
+  "httpUserAgent": "dear-inventory-ruby-#{VERSION}",
+  "library": "faraday",
+  "moduleName": "DearInventoryRuby"
+}
