@@ -1,0 +1,483 @@
+openapi: 3.0.0
+servers:
+  - url: 'https://inventory.dearsystems.com/ExternalApi/v2'
+info:
+  title: DEAR Inventory API
+  description: This specifing endpoints for DEAR Inventory API
+  version: "2.0.0"
+  termsOfService: "https://dearsystems.com/terms-and-conditions/"
+  contact:
+    name: "Nhan Nguyen"
+    email: "nnhansg@gmail.com"
+    url: "https://www.nnhan.me"
+paths:
+  /customer:
+    get:
+      security:
+        - accountID
+          appKey
+      tags:
+        - customer
+      operationId: getCustomers
+      summary: Allows you to retrieve the customers
+      parameters:
+        - $ref: '#/components/parameters/queryOptions'
+      responses:
+        '200':
+          description: Success - return response of type Customers array with 0 to n Account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customers'
+              example: '{
+                          "Total": 2,
+                          "Page": 1,
+                          "CustomerList": [
+                            {
+                              "ID": "0365e5bb-e5ea-4a45-b98b-fdc4466bdaf1",
+                              "Name": "Human Test",
+                              "Currency": "AUD",
+                              "PaymentTerm": "30 days",
+                              "Discount": 0,
+                              "TaxRule": "BAS Excluded",
+                              "Carrier": "DEFAULT Carrier",
+                              "SalesRepresentative": null,
+                              "Location": "Main Warehouse",
+                              "Comments": "",
+                              "AccountReceivable": "610",
+                              "RevenueAccount": "200",
+                              "PriceTier": "Tier 1",
+                              "TaxNumber": "",
+                              "AdditionalAttribute1": "",
+                              "AdditionalAttribute2": "",
+                              "AdditionalAttribute3": "",
+                              "AdditionalAttribute4": "",
+                              "AdditionalAttribute5": "",
+                              "AdditionalAttribute6": "",
+                              "AdditionalAttribute7": "",
+                              "AdditionalAttribute8": "",
+                              "AdditionalAttribute9": "",
+                              "AdditionalAttribute10": "",
+                              "AttributeSet": null,
+                              "Tags": "",
+                              "Status": "Active",
+                              "CreditLimit": 0,
+                              "LastModifiedOn": "2018-01-24T05:07:23.917Z",
+                              "Addresses": [
+                                {
+                                  "Line1": "P O Box 456",
+                                  "Line2": "Southbank",
+                                  "City": "Melbourne GPO",
+                                  "State": "VIC",
+                                  "Postcode": "3331",
+                                  "Country": null,
+                                  "Type": "Billing",
+                                  "DefaultForType": true,
+                                  "ID": "fc8ca28e-7f91-4ac3-8fff-deb86395b494"
+                                }
+                              ],
+                              "Contacts": [
+                                {
+                                  "Name": "Nick Wakefield",
+                                  "JobTitle": null,
+                                  "Phone": "03 3014556",
+                                  "MobilePhone": null,
+                                  "Fax": null,
+                                  "Email": null,
+                                  "Website": null,
+                                  "Default": true,
+                                  "Comment": null,
+                                  "IncludeInEmail": false,
+                                  "ID": "c650db26-2fca-4fe4-837d-ffd0f4d97200"
+                                }
+                              ]
+                            },
+                            {
+                              "ID": "861918cc-81f9-4701-9639-864c796561cf",
+                              "Name": "Customer Test",
+                              "Currency": "AUD",
+                              "PaymentTerm": "30 days",
+                              "Discount": 0,
+                              "TaxRule": "GST Free Exports",
+                              "Carrier": null,
+                              "SalesRepresentative": null,
+                              "Location": "Main Warehouse",
+                              "Comments": null,
+                              "AccountReceivable": "610",
+                              "RevenueAccount": "200",
+                              "PriceTier": "Tier 1",
+                              "TaxNumber": null,
+                              "AdditionalAttribute1": null,
+                              "AdditionalAttribute2": null,
+                              "AdditionalAttribute3": null,
+                              "AdditionalAttribute4": null,
+                              "AdditionalAttribute5": null,
+                              "AdditionalAttribute6": null,
+                              "AdditionalAttribute7": null,
+                              "AdditionalAttribute8": null,
+                              "AdditionalAttribute9": null,
+                              "AdditionalAttribute10": null,
+                              "AttributeSet": null,
+                              "Tags": null,
+                              "Status": "Active",
+                              "CreditLimit": 0,
+                              "LastModifiedOn": "2018-01-30T06:07:43.46Z",
+                              "Addresses": [],
+                              "Contacts": [
+                                {
+                                  "Name": "Customer Test",
+                                  "JobTitle": null,
+                                  "Phone": null,
+                                  "MobilePhone": null,
+                                  "Fax": null,
+                                  "Email": "Customer@mail.ru",
+                                  "Website": null,
+                                  "Default": true,
+                                  "Comment": null,
+                                  "IncludeInEmail": false,
+                                  "ID": "23ef723b-75b5-43b3-8ee7-56d193e53923"
+                                }
+                              ]
+                            }
+                          ]
+                        }'
+components:
+  securitySchemes:
+    accountID:
+      type: apiKey
+      in: header
+      name: api_auth_accountid
+    appKey:
+      type: apiKey
+      in: header
+      name: api_auth_applicationkey
+  parameters:
+    queryOptions:
+      - in: query
+        name: Page
+        description: Default is 1
+        example: 1
+        schema:
+          type: string
+          default: 1
+      - in: query
+        name: Limit
+        description: Default is 100
+        example: 100
+        schema:
+          type: string
+          default: 100
+      - in: query
+        name: ID
+        description: Default is null
+        schema:
+          type: string
+      - in: query
+        name: Name
+        description: Default is null
+        schema:
+          type: string
+      - in: query
+        name: ModifiedSince
+        description: Default is null
+        schema:
+          type: string
+      - in: query
+        name: IncludeDeprecated
+        description: Default is false
+        example: false
+        schema:
+          type: string
+          default: false
+    summarizeErrors:
+      in: query
+      name: summarizeErrors
+      description: If false return 200 OK and mix of successfully created obejcts and any with validation errors
+      example: false
+      schema:
+        type: boolean
+        default: false
+  responses:
+    400Error:
+      description: A failed request due to validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CurrencyCode:
+      description: 3 letter alpha code for the currency – see list of currency codes
+      type: string
+      enum:
+      - AED
+      - AFN
+      - ALL
+      - AMD
+      - ANG
+      - AOA
+      - ARS
+      - AUD
+      - AWG
+      - AZN
+      - BAM
+      - BBD
+      - BDT
+      - BGN
+      - BHD
+      - BIF
+      - BMD
+      - BND
+      - BOB
+      - BRL
+      - BSD
+      - BTN
+      - BWP
+      - BYN
+      - BZD
+      - CAD
+      - CDF
+      - CHF
+      - CLP
+      - CNY
+      - COP
+      - CRC
+      - CUC
+      - CUP
+      - CVE
+      - CZK
+      - DJF
+      - DKK
+      - DOP
+      - DZD
+      - EGP
+      - ERN
+      - ETB
+      - EUR
+      - FJD
+      - FKP
+      - GBP
+      - GEL
+      - GGP
+      - GHS
+      - GIP
+      - GMD
+      - GNF
+      - GTQ
+      - GYD
+      - HKD
+      - HNL
+      - HRK
+      - HTG
+      - HUF
+      - IDR
+      - ILS
+      - IMP
+      - INR
+      - IQD
+      - IRR
+      - ISK
+      - JEP
+      - JMD
+      - JOD
+      - JPY
+      - KES
+      - KGS
+      - KHR
+      - KMF
+      - KPW
+      - KRW
+      - KWD
+      - KYD
+      - KZT
+      - LAK
+      - LBP
+      - LKR
+      - LRD
+      - LSL
+      - LYD
+      - MAD
+      - MDL
+      - MGA
+      - MKD
+      - MMK
+      - MNT
+      - MOP
+      - MRU
+      - MUR
+      - MVR
+      - MWK
+      - MXN
+      - MYR
+      - MZN
+      - NAD
+      - NGN
+      - NIO
+      - NOK
+      - NPR
+      - NZD
+      - OMR
+      - PAB
+      - PEN
+      - PGK
+      - PHP
+      - PKR
+      - PLN
+      - PYG
+      - QAR
+      - RON
+      - RSD
+      - RUB
+      - RWF
+      - SAR
+      - SBD
+      - SCR
+      - SDG
+      - SEK
+      - SGD
+      - SHP
+      - SLL
+      - SOS
+      - SPL
+      - SRD
+      - STN
+      - SVC
+      - SYP
+      - SZL
+      - THB
+      - TJS
+      - TMT
+      - TND
+      - TOP
+      - TRY
+      - TTD
+      - TVD
+      - TWD
+      - TZS
+      - UAH
+      - UGX
+      - USD
+      - UYU
+      - UZS
+      - VEF
+      - VND
+      - VUV
+      - WST
+      - XAF
+      - XCD
+      - XDR
+      - XOF
+      - XPF
+      - YER
+      - ZAR
+      - ZMW
+      - ZWD
+    Customers:
+      type: object
+      properties:
+        Total:
+          description: Total
+          type: string
+        Page:
+          description: Page
+          type: string
+        CustomerList:
+          description: Array of Customers
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+    Customer:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/customer/get'
+      properties:
+        ID:
+          description: Unique Customer ID
+          type: string
+          format: uuid
+        Name:
+          description: Name of Customer
+          maxLength: 255
+          type: string
+        Status:
+          description: Points that Customer is Active. Available values are Active and Deprecated. Required for POST
+          type: string
+          enum:
+          - Active
+          - Deprecated
+        Currency:
+          $ref: '#/components/schemas/CurrencyCode'
+        PaymentTerm:
+          description: Payment term
+          type: string
+        AccountReceivable:
+          description: Account receivable code of Customer
+          type: string
+        RevenueAccount:
+          description: Sale account code of Customer
+          type: string
+        TaxRule:
+          description: Tax rule name
+          type: string
+        PriceTier:
+          description: Price tier
+          type: string
+        Carrier:
+          description: Carrier name
+          type: string
+        SalesRepresentative:
+          description: Sales representative
+          type: string
+        Location:
+          description: Location
+          type: string
+        Discount:
+          description: Discount must be between 0% and 100%
+          type: number
+          format: double
+        Comments:
+          description: Comments
+          maxLength: 255
+          type: string
+        TaxNumber:
+          description: Tax number
+          type: string
+        CreditLimit:
+          description: Credit limit
+          type: number
+          format: double
+        Tags:
+          description: Tags string
+          type: string
+        AttributeSet:
+          description: AttributeSet name
+          type: string
+        AdditionalAttribute1:
+          description: Additional attribute 1 value # - int(1-10)
+          type: string
+        AdditionalAttribute2:
+          description: Additional attribute 2 value
+          type: string
+        AdditionalAttribute3:
+          description: Additional attribute 3 value
+          type: string
+        AdditionalAttribute4:
+          description: Additional attribute 4 value
+          type: string
+        AdditionalAttribute5:
+          description: Additional attribute 5 value.
+          type: string
+        AdditionalAttribute6:
+          description: Additional attribute 6 value.
+          type: string
+        AdditionalAttribute7:
+          description: Additional attribute 7 value.
+          type: string
+        AdditionalAttribute8:
+          description: Additional attribute 8 value.
+          type: string
+        AdditionalAttribute9:
+          description: Additional attribute 9 value.
+          type: string
+        AdditionalAttribute10:
+          description: Additional attribute 10 value.
+          type: string
+      type: object
