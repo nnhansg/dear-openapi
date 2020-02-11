@@ -14,14 +14,19 @@ paths:
   /customer:
     get:
       security:
-        - accountID
-          appKey
+        - accountID: []
+          appKey: []
       tags:
         - customer
       operationId: getCustomers
       summary: Allows you to retrieve the customers
       parameters:
-        - $ref: '#/components/parameters/queryOptions'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/idParam'
+        - $ref: '#/components/parameters/nameParam'
+        - $ref: '#/components/parameters/modifiedSinceParam'
+        - $ref: '#/components/parameters/includeDeprecatedParam'
       responses:
         '200':
           description: Success - return response of type Customers array with 0 to n Account
@@ -152,43 +157,51 @@ components:
       in: header
       name: api_auth_applicationkey
   parameters:
-    queryOptions:
-      - in: query
-        name: Page
-        description: Default is 1
-        example: 1
-        schema:
-          type: string
-          default: 1
-      - in: query
-        name: Limit
-        description: Default is 100
-        example: 100
-        schema:
-          type: string
-          default: 100
-      - in: query
-        name: ID
-        description: Default is null
-        schema:
-          type: string
-      - in: query
-        name: Name
-        description: Default is null
-        schema:
-          type: string
-      - in: query
-        name: ModifiedSince
-        description: Default is null
-        schema:
-          type: string
-      - in: query
-        name: IncludeDeprecated
-        description: Default is false
-        example: false
-        schema:
-          type: string
-          default: false
+    pageParam:
+      in: query
+      name: Page
+      description: Default is 1
+      example: 1
+      schema:
+        type: string
+        default: 1
+    limitParam:
+      in: query
+      name: Limit
+      description: Default is 100
+      example: 100
+      schema:
+        type: string
+        default: 100
+    idParam:
+      in: query
+      name: ID
+      description: Default is null
+      schema:
+        type: string
+        nullable: true
+    nameParam:
+      in: query
+      name: Name
+      description: Default is null
+      schema:
+        type: string
+        nullable: true
+    modifiedSinceParam:
+      in: query
+      name: ModifiedSince
+      description: Default is null
+      schema:
+        type: string
+        nullable: true
+    includeDeprecatedParam:
+      in: query
+      name: IncludeDeprecated
+      description: Default is false
+      example: false
+      schema:
+        type: string
+        default: false
     summarizeErrors:
       in: query
       name: summarizeErrors
@@ -205,6 +218,88 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Address:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#SupplierAddressModel'
+      properties:
+        ID:
+          description: If passed in PUT method, entry will be searched by id, found entry will be updated, otherwise created
+          type: string
+          format: uuid
+        Line1:
+          description: Address Line 1
+          maxLength: 256
+          type: string
+        Line2:
+          description: Address Line 2
+          maxLength: 256
+          type: string
+        City:
+          description: City / Suburb
+          maxLength: 256
+          type: string
+        State:
+          description: State / Province
+          maxLength: 256
+          type: string
+        PostCode:
+          description: Zip / PostCode
+          maxLength: 20
+          type: string
+        Country:
+          description: Country name
+          type: string
+        Type:
+          description: 'Address Type. Should be one of the following values: `Billing`, `Business` or `Shipping`.'
+          type: string
+          enum:
+          - Billing
+          - Business
+          - Shipping
+        DefaultForType:
+          description: Points that Address is used as default for chosen Type. `false` as default.
+          type: boolean
+          default: false
+    Contact:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#SupplierContactModel'
+      properties:
+        ID:
+          description: If passed in PUT method, entry will be searched by id, found entry will be updated, otherwise created
+          type: string
+          format: uuid
+        Name:
+          description: Name of Contact
+          maxLength: 256
+          type: string
+        Phone:
+          description: Phone
+          maxLength: 50
+          type: string
+        Fax:
+          description: Fax
+          maxLength: 50
+          type: string
+        Email:
+          description: Email
+          maxLength: 256
+          type: string
+        Website:
+          description: Website
+          maxLength: 256
+          type: string
+        Comment:
+          description: Comment
+          maxLength: 256
+          type: string
+        Default:
+          description: Points that Contact is used as default. `false` as default.
+          type: boolean
+          default: false
+        IncludeInEmail:
+          description: Points that Contact is included in Email. `false` as default.
+          type: boolean
+          default: false
     CurrencyCode:
       description: 3 letter alpha code for the currency – see list of currency codes
       type: string
@@ -395,7 +490,7 @@ components:
           format: uuid
         Name:
           description: Name of Customer
-          maxLength: 255
+          maxLength: 256
           type: string
         Status:
           description: Points that Customer is Active. Available values are Active and Deprecated. Required for POST
@@ -435,7 +530,7 @@ components:
           format: double
         Comments:
           description: Comments
-          maxLength: 255
+          maxLength: 256
           type: string
         TaxNumber:
           description: Tax number
@@ -451,7 +546,7 @@ components:
           description: AttributeSet name
           type: string
         AdditionalAttribute1:
-          description: Additional attribute 1 value # - int(1-10)
+          description: Additional attribute 1 value
           type: string
         AdditionalAttribute2:
           description: Additional attribute 2 value
@@ -463,21 +558,45 @@ components:
           description: Additional attribute 4 value
           type: string
         AdditionalAttribute5:
-          description: Additional attribute 5 value.
+          description: Additional attribute 5 value
           type: string
         AdditionalAttribute6:
-          description: Additional attribute 6 value.
+          description: Additional attribute 6 value
           type: string
         AdditionalAttribute7:
-          description: Additional attribute 7 value.
+          description: Additional attribute 7 value
           type: string
         AdditionalAttribute8:
-          description: Additional attribute 8 value.
+          description: Additional attribute 8 value
           type: string
         AdditionalAttribute9:
-          description: Additional attribute 9 value.
+          description: Additional attribute 9 value
           type: string
         AdditionalAttribute10:
-          description: Additional attribute 10 value.
+          description: Additional attribute 10 value
+          type: string
+        LastModifiedOn:
+          description: Date of last modification
+          type: string
+        Addresses:
+          description: List of addresses
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        Contacts:
+          description: List of contacts
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+      type: object
+    Error:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#introduction/api-status-codes'
+      properties:
+        ErrorCode:
+          description: Exception number
+          type: integer
+        Exception:
+          description: Exception message
           type: string
       type: object
