@@ -29,7 +29,7 @@ paths:
         - $ref: '#/components/parameters/includeDeprecatedParam'
       responses:
         '200':
-          description: Success - return response of type Customers array with 0 to n Account
+          description: Success - return response of type Customers array with 0 to n Customers
           content:
             application/json:
               schema:
@@ -46,7 +46,7 @@ paths:
                               "Discount": 0,
                               "TaxRule": "BAS Excluded",
                               "Carrier": "DEFAULT Carrier",
-                              "SalesRepresentative": null,
+                              "SalesRepresentative": nil,
                               "Location": "Main Warehouse",
                               "Comments": "",
                               "AccountReceivable": "610",
@@ -63,7 +63,7 @@ paths:
                               "AdditionalAttribute8": "",
                               "AdditionalAttribute9": "",
                               "AdditionalAttribute10": "",
-                              "AttributeSet": null,
+                              "AttributeSet": nil,
                               "Tags": "",
                               "Status": "Active",
                               "CreditLimit": 0,
@@ -75,7 +75,7 @@ paths:
                                   "City": "Melbourne GPO",
                                   "State": "VIC",
                                   "Postcode": "3331",
-                                  "Country": null,
+                                  "Country": nil,
                                   "Type": "Billing",
                                   "DefaultForType": true,
                                   "ID": "fc8ca28e-7f91-4ac3-8fff-deb86395b494"
@@ -84,14 +84,14 @@ paths:
                               "Contacts": [
                                 {
                                   "Name": "Nick Wakefield",
-                                  "JobTitle": null,
+                                  "JobTitle": nil,
                                   "Phone": "03 3014556",
-                                  "MobilePhone": null,
-                                  "Fax": null,
-                                  "Email": null,
-                                  "Website": null,
+                                  "MobilePhone": nil,
+                                  "Fax": nil,
+                                  "Email": nil,
+                                  "Website": nil,
                                   "Default": true,
-                                  "Comment": null,
+                                  "Comment": nil,
                                   "IncludeInEmail": false,
                                   "ID": "c650db26-2fca-4fe4-837d-ffd0f4d97200"
                                 }
@@ -104,26 +104,26 @@ paths:
                               "PaymentTerm": "30 days",
                               "Discount": 0,
                               "TaxRule": "GST Free Exports",
-                              "Carrier": null,
-                              "SalesRepresentative": null,
+                              "Carrier": nil,
+                              "SalesRepresentative": nil,
                               "Location": "Main Warehouse",
-                              "Comments": null,
+                              "Comments": nil,
                               "AccountReceivable": "610",
                               "RevenueAccount": "200",
                               "PriceTier": "Tier 1",
-                              "TaxNumber": null,
-                              "AdditionalAttribute1": null,
-                              "AdditionalAttribute2": null,
-                              "AdditionalAttribute3": null,
-                              "AdditionalAttribute4": null,
-                              "AdditionalAttribute5": null,
-                              "AdditionalAttribute6": null,
-                              "AdditionalAttribute7": null,
-                              "AdditionalAttribute8": null,
-                              "AdditionalAttribute9": null,
-                              "AdditionalAttribute10": null,
-                              "AttributeSet": null,
-                              "Tags": null,
+                              "TaxNumber": nil,
+                              "AdditionalAttribute1": nil,
+                              "AdditionalAttribute2": nil,
+                              "AdditionalAttribute3": nil,
+                              "AdditionalAttribute4": nil,
+                              "AdditionalAttribute5": nil,
+                              "AdditionalAttribute6": nil,
+                              "AdditionalAttribute7": nil,
+                              "AdditionalAttribute8": nil,
+                              "AdditionalAttribute9": nil,
+                              "AdditionalAttribute10": nil,
+                              "AttributeSet": nil,
+                              "Tags": nil,
                               "Status": "Active",
                               "CreditLimit": 0,
                               "LastModifiedOn": "2018-01-30T06:07:43.46Z",
@@ -131,14 +131,14 @@ paths:
                               "Contacts": [
                                 {
                                   "Name": "Customer Test",
-                                  "JobTitle": null,
-                                  "Phone": null,
-                                  "MobilePhone": null,
-                                  "Fax": null,
+                                  "JobTitle": nil,
+                                  "Phone": nil,
+                                  "MobilePhone": nil,
+                                  "Fax": nil,
                                   "Email": "Customer@mail.ru",
-                                  "Website": null,
+                                  "Website": nil,
                                   "Default": true,
-                                  "Comment": null,
+                                  "Comment": nil,
                                   "IncludeInEmail": false,
                                   "ID": "23ef723b-75b5-43b3-8ee7-56d193e53923"
                                 }
@@ -146,6 +146,357 @@ paths:
                             }
                           ]
                         }'
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - customer
+      operationId: createCustomer
+      summary: Allows you to create a customer
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a Contact object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+            example: '{
+                        "Name": "DIISR - Small Business Services customer",
+                        "Currency": "AUD",
+                        "PaymentTerm": "30 days",
+                        "Discount": 0,
+                        "TaxRule": "GST Free Exports",
+                        "Carrier": "DEFAULT Carrier",
+                        "SalesRepresentative": nil,
+                        "Location": "Main Warehouse",
+                        "Comments": nil,
+                        "AccountReceivable": "610",
+                        "RevenueAccount": "200",
+                        "PriceTier": "Tier 1",
+                        "TaxNumber": nil,
+                        "AdditionalAttribute1": nil,
+                        "AdditionalAttribute2": nil,
+                        "AdditionalAttribute3": nil,
+                        "AdditionalAttribute4": nil,
+                        "AdditionalAttribute5": nil,
+                        "AdditionalAttribute6": nil,
+                        "AdditionalAttribute7": nil,
+                        "AdditionalAttribute8": nil,
+                        "AdditionalAttribute9": nil,
+                        "AdditionalAttribute10": nil,
+                        "AttributeSet": nil,
+                        "Tags": nil,
+                        "Status": "Active",
+                        "Addresses": [
+                            {
+                                "ID": "4bc4e423-d8af-454d-a186-4a827c15bd0b",
+                                "CustomerID": "4978c3ff-4382-4045-819b-2971480ddaf1",
+                                "Line1": "L3, Southbank House",
+                                "Line2": "13 Gallery Ave",
+                                "City": "Melbourne",
+                                "State": "VIC",
+                                "Postcode": "3131",
+                                "Country": nil,
+                                "Type": "Business",
+                                "DefaultForType": true
+                            },
+                            {
+                                "ID": "35cec087-04da-46b5-b3c8-c3a7311f2417",
+                                "CustomerID": "4978c3ff-4382-4045-819b-2971480ddaf1",
+                                "Line1": "L3, Southbank House",
+                                "Line2": "13 Gallery Ave",
+                                "City": "Melbourne",
+                                "State": "VIC",
+                                "Postcode": "3131",
+                                "Country": nil,
+                                "Type": "Billing",
+                                "DefaultForType": true
+                            }
+                        ],
+                        "Contacts": [
+                            {
+                                "ID": "1d62f59b-657d-423f-ad95-9ad9ec4f29a3",
+                                "CustomerID": "4978c3ff-4382-4045-819b-2971480ddaf1",
+                                "Name": "Sheree Bond",
+                                "JobTitle": nil,
+                                "Phone": "0800 4389376",
+                                "MobilePhone": nil,
+                                "Fax": "03 4389379",
+                                "Email": "accounts@diisr.govt",
+                                "Website": nil,
+                                "Default": true,
+                                "Comment": nil,
+                                "IncludeInEmail": false
+                            }
+                        ]
+                    }'
+      responses:
+        '200':
+          description: Success - return response of type Customers array with newly created Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customers'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "CustomerList": [
+                            {
+                                "ID": "7d6b441a-3067-42b1-9b81-2def95df827b",
+                                "Name": "DIISR - Small Business Services customer",
+                                "Currency": "AUD",
+                                "PaymentTerm": "30 days",
+                                "Discount": 0,
+                                "TaxRule": "GST Free Exports",
+                                "Carrier": "DEFAULT Carrier",
+                                "SalesRepresentative": nil,
+                                "Location": "Main Warehouse",
+                                "Comments": nil,
+                                "AccountReceivable": "610",
+                                "RevenueAccount": "200",
+                                "PriceTier": "Tier 1",
+                                "TaxNumber": nil,
+                                "AdditionalAttribute1": nil,
+                                "AdditionalAttribute2": nil,
+                                "AdditionalAttribute3": nil,
+                                "AdditionalAttribute4": nil,
+                                "AdditionalAttribute5": nil,
+                                "AdditionalAttribute6": nil,
+                                "AdditionalAttribute7": nil,
+                                "AdditionalAttribute8": nil,
+                                "AdditionalAttribute9": nil,
+                                "AdditionalAttribute10": nil,
+                                "AttributeSet": nil,
+                                "Tags": nil,
+                                "Status": "Active",
+                                "LastModifiedOn": "2018-01-31T06:07:43.46Z",
+                                "CreditLimit": 0
+                                "Addresses": [
+                                    {
+                                        "ID": "b2e8260c-29f8-4153-b8bc-3b4932cb1e1d",
+                                        "CustomerID": "7d6b441a-3067-42b1-9b81-2def95df827b",
+                                        "Line1": "L3, Southbank House",
+                                        "Line2": "13 Gallery Ave",
+                                        "City": "Melbourne",
+                                        "State": "VIC",
+                                        "Postcode": "3131",
+                                        "Country": nil,
+                                        "Type": "Billing",
+                                        "DefaultForType": true
+                                    },
+                                    {
+                                        "ID": "505080d3-ebad-4d03-85ae-88df19536bc9",
+                                        "CustomerID": "7d6b441a-3067-42b1-9b81-2def95df827b",
+                                        "Line1": "L3, Southbank House",
+                                        "Line2": "13 Gallery Ave",
+                                        "City": "Melbourne",
+                                        "State": "VIC",
+                                        "Postcode": "3131",
+                                        "Country": nil,
+                                        "Type": "Business",
+                                        "DefaultForType": true
+                                    }
+                                ],
+                                "Contacts": [
+                                    {
+                                        "ID": "817e0314-97fc-4d3f-855b-14fbb89de2ba",
+                                        "CustomerID": "7d6b441a-3067-42b1-9b81-2def95df827b",
+                                        "Name": "Sheree Bond",
+                                        "JobTitle": nil,
+                                        "Phone": "0800 4389376",
+                                        "MobilePhone": nil,
+                                        "Fax": "03 4389379",
+                                        "Email": "accounts@diisr.govt",
+                                        "Website": nil,
+                                        "Default": true,
+                                        "Comment": nil,
+                                        "IncludeInEmail": false
+                                    }
+                                ]
+                            }
+                          ]
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    put:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - customer
+      operationId: updateCustomer
+      summary: Allows you to update a customer
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a Contact object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+            example: '{
+                        "ID": "7d6b441a-3067-42b1-9b81-2def95df827b",
+                        "Name": "DIISR - Small Business Services customer",
+                        "Currency": "AUD",
+                        "PaymentTerm": "30 days",
+                        "Discount": 0,
+                        "TaxRule": "GST Free Exports",
+                        "Carrier": "DEFAULT Carrier",
+                        "SalesRepresentative": nil,
+                        "Location": "Main Warehouse",
+                        "Comments": nil,
+                        "AccountReceivable": "610",
+                        "RevenueAccount": "200",
+                        "PriceTier": "Tier 1",
+                        "TaxNumber": nil,
+                        "AdditionalAttribute1": nil,
+                        "AdditionalAttribute2": nil,
+                        "AdditionalAttribute3": nil,
+                        "AdditionalAttribute4": nil,
+                        "AdditionalAttribute5": nil,
+                        "AdditionalAttribute6": nil,
+                        "AdditionalAttribute7": nil,
+                        "AdditionalAttribute8": nil,
+                        "AdditionalAttribute9": nil,
+                        "AdditionalAttribute10": nil,
+                        "AttributeSet": nil,
+                        "Tags": nil,
+                        "Status": "Active",
+                        "Addresses": [
+                            {
+                                "ID": "4bc4e423-d8af-454d-a186-4a827c15bd0b",
+                                "CustomerID": "4978c3ff-4382-4045-819b-2971480ddaf1",
+                                "Line1": "L3, Southbank House",
+                                "Line2": "13 Gallery Ave",
+                                "City": "Melbourne",
+                                "State": "VIC",
+                                "Postcode": "3131",
+                                "Country": nil,
+                                "Type": "Business",
+                                "DefaultForType": true
+                            },
+                            {
+                                "ID": "35cec087-04da-46b5-b3c8-c3a7311f2417",
+                                "CustomerID": "4978c3ff-4382-4045-819b-2971480ddaf1",
+                                "Line1": "L3, Southbank House",
+                                "Line2": "13 Gallery Ave",
+                                "City": "Melbourne",
+                                "State": "VIC",
+                                "Postcode": "3131",
+                                "Country": nil,
+                                "Type": "Billing",
+                                "DefaultForType": true
+                            }
+                        ],
+                        "Contacts": [
+                            {
+                                "ID": "1d62f59b-657d-423f-ad95-9ad9ec4f29a3",
+                                "CustomerID": "4978c3ff-4382-4045-819b-2971480ddaf1",
+                                "Name": "Sheree Bond",
+                                "JobTitle": nil,
+                                "Phone": "0800 4389376",
+                                "MobilePhone": nil,
+                                "Fax": "03 4389379",
+                                "Email": "accounts@diisr.govt",
+                                "Website": nil,
+                                "Default": true,
+                                "Comment": nil,
+                                "IncludeInEmail": false
+                            }
+                        ]
+                    }'
+      responses:
+        '200':
+          description: Success - return response of type Customers array with updated Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customers'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "CustomerList": [
+                              {
+                                  "ID": "7d6b441a-3067-42b1-9b81-2def95df827b",
+                                  "Name": "DIISR - Small Business Services customer",
+                                  "Currency": "AUD",
+                                  "PaymentTerm": "30 days",
+                                  "Discount": 0,
+                                  "TaxRule": "GST Free Exports",
+                                  "Carrier": "DEFAULT Carrier",
+                                  "SalesRepresentative": nil,
+                                  "Location": "Main Warehouse",
+                                  "Comments": "",
+                                  "AccountReceivable": "610",
+                                  "RevenueAccount": "200",
+                                  "PriceTier": "Tier 1",
+                                  "TaxNumber": "",
+                                  "AdditionalAttribute1": "",
+                                  "AdditionalAttribute2": "",
+                                  "AdditionalAttribute3": "",
+                                  "AdditionalAttribute4": "",
+                                  "AdditionalAttribute5": "",
+                                  "AdditionalAttribute6": "",
+                                  "AdditionalAttribute7": "",
+                                  "AdditionalAttribute8": "",
+                                  "AdditionalAttribute9": "",
+                                  "AdditionalAttribute10": "",
+                                  "AttributeSet": nil,
+                                  "Tags": "",
+                                  "Status": "Active",
+                                  "LastModifiedOn": "2018-01-31T06:20:43.46Z",
+                                  "CreditLimit": 0
+                                  "Addresses": [
+                                      {
+                                          "ID": "35cec087-04da-46b5-b3c8-c3a7311f2417",
+                                          "CustomerID": "7d6b441a-3067-42b1-9b81-2def95df827b",
+                                          "Line1": "L3, Southbank House",
+                                          "Line2": "13 Gallery Ave",
+                                          "City": "Melbourne",
+                                          "State": "VIC",
+                                          "Postcode": "3131",
+                                          "Country": nil,
+                                          "Type": "Billing",
+                                          "DefaultForType": true
+                                      },
+                                      {
+                                          "ID": "4bc4e423-d8af-454d-a186-4a827c15bd0b",
+                                          "CustomerID": "7d6b441a-3067-42b1-9b81-2def95df827b",
+                                          "Line1": "L3, Southbank House",
+                                          "Line2": "13 Gallery Ave",
+                                          "City": "Melbourne",
+                                          "State": "VIC",
+                                          "Postcode": "3131",
+                                          "Country": nil,
+                                          "Type": "Business",
+                                          "DefaultForType": true
+                                      }
+                                  ],
+                                  "Contacts": [
+                                      {
+                                          "ID": "1d62f59b-657d-423f-ad95-9ad9ec4f29a3",
+                                          "CustomerID": "7d6b441a-3067-42b1-9b81-2def95df827b",
+                                          "Name": "Sheree Bond",
+                                          "JobTitle": nil,
+                                          "Phone": "0800 4389376",
+                                          "MobilePhone": nil,
+                                          "Fax": "03 4389379",
+                                          "Email": "accounts@diisr.govt",
+                                          "Website": nil,
+                                          "Default": true,
+                                          "Comment": nil,
+                                          "IncludeInEmail": false
+                                      }
+                                  ]
+                              }
+                          ]
+                      }'
+        '400':
+          $ref: '#/components/responses/400Error'
 components:
   securitySchemes:
     accountID:
@@ -176,21 +527,21 @@ components:
     idParam:
       in: query
       name: ID
-      description: Default is null
+      description: Default is nil
       schema:
         type: string
         nullable: true
     nameParam:
       in: query
       name: Name
-      description: Default is null
+      description: Default is nil
       schema:
         type: string
         nullable: true
     modifiedSinceParam:
       in: query
       name: ModifiedSince
-      description: Default is null
+      description: Default is nil
       schema:
         type: string
         nullable: true
