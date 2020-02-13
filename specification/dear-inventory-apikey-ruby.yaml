@@ -17,7 +17,7 @@ paths:
         - accountID: []
           appKey: []
       tags:
-        - customer
+        - Inventory
       operationId: getCustomers
       summary: Allows you to retrieve the customers
       parameters:
@@ -151,7 +151,7 @@ paths:
         - accountID: []
           appKey: []
       tags:
-        - customer
+        - Inventory
       operationId: createCustomer
       summary: Allows you to create a customer
       parameters:
@@ -326,7 +326,7 @@ paths:
         - accountID: []
           appKey: []
       tags:
-        - customer
+        - Inventory
       operationId: updateCustomer
       summary: Allows you to update a customer
       parameters:
