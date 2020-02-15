@@ -21,12 +21,12 @@ paths:
       operationId: getCustomers
       summary: Allows you to retrieve the customers
       parameters:
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/idParam'
-        - $ref: '#/components/parameters/nameParam'
-        - $ref: '#/components/parameters/modifiedSinceParam'
-        - $ref: '#/components/parameters/includeDeprecatedParam'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/modifiedSince'
+        - $ref: '#/components/parameters/includeDeprecated'
       responses:
         '200':
           description: Success - return response of type Customers array with 0 to n Customers
@@ -157,7 +157,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/summarizeErrors'
       requestBody:
-        description: a Contact object with properties to create
+        description: a customer object with properties to create
         required: true
         content:
           application/json:
@@ -332,7 +332,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/summarizeErrors'
       requestBody:
-        description: a Contact object with properties to create
+        description: a customer object with properties to update
         required: true
         content:
           application/json:
@@ -497,6 +497,622 @@ paths:
                       }'
         '400':
           $ref: '#/components/responses/400Error'
+  /ref/paymentterm:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getPaymentTerms
+      summary: Allows you to retrieve the payment terms
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/method'
+        - $ref: '#/components/parameters/isActive'
+        - $ref: '#/components/parameters/isDefault'
+      responses:
+        '200':
+          description: Success - return response of type Payment Terms array with 0 to n Payment Terms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentTerms'
+              example: '{
+                          "Total": 3,
+                          "Page": 1,
+                          "PaymentTermList": [
+                            {
+                              "ID": "e6c25fa9-bb14-45b2-afe7-428e454663ef",
+                              "Name": "10 days since end of month",
+                              "Duration": 10,
+                              "Method": "days since the end of the month",
+                              "IsActive": true,
+                              "IsDefault": false
+                            },
+                            {
+                              "ID": "927a7013-e1d9-4194-a547-28b1b4c6b413",
+                              "Name": "30 days",
+                              "Duration": 30,
+                              "Method": "number of days",
+                              "IsActive": true,
+                              "IsDefault": false
+                            },
+                            {
+                              "ID": "1845c010-e8a3-4c51-a0be-a1211f406442",
+                              "Name": "Last day of the month",
+                              "Duration": 10,
+                              "Method": "last day of next month",
+                              "IsActive": true,
+                              "IsDefault": false
+                            }
+                          ]
+                        }'
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: createPaymentTerm
+      summary: Allows you to create a payment term
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a payment term object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentTerm'
+            example: '{
+                        "Name": "5 days since end of month",
+                        "Duration": 5,
+                        "Method": "days since the end of the month",
+                        "IsActive": true,
+                        "IsDefault": false
+                      }'
+      responses:
+        '200':
+          description: Success - return response of type Payment Terms array with newly created Payment Term
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentTerms'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "PaymentTermList": [
+                            {
+                              "ID": "e6c25fa9-bb14-45b2-afe7-428e454663ef",
+                              "Name": "5 days since end of month",
+                              "Duration": 5,
+                              "Method": "days since the end of the month",
+                              "IsActive": true,
+                              "IsDefault": false
+                            }
+                          ]
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    put:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: updatePaymentTerm
+      summary: Allows you to update a payment term
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a payment term object with properties to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentTerm'
+            example: '{
+                        "ID": "e6c25fa9-bb14-45b2-afe7-428e454663ef",
+                        "Name": "10 days since end of month",
+                        "Duration": 10,
+                        "Method": "days since the end of the month",
+                        "IsActive": true,
+                        "IsDefault": true
+                      }'
+      responses:
+        '200':
+          description: Success - return response of type Payment Terms array with updated Payment Term
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentTerms'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "PaymentTermList": [
+                            {
+                              "ID": "e6c25fa9-bb14-45b2-afe7-428e454663ef",
+                              "Name": "10 days since end of month",
+                              "Duration": 10,
+                              "Method": "days since the end of the month",
+                              "IsActive": true,
+                              "IsDefault": true
+                            }
+                          ]
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: deletePaymentTerm
+      summary: Allows you to delete a payment term
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success - delete existing Payment Term and return response of type Payment Terms array with deleted Payment Term
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+              example: '{
+                          "Success": true
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+  /ref/tax:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getTaxes
+      summary: Allows you to retrieve the taxes
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/isActive'
+        - $ref: '#/components/parameters/isTaxForSale'
+        - $ref: '#/components/parameters/isTaxForPurchase'
+        - $ref: '#/components/parameters/account'
+      responses:
+        '200':
+          description: Success - return response of type Taxes array with 0 to n Taxes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Taxes'
+              example: '{
+                          "Total": 2,
+                          "Page": 1,
+                          "TaxRuleList": [
+                            {
+                              "ID": "9d707beb-19cf-4d7b-a5d9-9eaff05c504c",
+                              "Name": "GST on Income",
+                              "Account": "820",
+                              "IsActive": true,
+                              "TaxInclusive": false,
+                              "TaxPercent": 10,
+                              "IsTaxForSale": true,
+                              "IsTaxForPurchase": false,
+                              "Components": [
+                                {
+                                  "ID": "B1151EEA-3364-4534-88E6-DF2C6B59A6D8",
+                                  "Name": "Tax",
+                                  "Percent": "10.0000000000",
+                                  "AccountCode": "0",
+                                  "ComponentOrder": "1"
+                                }
+                              ]
+                            },
+                            {
+                              "ID": "d4d53cdf-4b87-4b67-9c17-733fc5419a2a",
+                              "Name": "Tax test",
+                              "Account": "820",
+                              "IsActive": true,
+                              "TaxInclusive": false,
+                              "TaxPercent": 0,
+                              "IsTaxForSale": false,
+                              "IsTaxForPurchase": true,
+                              "Components": [
+                                {
+                                  "ID": "534AC4D9-6F37-448A-971E-DF1C2B21FB64",
+                                  "Name": "No Tax",
+                                  "Percent": "0.0000000000",
+                                  "AccountCode": "",
+                                  "Compound": "0",
+                                  "ComponentOrder": "1"
+                                }
+                              ]
+                            }
+                          ]
+                        }'
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: createTax
+      summary: Allows you to create a tax
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a tax object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tax'
+            example: '{
+                        "Name": "Post test",
+                        "Account": "800",
+                        "IsActive": true,
+                        "TaxInclusive": false,
+                        "TaxPercent": 35,
+                        "IsTaxForSale": true,
+                        "IsTaxForPurchase": true,
+                        "Components": [
+                          {
+                            "Name": "Tax 1st",
+                            "Percent": "10.0000000000",
+                            "AccountCode": "800",
+                            "Compound": "1",
+                            "ComponentOrder": "1"
+                          },
+                          {
+                            "Name": "Tax 2nd",
+                            "Percent": "15.0000000000",
+                            "AccountCode": "800",
+                            "Compound": "0",
+                            "ComponentOrder": "2"
+                          }
+                        ]
+                      }'
+      responses:
+        '200':
+          description: Success - return response of type Taxes array with newly created Tax
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Taxes'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "TaxRuleList": [
+                            {
+                              "ID": "24551562-ebd1-4294-a04a-3ab258f5e541",
+                              "Name": "Post test",
+                              "Account": "800",
+                              "IsActive": true,
+                              "TaxInclusive": false,
+                              "TaxPercent": 35,
+                              "IsTaxForSale": true,
+                              "IsTaxForPurchase": true,
+                              "Components": [
+                                {
+                                  "ID": "0119E1C0-504A-429B-B4E2-4EEC02A9E88A",
+                                  "Name": "Tax 1st",
+                                  "Percent": "10.0000000000",
+                                  "AccountCode": "800",
+                                  "Compound": "1",
+                                  "ComponentOrder": "1"
+                                },
+                                {
+                                  "ID": "0B6D5C0F-D8EF-41FF-86D2-A05E5616FC61",
+                                  "Name": "Tax 2nd",
+                                  "Percent": "15.0000000000",
+                                  "AccountCode": "800",
+                                  "Compound": "0",
+                                  "ComponentOrder": "2"
+                                }
+                              ]
+                            }
+                          ]
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    put:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: updateTax
+      summary: Allows you to update a tax
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a tax object with properties to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tax'
+            example: '{
+                        "ID": "24551562-ebd1-4294-a04a-3ab258f5e541",
+                        "Name": "PUT test",
+                        "Account": "800",
+                        "IsActive": true,
+                        "TaxInclusive": false,
+                        "TaxPercent": 55,
+                        "IsTaxForSale": true,
+                        "IsTaxForPurchase": true,
+                        "Components": [
+                          {
+                            "ID": "0119E1C0-504A-429B-B4E2-4EEC02A9E88A",
+                            "Name": "Tax 1st",
+                            "Percent": "20.0000000000",
+                            "AccountCode": "800",
+                            "Compound": "1",
+                            "ComponentOrder": "1"
+                          },
+                          {
+                            "ID": "0B6D5C0F-D8EF-41FF-86D2-A05E5616FC61",
+                            "Name": "Tax 2nd",
+                            "Percent": "35.0000000000",
+                            "AccountCode": "800",
+                            "Compound": "0",
+                            "ComponentOrder": "2"
+                          }
+                        ]
+                      }'
+      responses:
+        '200':
+          description: Success - return response of type Taxes array with updated Tax
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Taxes'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "TaxRuleList": [
+                            {
+                              "ID": "24551562-ebd1-4294-a04a-3ab258f5e541",
+                              "Name": "PUT test",
+                              "Account": "800",
+                              "IsActive": true,
+                              "TaxInclusive": false,
+                              "TaxPercent": 55,
+                              "IsTaxForSale": true,
+                              "IsTaxForPurchase": true,
+                              "Components": [
+                                {
+                                  "ID": "0119E1C0-504A-429B-B4E2-4EEC02A9E88A",
+                                  "Name": "Tax 1st",
+                                  "Percent": "20.0000000000",
+                                  "AccountCode": "800",
+                                  "Compound": "1",
+                                  "ComponentOrder": "1"
+                                },
+                                {
+                                  "ID": "0B6D5C0F-D8EF-41FF-86D2-A05E5616FC61",
+                                  "Name": "Tax 2nd",
+                                  "Percent": "35.0000000000",
+                                  "AccountCode": "800",
+                                  "Compound": "0",
+                                  "ComponentOrder": "2"
+                                }
+                              ]
+                            }
+                          ]
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+  /ref/account:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getAccounts
+      summary: Allows you to retrieve the Chart of Accounts
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/bank'
+      responses:
+        '200':
+          description: Success - return response of type Chart of Accounts array with 0 to n Chart of Accounts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accounts'
+              example: '{
+                          "Total": 3,
+                          "Page": 1,
+                          "AccountsList": [
+                            {
+                              "Code": "800",
+                              "Status": "ACTIVE",
+                              "Name": "Accounts Payable",
+                              "Type": "CURRLIAB",
+                              "Description": "Outstanding invoices the company has received from suppliers but has not yet paid at balance date",
+                              "Class": "LIABILITY",
+                              "SystemAccount": "CREDITORS",
+                              "BankAccountNumber": null,
+                              "BankAccountId": null,
+                              "ForPayments": false,
+                              "DisplayName": "800: Accounts Payable",
+                              "OldCode": null
+                            },
+                            {
+                              "Code": "610",
+                              "Status": "ACTIVE",
+                              "Name": "Accounts Receivable",
+                              "Type": "CURRENT",
+                              "Description": "Outstanding invoices the company has issued out to the client but has not yet received in cash at balance date.",
+                              "Class": "ASSET",
+                              "SystemAccount": "DEBTORS",
+                              "BankAccountNumber": null,
+                              "BankAccountId": null,
+                              "ForPayments": false,
+                              "DisplayName": "610: Accounts Receivable",
+                              "OldCode": null
+                            },
+                            {
+                              "Code": "400",
+                              "Status": "ACTIVE",
+                              "Name": "Advertising",
+                              "Type": "EXPENSE",
+                              "Description": "Expenses incurred for advertising while trying to increase sales",
+                              "Class": "EXPENSE",
+                              "SystemAccount": null,
+                              "BankAccountNumber": null,
+                              "BankAccountId": null,
+                              "ForPayments": false,
+                              "DisplayName": "400: Advertising",
+                              "OldCode": null
+                            }
+                          ]
+                        }'
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: createAccount
+      summary: Allows you to create an Account
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: an Account object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+            example: '{
+                        "Code": "001",
+                        "Status": "ACTIVE",
+                        "Name": "Accounts Payable test",
+                        "Type": "CURRLIAB",
+                        "Description": "Outstanding invoices the company has received from suppliers but has not yet paid at balance date",
+                        "Class": "LIABILITY",
+                        "SystemAccount": "CREDITORS",
+                      }'
+      responses:
+        '200':
+          description: Success - return response of type Accounts array with newly created Account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accounts'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "AccountsList": [
+                            {
+                              "Code": "001",
+                              "Status": "ACTIVE",
+                              "Name": "Accounts Payable test",
+                              "Type": "CURRLIAB",
+                              "Description": "Outstanding invoices the company has received from suppliers but has not yet paid at balance date",
+                              "Class": "LIABILITY",
+                              "SystemAccount": "CREDITORS",
+                              "BankAccountNumber": null,
+                              "BankAccountId": null,
+                              "ForPayments": false,
+                              "DisplayName": "001: Accounts Payable test",
+                              "OldCode": null
+                            }
+                          ]
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    put:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: updateAccount
+      summary: Allows you to update an Account
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: an Account object with properties to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+            example: '{
+                        "Code": "001",
+                        "Status": "ACTIVE",
+                        "Name": "Accounts Payable put test",
+                        "Type": "CURRLIAB",
+                        "Description": "Put test description",
+                        "Class": "LIABILITY",
+                        "SystemAccount": "CREDITORS"
+                      }'
+      responses:
+        '200':
+          description: Success - return response of type Accounts array with updated Account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accounts'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "AccountsList": [
+                            {
+                              "Code": "001",
+                              "Status": "ACTIVE",
+                              "Name": "Accounts Payable put test",
+                              "Type": "CURRLIAB",
+                              "Description": "Put test description",
+                              "Class": "LIABILITY",
+                              "SystemAccount": "CREDITORS",
+                              "BankAccountNumber": null,
+                              "BankAccountId": null,
+                              "ForPayments": false,
+                              "DisplayName": "001: Accounts Payable put test",
+                              "OldCode": null
+                            }
+                          ]
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: deleteAccount
+      summary: Allows you to delete an Account
+      parameters:
+        - $ref: '#/components/parameters/code'
+      responses:
+        '200':
+          description: Success - delete existing Account and return response of type Accounts array with deleted Account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+              example: '{
+                          "Success": true
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
 components:
   securitySchemes:
     accountID:
@@ -508,7 +1124,7 @@ components:
       in: header
       name: api-auth-applicationkey
   parameters:
-    pageParam:
+    page:
       in: query
       name: Page
       description: Default is 1
@@ -516,7 +1132,7 @@ components:
       schema:
         type: string
         default: 1
-    limitParam:
+    limit:
       in: query
       name: Limit
       description: Default is 100
@@ -524,28 +1140,28 @@ components:
       schema:
         type: string
         default: 100
-    idParam:
+    id:
       in: query
       name: ID
       description: Default is nil
       schema:
         type: string
         nullable: true
-    nameParam:
+    name:
       in: query
       name: Name
       description: Default is nil
       schema:
         type: string
         nullable: true
-    modifiedSinceParam:
+    modifiedSince:
       in: query
       name: ModifiedSince
       description: Default is nil
       schema:
         type: string
         nullable: true
-    includeDeprecatedParam:
+    includeDeprecated:
       in: query
       name: IncludeDeprecated
       description: Default is false
@@ -553,10 +1169,65 @@ components:
       schema:
         type: string
         default: false
+    method:
+      in: query
+      name: Method
+      description: Default is nil
+      schema:
+        type: string
+        nullable: true
+    isActive:
+      in: query
+      name: IsActive
+      description: Default is nil
+      schema:
+        type: boolean
+        nullable: true
+    isDefault:
+      in: query
+      name: IsDefault
+      description: Default is nil
+      schema:
+        type: boolean
+        nullable: true
+    isTaxForSale:
+      in: query
+      name: IsTaxForSale
+      description: Default is nil
+      schema:
+        type: boolean
+        nullable: true
+    isTaxForPurchase:
+      in: query
+      name: IsTaxForPurchase
+      description: Default is nil
+      schema:
+        type: boolean
+        nullable: true
+    account:
+      in: query
+      name: Account
+      description: Default is nil
+      schema:
+        type: string
+        nullable: true
+    bank:
+      in: query
+      name: Bank
+      description: Default is nil
+      schema:
+        type: string
+        nullable: true
+    code:
+      in: query
+      name: Code
+      description: Code
+      schema:
+        type: string
     summarizeErrors:
       in: query
       name: summarizeErrors
-      description: If false return 200 OK and mix of successfully created obejcts and any with validation errors
+      description: If false return 200 OK and mix of successfully created objects and any with validation errors
       example: false
       schema:
         type: boolean
@@ -569,6 +1240,107 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Accounts:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/reference/chart-of-accounts'
+      properties:
+        Total:
+          description: Total
+          type: string
+        Page:
+          description: Page
+          type: string
+        AccountsList:
+          description: Array of Accounts
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+      type: object
+    Account:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/chart-of-accounts'
+      properties:
+        Code:
+          description: Unique code of Account
+          maxLength: 50
+          type: string
+        Name:
+          description: Account Name
+          maxLength: 256
+          type: string
+        Type:
+          description: 'Should be one of the following values: `BANK`, `CURRLIAB`, `LIABILITY`, `TERMLIA`, `PAYGLIABILITY`, `SUPERANNUATIONLIABILITY`, `WAGESPAYABLELIABILITY`'
+          maxLength: 50
+          type: string
+          enum:
+          - BANK
+          - CURRLIAB
+          - LIABILITY
+          - TERMLIA
+          - PAYGLIABILITY
+          - SUPERANNUATIONLIABILITY
+          - WAGESPAYABLELIABILITY
+        Status:
+          description: Account status
+          maxLength: 50
+          type: string
+        Description:
+          description: Account description
+          type: string
+        Class:
+          description: 'Should be one of the following values: `ASSET`, `LIABILITY`, `EXPENSE`, `EQUITY`, `REVENUE`'
+          type: string
+          enum:
+          - ASSET
+          - LIABILITY
+          - EXPENSE
+          - EQUITY
+          - REVENUE
+        SystemAccount:
+          description: 'Read-only for PUT. Should be one of the following values: BANKCURRENCYGAIN, CREDITORS, DEBTORS, GST, GSTONIMPORTS, HISTORICAL, REALISEDCURRENCYGAIN, RETAINEDEARNINGS, ROUNDING, TRACKINGTRANSFERS, UNPAIDEXPCLM, UNREALISEDCURRENCYGAIN, WAGEPAYABLES'
+          type: string
+          enum:
+          - BANKCURRENCYGAIN
+          - CREDITORS
+          - DEBTORS
+          - GST
+          - GSTONIMPORTS
+          - HISTORICAL
+          - REALISEDCURRENCYGAIN
+          - RETAINEDEARNINGS
+          - ROUNDING
+          - TRACKINGTRANSFERS
+          - UNPAIDEXPCLM
+          - UNREALISEDCURRENCYGAIN
+          - WAGEPAYABLES
+        ForPayments:
+          description: Account status
+          type: string
+        DisplayName:
+          description: Account display name. Read-only.
+          type: string
+        OldCode:
+          description: Read-only.
+          type: string
+        Bank:
+          description: Name of the Bank. Only for PUT and POST. Required if Account Type is BANK.
+          type: string
+        BankAccountNumber:
+          description: Bank Account Number. Only for PUT and POST. Required if Account Type is BANK.
+          type: string
+        BankAccountId:
+          description: Bank Account ID to which the Account is linked. Read-only.
+          type: string
+          format: uuid
+        Currency:
+          description: Currency. Read-only.
+          type: string
+      required:
+        - Code
+        - Name
+        - Type
+        - Status
+      type: object
     Address:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#SupplierAddressModel'
@@ -611,6 +1383,10 @@ components:
           description: Points that Address is used as default for chosen Type. `false` as default.
           type: boolean
           default: false
+      required:
+        - Country
+        - Type
+      type: object
     Contact:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#SupplierContactModel'
@@ -651,9 +1427,11 @@ components:
           description: Points that Contact is included in Email. `false` as default.
           type: boolean
           default: false
+      required:
+        - Name
+      type: object
     CurrencyCode:
       description: 3 letter alpha code for the currency – see list of currency codes
-      type: string
       enum:
       - AED
       - AFN
@@ -817,8 +1595,10 @@ components:
       - ZAR
       - ZMW
       - ZWD
+      type: string
     Customers:
-      type: object
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/customer'
       properties:
         Total:
           description: Total
@@ -831,9 +1611,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Customer'
+      type: object
     Customer:
       externalDocs:
-        url: 'https://dearinventory.docs.apiary.io/#reference/customer/get'
+        url: 'https://dearinventory.docs.apiary.io/#reference/customer'
       properties:
         ID:
           description: Unique Customer ID
@@ -939,6 +1720,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
+      required:
+        - Name
+        - Status
+        - Currency
+        - PaymentTerm
+        - AccountReceivable
+        - RevenueAccount
+        - TaxRule
       type: object
     Error:
       externalDocs:
@@ -950,4 +1739,151 @@ components:
         Exception:
           description: Exception message
           type: string
+      type: object
+    PaymentTerms:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/payment-term'
+      properties:
+        Total:
+          description: Total
+          type: string
+        Page:
+          description: Page
+          type: string
+        PaymentTermList:
+          description: Array of PaymentTerms
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentTerm'
+      type: object
+    PaymentTerm:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/payment-term'
+      properties:
+        ID:
+          description: Unique Payment Term ID
+          type: string
+          format: uuid
+        Name:
+          description: Name of Payment Term
+          maxLength: 256
+          type: string
+        Duration:
+          description: Minimum Payment Term duration in days
+          type: string
+        Method:
+          description: 'Method of Payment Term. Should be one of the following values: `number of days`, `day of next month`, `last day of next month`, `days since the end of the month`'
+          type: string
+          enum:
+          - number of days
+          - day of next month
+          - last day of next month
+          - days since the end of the month
+        IsActive:
+          description: Points that Payment Term is Active. `True` as default for POST.
+          type: boolean
+          default: true
+        IsDefault:
+          description: Points that Payment Term is Default. `False` as default for POST.
+          type: boolean
+          default: false
+      required:
+        - Name
+      type: object
+    Taxes:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/tax'
+      properties:
+        Total:
+          description: Total
+          type: string
+        Page:
+          description: Page
+          type: string
+        TaxRuleList:
+          description: Array of Taxes
+          type: array
+          items:
+            $ref: '#/components/schemas/Tax'
+      type: object
+    Tax:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/tax'
+      properties:
+        ID:
+          description: Unique ID
+          type: string
+          format: uuid
+        Name:
+          description: Tax Name
+          maxLength: 50
+          type: string
+        Account:
+          description: 'ChartOfAccount Code with Class == `LIABILITY` && Status == `ACTIVE`'
+          type: string
+        IsActive:
+          description: Points that tax is Active
+          type: boolean
+          default: true
+        TaxInclusive:
+          description: Points that tax is Inclusive
+          type: boolean
+          default: true
+        TaxPercent:
+          description: Tax percentage, should be between 0 and 100. Read-only
+          type: number
+          format: double
+          minimum: 0
+          maximum: 100
+        IsTaxForSale:
+          description: Points that tax is used for Sale
+          type: boolean
+          default: true
+        IsTaxForPurchase:
+          description: Points that tax is used for Purchase
+          type: boolean
+          default: true
+        Components:
+          description: List of Tax Components
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxComponent'
+      required:
+        - Name
+        - Account
+        - IsActive
+        - TaxInclusive
+      type: object
+    TaxComponent:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#TaxComponentModel'
+      properties:
+        Name:
+          description: Name of product. Read-only.
+          maxLength: 50
+          type: string
+        Percent:
+          description: Cost. Required if product type is `Service`. Default value = 0.
+          type: number
+          format: double
+          default: 0
+          minimum: 0
+          maximum: 100
+        AccountCode:
+          description: ChartOfAccount Code with Class == `LIABILITY` && Status == `ACTIVE`
+          type: string
+        ComponentOrder:
+          description: The order of sequence taxes components.
+          type: integer
+      required:
+        - Name
+        - Percent
+        - AccountCode
+        - ComponentOrder
+      type: object
+    Success:
+      properties:
+        Success:
+          description: Success
+          type: boolean
       type: object
