@@ -1222,21 +1222,21 @@ components:
     code:
       in: query
       name: Code
-      description: Code
+      description: Default is nil
       schema:
         type: string
         nullable: true
     type:
       in: query
       name: Type
-      description: Type
+      description: Default is nil
       schema:
         type: string
         nullable: true
     status:
       in: query
       name: Status
-      description: Status
+      description: Default is nil
       schema:
         type: string
         nullable: true
