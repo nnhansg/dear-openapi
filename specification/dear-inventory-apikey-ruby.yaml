@@ -923,9 +923,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/code'
         - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/bank'
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/status'
       responses:
         '200':
           description: Success - return response of type Chart of Accounts array with 0 to n Chart of Accounts
@@ -1224,6 +1225,21 @@ components:
       description: Code
       schema:
         type: string
+        nullable: true
+    type:
+      in: query
+      name: Type
+      description: Type
+      schema:
+        type: string
+        nullable: true
+    status:
+      in: query
+      name: Status
+      description: Status
+      schema:
+        type: string
+        nullable: true
     summarizeErrors:
       in: query
       name: summarizeErrors
