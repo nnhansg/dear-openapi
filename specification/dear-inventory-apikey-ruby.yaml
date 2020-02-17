@@ -1285,17 +1285,9 @@ components:
           maxLength: 256
           type: string
         Type:
-          description: 'Should be one of the following values: `BANK`, `CURRLIAB`, `LIABILITY`, `TERMLIA`, `PAYGLIABILITY`, `SUPERANNUATIONLIABILITY`, `WAGESPAYABLELIABILITY`'
+          description: Type
           maxLength: 50
           type: string
-          enum:
-          - BANK
-          - CURRLIAB
-          - LIABILITY
-          - TERMLIA
-          - PAYGLIABILITY
-          - SUPERANNUATIONLIABILITY
-          - WAGESPAYABLELIABILITY
         Status:
           description: Account status
           maxLength: 50
@@ -1313,22 +1305,11 @@ components:
           - EQUITY
           - REVENUE
         SystemAccount:
-          description: 'Read-only for PUT. Should be one of the following values: BANKCURRENCYGAIN, CREDITORS, DEBTORS, GST, GSTONIMPORTS, HISTORICAL, REALISEDCURRENCYGAIN, RETAINEDEARNINGS, ROUNDING, TRACKINGTRANSFERS, UNPAIDEXPCLM, UNREALISEDCURRENCYGAIN, WAGEPAYABLES'
+          description: SystemAccount
           type: string
-          enum:
-          - BANKCURRENCYGAIN
-          - CREDITORS
-          - DEBTORS
-          - GST
-          - GSTONIMPORTS
-          - HISTORICAL
-          - REALISEDCURRENCYGAIN
-          - RETAINEDEARNINGS
-          - ROUNDING
-          - TRACKINGTRANSFERS
-          - UNPAIDEXPCLM
-          - UNREALISEDCURRENCYGAIN
-          - WAGEPAYABLES
+        SystemAccountCode:
+          description: SystemAccountCode
+          type: string
         ForPayments:
           description: Account status
           type: string
