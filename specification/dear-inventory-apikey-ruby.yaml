@@ -1114,6 +1114,31 @@ paths:
                         }'
         '400':
           $ref: '#/components/responses/400Error'
+  /me:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getMe
+      summary: Allows you to retrieve your information
+      responses:
+        '200':
+          description: Success - return response of type Customers array with 0 to n Customers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Me'
+              example: '{
+                          "Company": "My",
+                          "Currency": "RUB",
+                          "TimeZone": "Etc/GMT",
+                          "DefaultWeightUnits": "oz",
+                          "DefaultDimensionsUnits": "m",
+                          "LockDate": null,
+                          "OpeningBalanceDate": "2017-11-30T00:00:00Z"
+                        }'
 components:
   securitySchemes:
     accountID:
@@ -1726,6 +1751,18 @@ components:
         - RevenueAccount
         - TaxRule
       type: object
+    DimensionsUnit:
+      description: Unit of measure for unit length/width/height
+      enum:
+      - m
+      - cm
+      - mi
+      - mm
+      - in
+      - ft
+      - yd
+      - km
+      type: string
     Error:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#introduction/api-status-codes'
@@ -1736,6 +1773,34 @@ components:
         Exception:
           description: Exception message
           type: string
+      type: object
+    Me:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/me'
+      properties:
+        Company:
+          description: Your company name
+          type: string
+        Currency:
+          description: Your company base currency
+          $ref: '#/components/schemas/CurrencyCode'
+        TimeZone:
+          description: Time Zone where your company located
+          type: string
+        DefaultWeightUnits:
+          description: Unit of measure for unit weight. Available Values are values
+          $ref: '#/components/schemas/WeightUnit'
+        DefaultDimensionsUnits:
+          description: Unit of measure for unit length/width/height. Available Values are values
+          $ref: '#/components/schemas/DimensionsUnit'
+        LockDate:
+          description: Financial settings option. Indicates date period start from what you can change transactional data. Formatted in Tenant date format
+          type: string
+          format: date
+        OpeningBalanceDate:
+          description: Date of opening balances in the system. Formatted in Tenant date format
+          type: string
+          format: date
       type: object
     PaymentTerms:
       externalDocs:
@@ -1884,3 +1949,12 @@ components:
           description: Success
           type: boolean
       type: object
+    WeightUnit:
+      description: Unit of measure for unit weight
+      enum:
+      - oz
+      - mg
+      - kg
+      - lb
+      - g
+      type: string
