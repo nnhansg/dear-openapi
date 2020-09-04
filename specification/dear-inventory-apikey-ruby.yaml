@@ -67,6 +67,7 @@ paths:
                               "Tags": "",
                               "Status": "Active",
                               "CreditLimit": 0,
+                              "IsOnCreditHold": false,
                               "LastModifiedOn": "2018-01-24T05:07:23.917Z",
                               "Addresses": [
                                 {
@@ -126,6 +127,7 @@ paths:
                               "Tags": nil,
                               "Status": "Active",
                               "CreditLimit": 0,
+                              "IsOnCreditHold": false,
                               "LastModifiedOn": "2018-01-30T06:07:43.46Z",
                               "Addresses": [],
                               "Contacts": [
@@ -1421,9 +1423,15 @@ components:
           description: Name of Contact
           maxLength: 256
           type: string
+        JobTitle:
+          description: Job Title
+          type: string
         Phone:
           description: Phone
           maxLength: 50
+          type: string
+        MobilePhone:
+          description: Mobile Phone
           type: string
         Fax:
           description: Fax
@@ -1693,6 +1701,10 @@ components:
           description: Credit limit
           type: number
           format: double
+        IsOnCreditHold:
+          description: boolean to indicate if a customer is on credit hold
+          type: boolean
+          default: false
         Tags:
           description: Tags string
           type: string
