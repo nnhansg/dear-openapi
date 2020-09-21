@@ -8,7 +8,7 @@ An OpenAPI description of the DEAR API https://inventory.dearsystems.com
 
 ``` bash
 # For MacOS
-export RUBY_POST_PROCESS_FILE=$HOME/.rbenv/shims/rubocop -a
+export RUBY_POST_PROCESS_FILE="$HOME/.rbenv/shims/rubocop -a"
 
 openapi-generator generate \
 -t ./generator/resources/ruby \

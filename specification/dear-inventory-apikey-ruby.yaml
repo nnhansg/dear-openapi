@@ -1399,10 +1399,6 @@ components:
         Type:
           description: 'Address Type. Should be one of the following values: `Billing`, `Business` or `Shipping`.'
           type: string
-          enum:
-          - Billing
-          - Business
-          - Shipping
         DefaultForType:
           description: Points that Address is used as default for chosen Type. `false` as default.
           type: boolean
@@ -1692,7 +1688,7 @@ components:
           format: double
         Comments:
           description: Comments
-          maxLength: 256
+          maxLength: 2000
           type: string
         TaxNumber:
           description: Tax number
