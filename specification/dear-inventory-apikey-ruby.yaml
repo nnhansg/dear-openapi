@@ -1141,6 +1141,66 @@ paths:
                           "LockDate": null,
                           "OpeningBalanceDate": "2017-11-30T00:00:00Z"
                         }'
+  /ref/priceTier:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getPriceTiers
+      summary: Allows you to retrieve the Price Tiers
+      responses:
+        '200':
+          description: Success - return response of Price Tiers array with n Price Tiers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceTiers'
+              example: '{
+                          "PriceTiers": [
+                            {
+                              "Code": 1,
+                              "Name": "Tier 1"
+                            },
+                            {
+                              "Code": 2,
+                              "Name": "Tier 2"
+                            },
+                            {
+                              "Code": 3,
+                              "Name": "Tier 3"
+                            },
+                            {
+                              "Code": 4,
+                              "Name": "Tier 4"
+                            },
+                            {
+                              "Code": 5,
+                              "Name": "Tier 5"
+                            },
+                            {
+                              "Code": 6,
+                              "Name": "Tier 6"
+                            },
+                            {
+                              "Code": 7,
+                              "Name": "Tier 7"
+                            },
+                            {
+                              "Code": 8,
+                              "Name": "Tier 8"
+                            },
+                            {
+                              "Code": 9,
+                              "Name": "Tier 9"
+                            },
+                            {
+                              "Code": 10,
+                              "Name": "Tier 10"
+                            }
+                          ]
+                        }'
 components:
   securitySchemes:
     accountID:
@@ -1859,6 +1919,27 @@ components:
           default: false
       required:
         - Name
+      type: object
+    PriceTiers:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/price-tiers'
+      properties:
+        PriceTiersList:
+          description: Array of PriceTiers
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceTier'
+      type: object
+    PriceTier:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/price-tiers'
+      properties:
+        Code:
+          description: Code number of Price Tier
+          type: integer
+        Name:
+          description: Price Tier name
+          type: string
       type: object
     Taxes:
       externalDocs:
