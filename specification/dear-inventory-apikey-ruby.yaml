@@ -1924,7 +1924,7 @@ components:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#reference/price-tiers'
       properties:
-        PriceTiersList:
+        PriceTiers:
           description: Array of PriceTiers
           type: array
           items:
