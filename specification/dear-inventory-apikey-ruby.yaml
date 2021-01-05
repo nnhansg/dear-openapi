@@ -1717,7 +1717,8 @@ components:
           - Active
           - Deprecated
         Currency:
-          $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code of Customer
+          type: string
         PaymentTerm:
           description: Payment term
           type: string
@@ -1851,7 +1852,7 @@ components:
           type: string
         Currency:
           description: Your company base currency
-          $ref: '#/components/schemas/CurrencyCode'
+          type: string
         TimeZone:
           description: Time Zone where your company located
           type: string
