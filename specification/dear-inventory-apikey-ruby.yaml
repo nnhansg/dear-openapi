@@ -1201,6 +1201,73 @@ paths:
                             }
                           ]
                         }'
+  /sale/invoice:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getSaleInvoices
+      summary: Allows you to retrieve the sale invoices
+      parameters:
+        - $ref: '#/components/parameters/saleId'
+        - $ref: '#/components/parameters/combineAdditionalCharges'
+        - $ref: '#/components/parameters/includeProductInfo'
+      responses:
+        '200':
+          description: Success - Returns Invoice info of a particular sale
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleInvoices'
+              example: '{
+                "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                "Invoices": [
+                  {
+                    "TaskID": "b039f19e-66f8-4309-a4b1-abf928303c88",
+                    "CombineAdditionalCharges": false,
+                    "InvoiceNumber": "INV-00001",
+                    "Memo": "",
+                    "Status": "DRAFT",
+                    "InvoiceDate": "2017-11-22T00:00:00Z",
+                    "InvoiceDueDate": "2017-12-22T00:00:00Z",
+                    "CurrencyConversionRate": 1,
+                    "BillingAddressLine1": "3 Park Street Industrial Village Southbank",
+                    "BillingAddressLine2": "Melbourne VIC 3331",
+                    "LinkedFulfillmentNumber": "1",
+                    "Lines": [
+                      {
+                        "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                        "SKU": "Bread",
+                        "Name": "Baked Bread",
+                        "Quantity": 1,
+                        "Price": 8,
+                        "Discount": 0,
+                        "Tax": 0,
+                        "Total": 8,
+                        "AverageCost": 5,
+                        "TaxRule": "Tax on Sales",
+                        "Account": "200",
+                        "Comment": ""
+                      }
+                    ],
+                    "AdditionalCharges": [
+                      {
+                        "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                        "Quantity": 1,
+                        "Price": 350,
+                        "Discount": 0,
+                        "Tax": 0,
+                        "Total": 350,
+                        "TaxRule": "Tax on Sales",
+                        "Account": "200",
+                        "Comment": ""
+                      }
+                    ]
+                  }
+                ]
+              }'
 components:
   securitySchemes:
     accountID:
@@ -1332,6 +1399,26 @@ components:
       name: summarizeErrors
       description: If false return 200 OK and mix of successfully created objects and any with validation errors
       example: false
+      schema:
+        type: boolean
+        default: false
+    saleId:
+      in: query
+      name: SaleID
+      description: Unique DEAR Sale ID
+      schema:
+        type: string
+    combineAdditionalCharges:
+      in: query
+      name: CombineAdditionalCharges
+      description: Show additional charges in 'Lines' array
+      schema:
+        type: boolean
+        default: false
+    includeProductInfo:
+      in: query
+      name: IncludeProductInfo
+      description: Show all used products in additional array
       schema:
         type: boolean
         default: false
@@ -2032,6 +2119,163 @@ components:
         - Percent
         - AccountCode
         - ComponentOrder
+      type: object
+    SaleInvoiceAdditionalCharge:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/other-models'
+      properties:
+        Description:
+          description: Name of Service Product referenced by this Line
+          type: string
+        Quantity:
+          description: Product or service quantity. Minimal value is 1.
+          type: number
+        Price:
+          description: Price per unit in Customer currency
+          type: number
+        Discount:
+          description: Discount. Value between 0 and 100. For free items discount is 100. Default value is 0
+          type: number
+        Tax:
+          description: Tax
+          type: number
+        Total:
+          description: Line Total.For validation
+          type: number
+        TaxRule:
+          description: Line Tax Rule name.
+          type: number
+        Account:
+          description: Revenue account
+          type: number
+        Comment:
+          description: Comment
+          type: number
+      required:
+        - Description
+        - Quantity
+        - Price
+        - Tax
+        - TaxRule
+        - Account
+      type: object
+    SaleInvoiceLine:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#SaleInvoiceLineModel'
+      properties:
+        ProductID:
+          description: Product identifier referenced by this Line. Required If CombineAdditionalCharges param exist for this endpoint and it have values = false
+          type: string
+        SKU:
+          description: Product SKU referenced by this Line. Required If CombineAdditionalCharges param exist for this endpoint and it have values = false
+          type: string
+        Name:
+          description: Product Name referenced by this Line
+          type: string
+        Quantity:
+          description: Product or service quantity. Minimal value is 1.
+          type: number
+        Price:
+          description: Price per unit in Customer currency
+          type: number
+        Discount:
+          description: Discount. Value between 0 and 100. For free items discount is 100. Default value is 0
+          type: number
+        Tax:
+          description: Tax
+          type: number
+        Total:
+          description: Line Total. For validation
+          type: number
+        AverageCost:
+          description: Average product cost
+          type: number
+        TaxRule:
+          description: Line Tax Rule name.
+          type: string
+        Account:
+          description: Revenue account
+          type: string
+        Comment:
+          description: Comment for this line
+          type: string
+      required:
+        - ProductID
+        - SKU
+        - Name
+        - Quantity
+        - Price
+      type: object
+    SaleInvoices:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/sale/sale-invoice'
+      properties:
+        SaleID:
+          description: Unique DEAR Sale ID
+          type: string
+        Invoices:
+          description: Array of Invoices
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleInvoice'
+      required:
+        - SaleID
+      type: object
+    SaleInvoice:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/sale/sale-invoice'
+      properties:
+        TaskID:
+          description: Identifier of sale Invoice task
+          type: string
+          format: uuid
+        CombineAdditionalCharges:
+          description: if true then additional charges lines displayed in Lines array
+          type: boolean
+          default: false
+        InvoiceNumber:
+          description: Invoice Number (auto-generated)
+          type: string
+        Memo:
+          description: Additional information for Invoice.
+          type: string
+        Status:
+          description: Invoice status. Possible Values are values. For POST available values are DRAFT, AUTHORISED
+          type: string
+        InvoiceDate:
+          description: Invoice Date.
+          type: string
+        InvoiceDueDate:
+          description: Invoice Due Date.
+          type: string
+        CurrencyConversionRate:
+          description: Decimal with up to 4 decimal places
+          type: number
+        BillingAddressLine1:
+          description: Billing Address Line 1
+          type: string
+        BillingAddressLine2:
+          description: Billing Address Line 2
+          type: string
+        LinkedFulfillmentNumber:
+          description: Number of Fulfilment linked to this invoice
+          type: integer
+        Lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleInvoiceLine'
+          default: []
+        AdditionalCharges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleInvoiceAdditionalCharge'
+          default: []
+      required:
+        - TaskID
+        - CombineAdditionalCharges
+        - Status
+        - InvoiceDate
+        - InvoiceDueDate
       type: object
     Success:
       properties:
