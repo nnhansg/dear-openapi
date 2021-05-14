@@ -2285,10 +2285,4 @@ components:
       type: object
     WeightUnit:
       description: Unit of measure for unit weight
-      enum:
-      - oz
-      - mg
-      - kg
-      - lb
-      - g
       type: string
