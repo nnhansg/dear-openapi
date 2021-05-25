@@ -1472,12 +1472,6 @@ components:
         Class:
           description: 'Should be one of the following values: `ASSET`, `LIABILITY`, `EXPENSE`, `EQUITY`, `REVENUE`'
           type: string
-          enum:
-          - ASSET
-          - LIABILITY
-          - EXPENSE
-          - EQUITY
-          - REVENUE
         SystemAccount:
           description: SystemAccount
           type: string
@@ -1605,169 +1599,6 @@ components:
       type: object
     CurrencyCode:
       description: 3 letter alpha code for the currency – see list of currency codes
-      enum:
-      - AED
-      - AFN
-      - ALL
-      - AMD
-      - ANG
-      - AOA
-      - ARS
-      - AUD
-      - AWG
-      - AZN
-      - BAM
-      - BBD
-      - BDT
-      - BGN
-      - BHD
-      - BIF
-      - BMD
-      - BND
-      - BOB
-      - BRL
-      - BSD
-      - BTN
-      - BWP
-      - BYN
-      - BZD
-      - CAD
-      - CDF
-      - CHF
-      - CLP
-      - CNY
-      - COP
-      - CRC
-      - CUC
-      - CUP
-      - CVE
-      - CZK
-      - DJF
-      - DKK
-      - DOP
-      - DZD
-      - EGP
-      - ERN
-      - ETB
-      - EUR
-      - FJD
-      - FKP
-      - GBP
-      - GEL
-      - GGP
-      - GHS
-      - GIP
-      - GMD
-      - GNF
-      - GTQ
-      - GYD
-      - HKD
-      - HNL
-      - HRK
-      - HTG
-      - HUF
-      - IDR
-      - ILS
-      - IMP
-      - INR
-      - IQD
-      - IRR
-      - ISK
-      - JEP
-      - JMD
-      - JOD
-      - JPY
-      - KES
-      - KGS
-      - KHR
-      - KMF
-      - KPW
-      - KRW
-      - KWD
-      - KYD
-      - KZT
-      - LAK
-      - LBP
-      - LKR
-      - LRD
-      - LSL
-      - LYD
-      - MAD
-      - MDL
-      - MGA
-      - MKD
-      - MMK
-      - MNT
-      - MOP
-      - MRU
-      - MUR
-      - MVR
-      - MWK
-      - MXN
-      - MYR
-      - MZN
-      - NAD
-      - NGN
-      - NIO
-      - NOK
-      - NPR
-      - NZD
-      - OMR
-      - PAB
-      - PEN
-      - PGK
-      - PHP
-      - PKR
-      - PLN
-      - PYG
-      - QAR
-      - RON
-      - RSD
-      - RUB
-      - RWF
-      - SAR
-      - SBD
-      - SCR
-      - SDG
-      - SEK
-      - SGD
-      - SHP
-      - SLL
-      - SOS
-      - SPL
-      - SRD
-      - STN
-      - SVC
-      - SYP
-      - SZL
-      - THB
-      - TJS
-      - TMT
-      - TND
-      - TOP
-      - TRY
-      - TTD
-      - TVD
-      - TWD
-      - TZS
-      - UAH
-      - UGX
-      - USD
-      - UYU
-      - UZS
-      - VEF
-      - VND
-      - VUV
-      - WST
-      - XAF
-      - XCD
-      - XDR
-      - XOF
-      - XPF
-      - YER
-      - ZAR
-      - ZMW
-      - ZWD
       type: string
     Customers:
       externalDocs:
@@ -1800,9 +1631,6 @@ components:
         Status:
           description: Points that Customer is Active. Available values are Active and Deprecated. Required for POST
           type: string
-          enum:
-          - Active
-          - Deprecated
         Currency:
           description: Currency code of Customer
           type: string
@@ -1909,15 +1737,6 @@ components:
       type: object
     DimensionsUnit:
       description: Unit of measure for unit length/width/height
-      enum:
-      - m
-      - cm
-      - mi
-      - mm
-      - in
-      - ft
-      - yd
-      - km
       type: string
     Error:
       externalDocs:
@@ -1992,11 +1811,6 @@ components:
         Method:
           description: 'Method of Payment Term. Should be one of the following values: `number of days`, `day of next month`, `last day of next month`, `days since the end of the month`'
           type: string
-          enum:
-          - number of days
-          - day of next month
-          - last day of next month
-          - days since the end of the month
         IsActive:
           description: Points that Payment Term is Active. `True` as default for POST.
           type: boolean
