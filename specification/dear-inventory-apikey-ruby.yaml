@@ -927,6 +927,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/code'
         - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/class'
         - $ref: '#/components/parameters/type'
         - $ref: '#/components/parameters/status'
       responses:
@@ -1305,6 +1306,13 @@ components:
     name:
       in: query
       name: Name
+      description: Default is nil
+      schema:
+        type: string
+        nullable: true
+    class:
+      in: query
+      name: Class
       description: Default is nil
       schema:
         type: string
