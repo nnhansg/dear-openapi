@@ -9,7 +9,7 @@ info:
   contact:
     name: "Nhan Nguyen"
     email: "nnhansg@gmail.com"
-    url: "https://www.nnhan.me"
+    url: "https://www.nhansg.com"
 paths:
   /customer:
     get:
@@ -1269,6 +1269,372 @@ paths:
                   }
                 ]
               }'
+
+  /sale/quote:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getSaleQuote
+      summary: Allows you to retrieve the Sale Quote
+      parameters:
+        - $ref: '#/components/parameters/saleId'
+        - $ref: '#/components/parameters/combineAdditionalCharges'
+        - $ref: '#/components/parameters/includeProductInfo'
+      responses:
+        '200':
+          description: Success - Returns Sale Quote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleQuote'
+              example: '{
+                "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                "CombineAdditionalCharges": false,
+                "Memo": "",
+                "Status": "AUTHORISED",
+                "Lines": [
+                  {
+                    "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                    "SKU": "Bread",
+                    "Name": "Baked Bread",
+                    "Quantity": 1,
+                    "Price": 8,
+                    "Discount": 0,
+                    "Tax": 0,
+                    "AverageCost": 5,
+                    "TaxRule": "Tax on Sales",
+                    "Comment": "",
+                    "Total": 8
+                  }
+                ],
+                "AdditionalCharges": [
+                  {
+                    "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                    "Price": 350,
+                    "Quantity": 1,
+                    "Discount": 0,
+                    "Tax": 0,
+                    "Total": 350,
+                    "TaxRule": "Tax on Sales",
+                    "Comment": ""
+                  }
+                ],
+                "TotalBeforeTax": 358,
+                "Tax": 0,
+                "Total": 358
+              }'
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: createSaleQuote
+      summary: Allows you to create a Sale Quote
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a Sale Quote object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaleQuote'
+            example: '{
+              "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+              "CombineAdditionalCharges": false,
+              "Memo": "",
+              "Status": "AUTHORISED",
+              "Prepayments": [],
+              "Lines": [
+                {
+                  "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                  "SKU": "Bread",
+                  "Name": "Baked Bread",
+                  "Quantity": 1,
+                  "Price": 8,
+                  "Discount": 0,
+                  "Tax": 0,
+                  "AverageCost": 5,
+                  "TaxRule": "Tax on Sales",
+                  "Comment": "",
+                  "Total": 8
+                }
+              ],
+              "AdditionalCharges": [
+                {
+                  "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                  "Price": 350,
+                  "Quantity": 1,
+                  "Discount": 0,
+                  "Tax": 0,
+                  "Total": 350,
+                  "TaxRule": "Tax on Sales",
+                  "Comment": ""
+                }
+              ]
+            }'
+      responses:
+        '200':
+          description: Success - return response of type Sale Quote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleQuote'
+              example: '{
+                "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                "CombineAdditionalCharges": false,
+                "Memo": "",
+                "Status": "AUTHORISED",
+                "Lines": [
+                  {
+                    "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                    "SKU": "Bread",
+                    "Name": "Baked Bread",
+                    "Quantity": 1,
+                    "Price": 8,
+                    "Discount": 0,
+                    "Tax": 0,
+                    "AverageCost": 5,
+                    "TaxRule": "Tax on Sales",
+                    "Comment": "",
+                    "Total": 8
+                  }
+                ],
+                "AdditionalCharges": [
+                  {
+                    "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                    "Price": 350,
+                    "Quantity": 1,
+                    "Discount": 0,
+                    "Tax": 0,
+                    "Total": 350,
+                    "TaxRule": "Tax on Sales",
+                    "Comment": ""
+                  }
+                ],
+                "TotalBeforeTax": 358,
+                "Tax": 0,
+                "Total": 358
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
+  /webhooks:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getWebhooks
+      summary: Allows you to retrieve the Webhooks
+      responses:
+        '200':
+          description: Success - Returns Webhooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhooks'
+              example: '{
+                "Webhooks": [
+                  {
+                    "ID": "0bd90aa9-72f9-4f9c-bb0d-9f7cc406b07a",
+                    "Type": "Sale/OrderAuthorised",
+                    "Name": "Sale order has been authorised",
+                    "IsActive": false,
+                    "ExternalURL": "https://hookb.in/Zn8950P7",
+                    "ExternalAuthorizationType": "basicauth",
+                    "ExternalUserName": "Hello",
+                    "ExternalPassword": "123",
+                    "ExternalBearerToken": "",
+                    "ExternalHeaders": [
+                      {
+                        "Key": "Key",
+                        "Value": "123"
+                      },
+                      {
+                        "Key": "6",
+                        "Value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }'
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: createWebhooks
+      summary: Allows you to create a Webhook
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a webhook object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+            example: '{
+              "Type": "Sale/OrderAuthorised",
+              "IsActive": true,
+              "ExternalURL": "https://hookb.in/Zn8950P7",
+              "ExternalAuthorizationType": "basicauth",
+              "ExternalUserName": "Hello",
+              "ExternalPassword": "123",
+              "ExternalBearerToken": "",
+              "ExternalHeaders": [
+                {
+                  "Key": "Key",
+                  "Value": "123"
+                },
+                {
+                  "Key": "6",
+                  "Value": "0"
+                }
+              ]
+            }'
+      responses:
+        '200':
+          description: Success - return response of type Webhooks array with newly created Webhook
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhooks'
+              example: '{
+                "Webhooks": [
+                  {
+                    "ID": "1cf8cb83-bf39-494b-87f9-1252b684d6d5",
+                    "Type": "Sale/OrderAuthorised",
+                    "Name": "Sale order has been authorised",
+                    "IsActive": true,
+                    "ExternalURL": "https://hookb.in/Zn8950P7",
+                    "ExternalAuthorizationType": "basicauth",
+                    "ExternalUserName": "Hello",
+                    "ExternalPassword": "123",
+                    "ExternalBearerToken": null,
+                    "ExternalHeaders": [
+                      {
+                        "Key": "Key",
+                        "Value": "123"
+                      },
+                      {
+                        "Key": "6",
+                        "Value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    put:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: updateWebhook
+      summary: Allows you to update a webhook
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a webhook object with properties to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+            example: '{
+              "ID": "1cf8cb83-bf39-494b-87f9-1252b684d6d5",
+              "Type": "Sale/OrderAuthorised",
+              "Name": "Sale order has been authorised",
+              "IsActive": true,
+              "ExternalURL": "https://hookb.in/Zn8950P7",
+              "ExternalAuthorizationType": "basicauth",
+              "ExternalUserName": "Hello",
+              "ExternalPassword": "123",
+              "ExternalBearerToken": null,
+              "ExternalHeaders": [
+                {
+                  "Key": "Key",
+                  "Value": "123"
+                },
+                {
+                  "Key": "6",
+                  "Value": "0"
+                },
+                {
+                  "Key": "New Key",
+                  "Value": "New Value"
+                }
+              ]
+            }'
+      responses:
+        '200':
+          description: Success - return response of type Webhooks array with updated Webhook
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhooks'
+              example: '{
+                "Webhooks": [
+                  {
+                    "ID": "1cf8cb83-bf39-494b-87f9-1252b684d6d5",
+                    "Type": "Sale/OrderAuthorised",
+                    "Name": "Sale order has been authorised",
+                    "IsActive": true,
+                    "ExternalURL": "https://hookb.in/Zn8950P7",
+                    "ExternalAuthorizationType": "basicauth",
+                    "ExternalUserName": "Hello",
+                    "ExternalPassword": "123",
+                    "ExternalBearerToken": null,
+                    "ExternalHeaders": [
+                      {
+                        "Key": "Key",
+                        "Value": "123"
+                      },
+                      {
+                        "Key": "6",
+                        "Value": "0"
+                      },
+                      {
+                        "Key": "New Key",
+                        "Value": "New Value"
+                      }
+                    ]
+                  }
+                ]
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: deleteWebhook
+      summary: Allows you to delete a webhook
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success - delete existing webhook and return response of type Webhooks array with deleted Webhook
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhooks'
+              example: '{
+                "Webhooks": []
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
 components:
   securitySchemes:
     accountID:
@@ -1757,6 +2123,15 @@ components:
           description: Exception message
           type: string
       type: object
+    ExternalHeader:
+      properties:
+        Key:
+          description: Key
+          type: string
+        Value:
+          description: Value
+          type: string
+      type: object
     Me:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#reference/me'
@@ -1942,9 +2317,44 @@ components:
         - AccountCode
         - ComponentOrder
       type: object
+    SaleAdditionalCharge:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#SaleAdditionalChargeModel'
+      properties:
+        Description:
+          description: Name of Service Product referenced by this Line
+          type: string
+        Price:
+          description: Decimal with up to 4 decimal places. Price per unit in Customer currency
+          type: number
+        Quantity:
+          description: Decimal with up to 4 decimal places. Product or service quantity. Minimal value is 1.
+          type: number
+        Discount:
+          description: Decimal with up to 2 decimal places. Discount. Value between 0 and 100. For free items discount is 100. Default value is 0
+          type: number
+        Tax:
+          description: Decimal with up to 4 decimal places. Tax.
+          type: number
+        Total:
+          description: Decimal with up to 4 decimal places. Line Total. For validation
+          type: number
+        TaxRule:
+          description: Line Tax Rule name.
+          type: string
+        Comment:
+          description: Comment
+          type: number
+      required:
+        - Description
+        - Price
+        - Quantity
+        - Tax
+        - TaxRule
+      type: object
     SaleInvoiceAdditionalCharge:
       externalDocs:
-        url: 'https://dearinventory.docs.apiary.io/#reference/other-models'
+        url: 'https://dearinventory.docs.apiary.io/#SaleInvoiceAdditionalChargeModel'
       properties:
         Description:
           description: Name of Service Product referenced by this Line
@@ -1966,13 +2376,13 @@ components:
           type: number
         TaxRule:
           description: Line Tax Rule name.
-          type: number
+          type: string
         Account:
           description: Revenue account
-          type: number
+          type: string
         Comment:
           description: Comment
-          type: number
+          type: string
       required:
         - Description
         - Quantity
@@ -2052,7 +2462,7 @@ components:
           type: string
           format: uuid
         CombineAdditionalCharges:
-          description: if true then additional charges lines displayed in Lines array
+          description: If `true` then `additional charges` lines displayed in `Lines` array
           type: boolean
           default: false
         InvoiceNumber:
@@ -2099,11 +2509,158 @@ components:
         - InvoiceDate
         - InvoiceDueDate
       type: object
+    SaleQuote:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/reference/sale/sale-quote'
+      properties:
+        SaleID:
+          description: Unique DEAR Sale ID
+          type: string
+          format: uuid
+        CombineAdditionalCharges:
+          description: If `true` then `additional charges` lines displayed in `Lines` array
+          type: boolean
+          default: false
+        Memo:
+          description: Additional information for Quote.
+          type: string
+        Status:
+          description: Quote Status. Possible Values are values. For POST only `DRAFT` and `AUTHORISED` values accepted
+          type: string
+        Lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleQuoteLine'
+          default: []
+        AdditionalCharges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleAdditionalCharge'
+          default: []
+        TotalBeforeTax:
+          description: Decimal with up to 4 decimal places. Sum of quote lines and additional charges without taxes. Not required for POST.
+          type: number
+        Tax:
+          description: Decimal with up to 4 decimal places. Sum of quote lines and additional charges taxes. Not required for POST.
+          type: number
+        Total:
+          description: Decimal with up to 4 decimal places. Sum of quote lines and additional charges with taxes. Not required for POST.
+          type: number
+      required:
+        - SaleID
+        - CombineAdditionalCharges
+        - Memo
+        - Status
+        - TotalBeforeTax
+        - Tax
+        - Total
+      type: object
+    SaleQuoteLine:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#SaleQuoteLineModel'
+      properties:
+        ProductID:
+          description: Product identifier referenced by this Line. Required If CombineAdditionalCharges param exist for this endpoint and it have values = false
+          type: string
+        SKU:
+          description: Product SKU referenced by this Line. Required If CombineAdditionalCharges param exist for this endpoint and it have values = false
+          type: string
+        Name:
+          description: Product Name referenced by this Line
+          type: string
+        Quantity:
+          description: Product or service quantity. Minimal value is 1.
+          type: number
+        Price:
+          description: Price per unit in Customer currency
+          type: number
+        Discount:
+          description: Discount. Value between 0 and 100. For free items discount is 100. Default value is 0
+          type: number
+        Tax:
+          description: Tax
+          type: number
+        Total:
+          description: Line Total. For validation
+          type: number
+        AverageCost:
+          description: Average product cost
+          type: number
+        TaxRule:
+          description: Line Tax Rule name.
+          type: string
+        Account:
+          description: Revenue account
+          type: string
+        Comment:
+          description: Comment for this line
+          type: string
+      required:
+        - ProductID
+        - SKU
+        - Name
+        - Quantity
+        - Price
+      type: object
     Success:
       properties:
         Success:
           description: Success
           type: boolean
+      type: object
+    Webhooks:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/reference/webhooks/webhooks'
+      properties:
+        Webhooks:
+          description: Array of Webhooks
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+      type: object
+    Webhook:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/reference/webhooks/webhooks'
+      properties:
+        ID:
+          description: Unique ID. Required for PUT
+          type: string
+          format: uuid
+        Type:
+          description: Webhook Type. Available values are values
+          type: string
+        Name:
+          description: Webhook Friendly Name. Read-only.
+          type: string
+        IsActive:
+          description: Is webhook active.
+          type: boolean
+        ExternalURL:
+          description: Callback url.
+          type: string
+        ExternalAuthorizationType:
+          description: Authorisation type. Available values are `noauth`, `basicauth` and `bearerauth`
+          type: string
+        ExternalUserName:
+          description: User name. Required if `ExternalAuthorizationType` is `basicauth`
+          type: string
+        ExternalPassword:
+          description: Password. Required if `ExternalAuthorizationType` is `basicauth`
+          type: string
+        ExternalBearerToken:
+          description: Bearer token. Required if `ExternalAuthorizationType` is `bearerauth`
+          type: string
+        ExternalHeaders:
+          description: Additional headers.
+          type: array
+          default: []
+          items:
+            $ref: '#/components/schemas/ExternalHeader'
+      required:
+        - Type
+        - IsActive
+        - ExternalURL
+        - ExternalAuthorizationType
       type: object
     WeightUnit:
       description: Unit of measure for unit weight
