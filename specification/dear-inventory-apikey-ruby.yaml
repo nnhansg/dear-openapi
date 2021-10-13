@@ -1202,6 +1202,687 @@ paths:
                             }
                           ]
                         }'
+  # /sale:
+  #   get:
+  #     security:
+  #       - accountID: []
+  #         appKey: []
+  #     tags:
+  #       - Inventory
+  #     operationId: getSale
+  #     summary: Allows you to retrieve the Sale
+  #     parameters:
+  #       - $ref: '#/components/parameters/id'
+  #       - $ref: '#/components/parameters/combineAdditionalCharges'
+  #       - $ref: '#/components/parameters/hideInventoryMovements'
+  #       - $ref: '#/components/parameters/includeTransactions'
+  #     responses:
+  #       '200':
+  #         description: Success - Returns Sale
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/Sale'
+  #             example: '{
+  #               "ID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+  #               "Customer": "Hamilton Smith Pty",
+  #               "CustomerID": "6c18f8e9-90e1-418f-aebc-1219e67e4b9c",
+  #               "Contact": "No Name",
+  #               "Phone": "03 3189080",
+  #               "Email": "infodemo@hsmithdemo.co",
+  #               "DefaultAccount": "200",
+  #               "SkipQuote": false,
+  #               "BillingAddress": {
+  #                 "DisplayAddressLine1": "3 Park Street Industrial Village Southbank",
+  #                 "DisplayAddressLine2": "Melbourne VIC 3331",
+  #                 "Line1": "3 Park Street Industrial Village",
+  #                 "Line2": "Southbank",
+  #                 "City": "Melbourne",
+  #                 "State": "VIC",
+  #                 "Postcode": "3331",
+  #                 "Country": "USA"
+  #               },
+  #               "ShippingAddress": {
+  #                 "DisplayAddressLine1": "3 Park Street Industrial Village Southbank",
+  #                 "DisplayAddressLine2": "Melbourne VIC 3331",
+  #                 "Line1": "3 Park Street Industrial Village",
+  #                 "Line2": "Southbank",
+  #                 "City": "Melbourne",
+  #                 "State": "VIC",
+  #                 "Postcode": "3331",
+  #                 "Country": "USA",
+  #                 "Company": "DIISR - Small Business Services",
+  #                 "Contact": "Sheree Bond",
+  #                 "ShipToOther": false
+  #               },
+  #               "ShippingNotes": "",
+  #               "BaseCurrency": "RUB",
+  #               "CustomerCurrency": "RUB",
+  #               "TaxRule": "Tax on Sales",
+  #               "TaxCalculation": "Exclusive",
+  #               "Terms": "30 days",
+  #               "PriceTier": "Tier 1",
+  #               "ShipBy": "2017-11-30T00:00:00Z",
+  #               "Location": "Main Warehouse",
+  #               "SaleOrderDate": "2017-10-28T00:00:00Z",
+  #               "LastModifiedOn": "2017-11-22T10:10:49.75Z",
+  #               "Note": "",
+  #               "CustomerReference": "",
+  #               "COGSAmount": 0,
+  #               "Status": "ORDERED",
+  #               "CombinedPickingStatus": "NOT AVAILABLE",
+  #               "CombinedPackingStatus": "NOT AVAILABLE",
+  #               "CombinedShippingStatus": "NOT AVAILABLE",
+  #               "FulFilmentStatus": "NOT AVAILABLE",
+  #               "CombinedInvoiceStatus": "NOT AVAILABLE",
+  #               "CombinedPaymentStatus": "UNPAID",
+  #               "CombinedTrackingNumbers": "",
+  #               "Carrier": "test carrier",
+  #               "CurrencyRate": 1,
+  #               "SalesRepresentative": "DEFAULT billing contact",
+  #               "ServiceOnly": false,
+  #               "Type": "Advanced Sale",
+  #               "SourceChannel": "Amazon_US",
+  #               "Quote": {
+  #                 "Memo": "",
+  #                 "Status": "AUTHORISED",
+  #                 "Prepayments": [],
+  #                 "Lines": [
+  #                   {
+  #                     "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                     "SKU": "Bread",
+  #                     "Name": "Baked Bread",
+  #                     "Quantity": 1,
+  #                     "Price": 8,
+  #                     "Discount": 0,
+  #                     "Tax": 0,
+  #                     "AverageCost": 5,
+  #                     "TaxRule": "Tax on Sales",
+  #                     "Comment": "",
+  #                     "Total": 8,
+  #                     "ProductLength": 0,
+  #                     "ProductWidth": 0,
+  #                     "ProductHeight": 0,
+  #                     "ProductWeight": 0,
+  #                     "WeightUnits": "",
+  #                     "DimensionsUnits": "",
+  #                     "ProductCustomField1": null,
+  #                     "ProductCustomField2": null,
+  #                     "ProductCustomField3": null,
+  #                     "ProductCustomField4": null,
+  #                     "ProductCustomField5": null,
+  #                     "ProductCustomField6": null,
+  #                     "ProductCustomField7": null,
+  #                     "ProductCustomField8": null,
+  #                     "ProductCustomField9": null,
+  #                     "ProductCustomField10": null
+  #                   }
+  #                 ],
+  #                 "AdditionalCharges": [
+  #                   {
+  #                     "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+  #                     "Price": 350,
+  #                     "Quantity": 1,
+  #                     "Discount": 0,
+  #                     "Tax": 0,
+  #                     "Total": 350,
+  #                     "TaxRule": "Tax on Sales",
+  #                     "Comment": ""
+  #                   }
+  #                 ],
+  #                 "TotalBeforeTax": 358,
+  #                 "Tax": 0,
+  #                 "Total": 358
+  #               },
+  #               "Order": {
+  #                 "SaleOrderNumber": "SO-00001",
+  #                 "Memo": "",
+  #                 "Status": "AUTHORISED",
+  #                 "Lines": [
+  #                   {
+  #                     "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                     "SKU": "Bread",
+  #                     "Name": "Baked Bread",
+  #                     "Quantity": 1,
+  #                     "Price": 8,
+  #                     "Discount": 0,
+  #                     "Tax": 0,
+  #                     "AverageCost": 5,
+  #                     "TaxRule": "Tax on Sales",
+  #                     "Comment": "",
+  #                     "DropShip": false,
+  #                     "Backorder": false,
+  #                     "BackorderQuantity": 0,
+  #                     "Total": 8,
+  #                     "ProductLength": 0,
+  #                     "ProductWidth": 0,
+  #                     "ProductHeight": 0,
+  #                     "ProductWeight": 0,
+  #                     "WeightUnits": "",
+  #                     "DimensionsUnits": "",
+  #                     "ProductCustomField1": null,
+  #                     "ProductCustomField2": null,
+  #                     "ProductCustomField3": null,
+  #                     "ProductCustomField4": null,
+  #                     "ProductCustomField5": null,
+  #                     "ProductCustomField6": null,
+  #                     "ProductCustomField7": null,
+  #                     "ProductCustomField8": null,
+  #                     "ProductCustomField9": null,
+  #                     "ProductCustomField10": null
+  #                   }
+  #                 ],
+  #                 "AdditionalCharges": [
+  #                   {
+  #                     "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+  #                     "Price": 350,
+  #                     "Quantity": 1,
+  #                     "Discount": 0,
+  #                     "Tax": 0,
+  #                     "Total": 350,
+  #                     "TaxRule": "Tax on Sales",
+  #                     "Comment": ""
+  #                   }
+  #                 ],
+  #                 "TotalBeforeTax": 8,
+  #                 "Tax": 0,
+  #                 "Total": 8
+  #               },
+  #               "Fulfilments": [
+  #                 {
+  #                   "TaskID": "cde5fb4a-1dac-4e9a-bc33-5dfa14eedb57",
+  #                   "FulfillmentNumber": 1,
+  #                   "LinkedInvoiceNumber": "INV-00001",
+  #                   "FulFilmentStatus": "NOT FULFILLED",
+  #                   "Pick": {
+  #                     "Status": "DRAFT",
+  #                     "Lines": [
+  #                       {
+  #                         "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                         "SKU": "Bread",
+  #                         "Name": "Baked Bread",
+  #                         "Location": "Main Warehouse",
+  #                         "LocationID": "19aeca31-bd49-4fbe-8abd-37a6169cc2cb",
+  #                         "Quantity": 1,
+  #                         "BatchSN": "PO-00001-1",
+  #                         "ExpiryDate": "2017-11-30T00:00:00Z",
+  #                         "ProductLength": 0,
+  #                         "ProductWidth": 0,
+  #                         "ProductHeight": 0,
+  #                         "ProductWeight": 0,
+  #                         "WeightUnits": "",
+  #                         "DimensionsUnits": "",
+  #                         "ProductCustomField1": null,
+  #                         "ProductCustomField2": null,
+  #                         "ProductCustomField3": null,
+  #                         "ProductCustomField4": null,
+  #                         "ProductCustomField5": null,
+  #                         "ProductCustomField6": null,
+  #                         "ProductCustomField7": null,
+  #                         "ProductCustomField8": null,
+  #                         "ProductCustomField9": null,
+  #                         "ProductCustomField10": null
+  #                       }
+  #                     ]
+  #                   },
+  #                   "Pack": {
+  #                     "Status": "NOT AVAILABLE",
+  #                     "Lines": [
+  #                       {
+  #                         "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                         "SKU": "Bread",
+  #                         "Name": "Baked Bread",
+  #                         "Location": "Main Warehouse",
+  #                         "LocationID": "19aeca31-bd49-4fbe-8abd-37a6169cc2cb",
+  #                         "Box": "Box 1",
+  #                         "Quantity": 1,
+  #                         "BatchSN": "PO-00001-1",
+  #                         "ExpiryDate": "2017-11-30T00:00:00Z",
+  #                         "ProductLength": 0,
+  #                         "ProductWidth": 0,
+  #                         "ProductHeight": 0,
+  #                         "ProductWeight": 0,
+  #                         "WeightUnits": "",
+  #                         "DimensionsUnits": "",
+  #                         "ProductCustomField1": null,
+  #                         "ProductCustomField2": null,
+  #                         "ProductCustomField3": null,
+  #                         "ProductCustomField4": null,
+  #                         "ProductCustomField5": null,
+  #                         "ProductCustomField6": null,
+  #                         "ProductCustomField7": null,
+  #                         "ProductCustomField8": null,
+  #                         "ProductCustomField9": null,
+  #                         "ProductCustomField10": null
+  #                       }
+  #                     ]
+  #                   },
+  #                   "Ship": {
+  #                     "Status": "NOT AVAILABLE",
+  #                     "RequireBy": null,
+  #                     "ShippingAddress": {
+  #                       "DisplayAddressLine1": "Line 1 Lines 2",
+  #                       "DisplayAddressLine2": "City State Code Russia",
+  #                       "Line1": "Line 1",
+  #                       "Line2": "Lines 2",
+  #                       "City": "City",
+  #                       "State": "State",
+  #                       "Postcode": "Code",
+  #                       "Country": "Russia",
+  #                       "Company": "DIISR - Small Business Services",
+  #                       "Contact": "Sheree Bond",
+  #                       "ShipToOther": false
+  #                     },
+  #                     "ShippingNotes": "",
+  #                     "Lines": [
+  #                       {
+  #                         "ID": "67f67884-8115-4546-93c9-48230f24bd56",
+  #                         "ShipmentDate": "2017-11-22T00:00:00Z",
+  #                         "Carrier": "DEFAULT Carrier",
+  #                         "Boxes": "Box 1",
+  #                         "TrackingNumber": "",
+  #                         "TrackingURL": "",
+  #                         "IsShipped": true
+  #                       }
+  #                     ]
+  #                   }
+  #                 }
+  #               ],
+  #               "Invoices": [
+  #                 {
+  #                   "TaskID": "b039f19e-66f8-4309-a4b1-abf928303c88",
+  #                   "InvoiceNumber": "INV-00001",
+  #                   "Memo": "",
+  #                   "Status": "AUTHORISED",
+  #                   "InvoiceDate": "2017-11-22T00:00:00Z",
+  #                   "InvoiceDueDate": "2017-12-22T00:00:00Z",
+  #                   "CurrencyConversionRate": 1,
+  #                   "BillingAddressLine1": "3 Park Street Industrial Village Southbank",
+  #                   "BillingAddressLine2": "Melbourne VIC 3331",
+  #                   "LinkedFulfillmentNumber": "1",
+  #                   "Lines": [
+  #                     {
+  #                       "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                       "SKU": "Bread",
+  #                       "Name": "Baked Bread",
+  #                       "Quantity": 1,
+  #                       "Price": 8,
+  #                       "Discount": 0,
+  #                       "Tax": 0,
+  #                       "Total": 8,
+  #                       "AverageCost": 5,
+  #                       "TaxRule": "Tax on Sales",
+  #                       "Account": "200",
+  #                       "Comment": "",
+  #                       "ProductLength": 0,
+  #                       "ProductWidth": 0,
+  #                       "ProductHeight": 0,
+  #                       "ProductWeight": 0,
+  #                       "WeightUnits": "",
+  #                       "DimensionsUnits": "",
+  #                       "ProductCustomField1": null,
+  #                       "ProductCustomField2": null,
+  #                       "ProductCustomField3": null,
+  #                       "ProductCustomField4": null,
+  #                       "ProductCustomField5": null,
+  #                       "ProductCustomField6": null,
+  #                       "ProductCustomField7": null,
+  #                       "ProductCustomField8": null,
+  #                       "ProductCustomField9": null,
+  #                       "ProductCustomField10": null
+  #                     }
+  #                   ],
+  #                   "AdditionalCharges": [
+  #                     {
+  #                       "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+  #                       "Quantity": 1,
+  #                       "Price": 350,
+  #                       "Discount": 0,
+  #                       "Tax": 0,
+  #                       "Total": 350,
+  #                       "TaxRule": "Tax on Sales",
+  #                       "Account": "200",
+  #                       "Comment": ""
+  #                     }
+  #                   ],
+  #                   "Payments": [],
+  #                   "TotalBeforeTax": 358,
+  #                   "Tax": 0,
+  #                   "Total": 358,
+  #                   "Paid": 0
+  #                 }
+  #               ],
+  #               "CreditNotes": [
+  #                 {
+  #                   "TaskID": "280fba91-281c-4416-ad43-674ae2d17355",
+  #                   "CreditNoteInvoiceNumber": "INV-00001",
+  #                   "Memo": "",
+  #                   "Status": "DRAFT",
+  #                   "CreditNoteDate": "2017-11-22T00:00:00Z",
+  #                   "CreditNoteNumber": "CR-00001",
+  #                   "CreditNoteConversionRate": 1,
+  #                   "Lines": [
+  #                     {
+  #                       "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                       "SKU": "Bread",
+  #                       "Name": "Baked Bread",
+  #                       "Quantity": 1,
+  #                       "Price": 8,
+  #                       "Discount": 0,
+  #                       "Tax": 0,
+  #                       "Total": 8,
+  #                       "AverageCost": 5,
+  #                       "TaxRule": "Tax on Sales",
+  #                       "Account": "200",
+  #                       "Comment": "",
+  #                       "ProductLength": 0,
+  #                       "ProductWidth": 0,
+  #                       "ProductHeight": 0,
+  #                       "ProductWeight": 0,
+  #                       "WeightUnits": "",
+  #                       "DimensionsUnits": "",
+  #                       "ProductCustomField1": null,
+  #                       "ProductCustomField2": null,
+  #                       "ProductCustomField3": null,
+  #                       "ProductCustomField4": null,
+  #                       "ProductCustomField5": null,
+  #                       "ProductCustomField6": null,
+  #                       "ProductCustomField7": null,
+  #                       "ProductCustomField8": null,
+  #                       "ProductCustomField9": null,
+  #                       "ProductCustomField10": null
+  #                     }
+  #                   ],
+  #                   "AdditionalCharges": [
+  #                     {
+  #                       "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+  #                       "Quantity": 1,
+  #                       "Price": 350,
+  #                       "Discount": 0,
+  #                       "Tax": 0,
+  #                       "Total": 350,
+  #                       "TaxRule": "Tax on Sales",
+  #                       "Account": "200",
+  #                       "Comment": ""
+  #                     }
+  #                   ],
+  #                   "Refunds": [
+  #                     {
+  #                       "ID": "20d5ff25-afa2-cd74-96d7-c7f0dd1fa1c1",
+  #                       "Reference": "",
+  #                       "Amount": 358,
+  #                       "DatePaid": "2017-11-23T00:00:00Z",
+  #                       "Account": "718",
+  #                       "CurrencyRate": 1,
+  #                       "DateCreated": "2017-11-22T06:58:21.8882229Z"
+  #                     }
+  #                   ],
+  #                   "Restock": [
+  #                     {
+  #                       "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                       "SKU": "Bread",
+  #                       "Name": "Baked Bread",
+  #                       "Location": "Main Warehouse",
+  #                       "LocationID": "19aeca31-bd49-4fbe-8abd-37a6169cc2cb",
+  #                       "Quantity": 1,
+  #                       "BatchSN": "PO-00001-1",
+  #                       "ExpiryDate": "2017-11-30T00:00:00Z",
+  #                       "RestockDate": "2017-11-30T00:00:00Z",
+  #                       "RestockLocationID": "19aeca31-bd49-4fbe-8abd-37a6169cc2cb",
+  #                       "RestockLocation": "Main Warehouse"
+  #                     }
+  #                   ],
+  #                   "TotalBeforeTax": 358,
+  #                   "Tax": 0,
+  #                   "Total": 358
+  #                 }
+  #               ],
+  #               "ManualJournals": {
+  #                 "Status": "NOT AVAILABLE",
+  #                 "Lines": []
+  #               },
+  #               "ExternalID": null,
+  #               "AdditionalAttributes": {
+  #                 "AdditionalAttribute1": "",
+  #                 "AdditionalAttribute2": "",
+  #                 "AdditionalAttribute3": "",
+  #                 "AdditionalAttribute4": "",
+  #                 "AdditionalAttribute5": "",
+  #                 "AdditionalAttribute6": "",
+  #                 "AdditionalAttribute7": "",
+  #                 "AdditionalAttribute8": "",
+  #                 "AdditionalAttribute9": "",
+  #                 "AdditionalAttribute10": ""
+  #               },
+  #               "Attachments": [
+  #                 {
+  #                   "ID": "1a103e3e-9837-4294-8cc3-640ebb4fc387",
+  #                   "ContentType": "image/jpeg",
+  #                   "FileName": "1471081716149.jpg",
+  #                   "DownloadUrl": "https://example.api.url/Attachment/Download?ID=1a103e3e-9837-4294-8cc3-640ebb4fc387&ContentType=image/jpeg&FileName=1471081716149.jpg"
+  #                 }
+  #               ],
+  #               "InventoryMovements": [
+  #                 {
+  #                   "TaskID": "cde5fb4a-1dac-4e9a-bc33-5dfa14eedb57",
+  #                   "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                   "Date": "2017-11-22T00:00:00Z",
+  #                   "COGS": 0,
+  #                   "ProductLength": 0,
+  #                   "ProductWidth": 0,
+  #                   "ProductHeight": 0,
+  #                   "ProductWeight": 0,
+  #                   "WeightUnits": "",
+  #                   "DimensionsUnits": "",
+  #                   "ProductCustomField1": null,
+  #                   "ProductCustomField2": null,
+  #                   "ProductCustomField3": null,
+  #                   "ProductCustomField4": null,
+  #                   "ProductCustomField5": null,
+  #                   "ProductCustomField6": null,
+  #                   "ProductCustomField7": null,
+  #                   "ProductCustomField8": null,
+  #                   "ProductCustomField9": null,
+  #                   "ProductCustomField10": null
+  #                 },
+  #                 {
+  #                   "TaskID": "529511e7-6ed6-4a99-a2a7-fab1d32198eb",
+  #                   "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                   "Date": "2017-11-22T00:00:00Z",
+  #                   "COGS": 0,
+  #                   "ProductLength": 0,
+  #                   "ProductWidth": 0,
+  #                   "ProductHeight": 0,
+  #                   "ProductWeight": 0,
+  #                   "WeightUnits": "",
+  #                   "DimensionsUnits": "",
+  #                   "ProductCustomField1": null,
+  #                   "ProductCustomField2": null,
+  #                   "ProductCustomField3": null,
+  #                   "ProductCustomField4": null,
+  #                   "ProductCustomField5": null,
+  #                   "ProductCustomField6": null,
+  #                   "ProductCustomField7": null,
+  #                   "ProductCustomField8": null,
+  #                   "ProductCustomField9": null,
+  #                   "ProductCustomField10": null
+  #                 },
+  #                 {
+  #                   "TaskID": "529511e7-6ed6-4a99-a2a7-fab1d32198eb",
+  #                   "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+  #                   "Date": "2017-11-22T00:00:00Z",
+  #                   "COGS": 0,
+  #                   "ProductLength": 0,
+  #                   "ProductWidth": 0,
+  #                   "ProductHeight": 0,
+  #                   "ProductWeight": 0,
+  #                   "WeightUnits": "",
+  #                   "DimensionsUnits": "",
+  #                   "ProductCustomField1": null,
+  #                   "ProductCustomField2": null,
+  #                   "ProductCustomField3": null,
+  #                   "ProductCustomField4": null,
+  #                   "ProductCustomField5": null,
+  #                   "ProductCustomField6": null,
+  #                   "ProductCustomField7": null,
+  #                   "ProductCustomField8": null,
+  #                   "ProductCustomField9": null,
+  #                   "ProductCustomField10": null
+  #                 }
+  #               ],
+  #               "Transactions": [
+  #                 {
+  #                   "TaskID": "cc6e25b2-d9ad-434c-8d77-30f36f4cb7ed",
+  #                   "TransactionID": "e960bd83-23e4-44d3-9762-0589a09407cf",
+  #                   "Debit": "610",
+  #                   "Credit": "200",
+  #                   "Description": "3",
+  #                   "Amount": 1,
+  #                   "EffectiveDate": "2018-09-25T00:00:00Z"
+  #                 },
+  #                 {
+  #                   "TaskID": "cc6e25b2-d9ad-434c-8d77-30f36f4cb7ed",
+  #                   "TransactionID": "0ae21546-2491-4f98-a898-1e6f0af633bc",
+  #                   "Debit": "610",
+  #                   "Credit": "200",
+  #                   "Description": "3",
+  #                   "Amount": -1,
+  #                   "EffectiveDate": "2018-09-25T00:00:00Z"
+  #                 },
+  #                 {
+  #                   "TaskID": "cc6e25b2-d9ad-434c-8d77-30f36f4cb7ed",
+  #                   "TransactionID": "6f278fc1-da3c-4bf0-9e13-31d5942b97c3",
+  #                   "Debit": "610",
+  #                   "Credit": "200",
+  #                   "Description": "1",
+  #                   "Amount": -2,
+  #                   "EffectiveDate": "2018-09-25T00:00:00Z"
+  #                 }
+  #               ]
+  #             }'
+  #   post:
+  #     security:
+  #       - accountID: []
+  #         appKey: []
+  #     tags:
+  #       - Inventory
+  #     operationId: createSalePayment
+  #     summary: Allows you to create a Sale Payment
+  #     parameters:
+  #       - $ref: '#/components/parameters/summarizeErrors'
+  #     requestBody:
+  #       description: a Sale Payment object with properties to create
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/SalePayment'
+  #           example: '{
+  #             "TaskID": "4733ba69-21c5-48f5-95e5-307aa9889747",
+  #             "Type": "Payment",
+  #             "Reference": "",
+  #             "Amount": 1,
+  #             "DatePaid": "2017-11-30T00:00:00Z",
+  #             "Account": "718",
+  #             "CurrencyRate": 1
+  #           }'
+  #     responses:
+  #       '200':
+  #         description: Success - return response of type Sale Payment
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/SalePayment'
+  #             example: '{
+  #               "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+  #               "TaskID": "4733ba69-21c5-48f5-95e5-307aa9889747",
+  #               "ID": "6d99006a-8965-4548-8743-0268b8130704",
+  #               "SaleOrderNumber": "SO-00001",
+  #               "InvoiceNumber": "INV-00005",
+  #               "CreditNoteNumber": null,
+  #               "Type": "Payment",
+  #               "Reference": "",
+  #               "Amount": 1,
+  #               "DatePaid": "2017-11-30T00:00:00Z",
+  #               "Account": "718",
+  #               "CurrencyRate": 1,
+  #               "DateCreated": "2017-11-28T06:10:37.5462677Z",
+  #               "CreditID": null
+  #             }'
+  #       '400':
+  #         $ref: '#/components/responses/400Error'
+  #   put:
+  #     security:
+  #       - accountID: []
+  #         appKey: []
+  #     tags:
+  #       - Inventory
+  #     operationId: updateSalePayment
+  #     summary: Allows you to update a sale payment
+  #     parameters:
+  #       - $ref: '#/components/parameters/summarizeErrors'
+  #     requestBody:
+  #       description: a sale payment object with properties to update
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/SalePayment'
+  #           example: '{
+  #             "ID": "ee093a0c-d177-9728-1df5-628a61a939e4",
+  #             "Reference": "",
+  #             "Amount": 357,
+  #             "DatePaid": "2017-11-30T00:00:00Z",
+  #             "Account": "718",
+  #             "CurrencyRate": 1,
+  #           }'
+  #     responses:
+  #       '200':
+  #         description: Success - return response of type Sale Payment
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/SalePayment'
+  #             example: '{
+  #               "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+  #               "TaskID": "4733ba69-21c5-48f5-95e5-307aa9889747",
+  #               "ID": "ee093a0c-d177-9728-1df5-628a61a939e4",
+  #               "SaleOrderNumber": "SO-00001",
+  #               "InvoiceNumber": "INV-00005",
+  #               "CreditNoteNumber": null,
+  #               "Type": "Payment",
+  #               "Reference": "",
+  #               "Amount": 357,
+  #               "DatePaid": "2017-11-30T00:00:00Z",
+  #               "Account": "718",
+  #               "CurrencyRate": 1,
+  #               "DateCreated": "2017-11-28T05:08:30.6407568Z",
+  #               "CreditID": null
+  #             }'
+  #       '400':
+  #         $ref: '#/components/responses/400Error'
+  #   delete:
+  #     security:
+  #       - accountID: []
+  #         appKey: []
+  #     tags:
+  #       - Inventory
+  #     operationId: deleteSalePayment
+  #     summary: Allows you to delete a sale payment
+  #     parameters:
+  #       - $ref: '#/components/parameters/id'
+  #     responses:
+  #       '200':
+  #         description: Success - delete existing sale payment
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/Success'
+  #             example: '{
+  #               "Success": true
+  #             }'
+  #       '400':
+  #         $ref: '#/components/responses/400Error'
   /sale/invoice:
     get:
       security:
@@ -1269,7 +1950,496 @@ paths:
                   }
                 ]
               }'
-
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: createSaleInvoice
+      summary: Allows you to create a sale invoice
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a Sale Invoice object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaleInvoicePost'
+            example: '{
+              "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+              "TaskID": "b039f19e-66f8-4309-a4b1-abf928303c88",
+              "CombineAdditionalCharges": false,
+              "Memo": "",
+              "Status": "DRAFT",
+              "InvoiceDate": "2017-11-22T00:00:00Z",
+              "InvoiceDueDate": "2017-12-22T00:00:00Z",
+              "CurrencyConversionRate": 1,
+              "BillingAddressLine1": "3 Park Street Industrial Village Southbank",
+              "BillingAddressLine2": "Melbourne VIC 3331",
+              "LinkedFulfillmentNumber": "1",
+              "Lines": [
+                {
+                  "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                  "SKU": "Bread",
+                  "Name": "Baked Bread",
+                  "Quantity": 1,
+                  "Price": 8,
+                  "Discount": 0,
+                  "Tax": 0,
+                  "Total": 8,
+                  "AverageCost": 5,
+                  "TaxRule": "Tax on Sales",
+                  "Account": "200",
+                  "Comment": ""
+                }
+              ],
+              "AdditionalCharges": [
+                {
+                  "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                  "Quantity": 1,
+                  "Price": 350,
+                  "Discount": 0,
+                  "Tax": 0,
+                  "Total": 350,
+                  "TaxRule": "Tax on Sales",
+                  "Account": "200",
+                  "Comment": ""
+                }
+              ]
+            }'
+      responses:
+        '200':
+          description: Success - return response of type Sale Invoice
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleInvoices'
+              example: '{
+                "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                "Invoices": [
+                  {
+                    "TaskID": "b039f19e-66f8-4309-a4b1-abf928303c88",
+                    "CombineAdditionalCharges": false,
+                    "InvoiceNumber": "INV-00001",
+                    "Memo": "",
+                    "Status": "DRAFT",
+                    "InvoiceDate": "2017-11-22T00:00:00Z",
+                    "InvoiceDueDate": "2017-12-22T00:00:00Z",
+                    "CurrencyConversionRate": 1,
+                    "BillingAddressLine1": "3 Park Street Industrial Village Southbank",
+                    "BillingAddressLine2": "Melbourne VIC 3331",
+                    "LinkedFulfillmentNumber": "1",
+                    "Lines": [
+                      {
+                        "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                        "SKU": "Bread",
+                        "Name": "Baked Bread",
+                        "Quantity": 1,
+                        "Price": 8,
+                        "Discount": 0,
+                        "Tax": 0,
+                        "Total": 8,
+                        "AverageCost": 5,
+                        "TaxRule": "Tax on Sales",
+                        "Account": "200",
+                        "Comment": ""
+                      }
+                    ],
+                    "AdditionalCharges": [
+                      {
+                        "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                        "Quantity": 1,
+                        "Price": 350,
+                        "Discount": 0,
+                        "Tax": 0,
+                        "Total": 350,
+                        "TaxRule": "Tax on Sales",
+                        "Account": "200",
+                        "Comment": ""
+                      }
+                    ]
+                  }
+                ]
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: deleteSaleInvoice
+      summary: Allows you to delete a sale invoice
+      parameters:
+        - $ref: '#/components/parameters/taskID'
+        - $ref: '#/components/parameters/void'
+      responses:
+        '200':
+          description: Success - delete existing sale invoice and return response of type Sale Invoices array with deleted Sale Invoice
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleInvoices'
+              example: '{
+                "SaleID": "b039f19e-66f8-4309-a4b1-abf928303c88",
+                "Invoices": [
+                  {
+                    "TaskID": "b039f19e-66f8-4309-a4b1-abf928303c88",
+                    "CombineAdditionalCharges": false,
+                    "InvoiceNumber": "INV-00001",
+                    "Memo": "",
+                    "Status": "VOIDED",
+                    "InvoiceDate": "2017-11-22T00:00:00Z",
+                    "InvoiceDueDate": "2017-12-22T00:00:00Z",
+                    "CurrencyConversionRate": 1,
+                    "BillingAddressLine1": "3 Park Street Industrial Village Southbank",
+                    "BillingAddressLine2": "Melbourne VIC 3331",
+                    "LinkedFulfillmentNumber": "1",
+                    "Lines": [],
+                    "AdditionalCharges": []
+                  }
+                ]
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
+  /sale/order:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getSaleOrder
+      summary: Allows you to retrieve the Sale Order
+      parameters:
+        - $ref: '#/components/parameters/saleId'
+        - $ref: '#/components/parameters/combineAdditionalCharges'
+        - $ref: '#/components/parameters/includeProductInfo'
+      responses:
+        '200':
+          description: Success - Returns Sale Order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleOrder'
+              example: '{
+                "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                "SaleOrderNumber": "SO-00001",
+                "Memo": "",
+                "Status": "DRAFT",
+                "Lines": [
+                  {
+                    "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                    "SKU": "Bread",
+                    "Name": "Baked Bread",
+                    "Quantity": 1,
+                    "Price": 8,
+                    "Discount": 0,
+                    "Tax": 0,
+                    "AverageCost": 5,
+                    "TaxRule": "Tax on Sales",
+                    "Comment": "",
+                    "DropShip": false,
+                    "BackorderQuantity": 0,
+                    "Total": 8
+                  }
+                ],
+                "AdditionalCharges": [
+                  {
+                    "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                    "Price": 350,
+                    "Quantity": 1,
+                    "Discount": 0,
+                    "Tax": 0,
+                    "Total": 350,
+                    "TaxRule": "Tax on Sales",
+                    "Comment": ""
+                  }
+                ],
+                "TotalBeforeTax": 358,
+                "Tax": 0,
+                "Total": 358
+              }'
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: createSaleOrder
+      summary: Allows you to create a Sale Order
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a Sale Order object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaleOrder'
+            example: '{
+              "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+              "Memo": "",
+              "Status": "DRAFT",
+              "AutoPickPackShipMode": "NOPICK",
+              "Lines": [
+                {
+                  "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                  "SKU": "Bread",
+                  "Name": "Baked Bread",
+                  "Quantity": 1,
+                  "Price": 8,
+                  "Discount": 0,
+                  "Tax": 0,
+                  "AverageCost": 5,
+                  "TaxRule": "Tax on Sales",
+                  "Comment": "",
+                  "DropShip": false,
+                  "BackorderQuantity": 0,
+                  "Total": 8
+                }
+              ],
+              "AdditionalCharges": [
+                {
+                  "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                  "Price": 350,
+                  "Quantity": 1,
+                  "Discount": 0,
+                  "Tax": 0,
+                  "Total": 350,
+                  "TaxRule": "Tax on Sales",
+                  "Comment": ""
+                }
+              ],
+              "TotalBeforeTax": 358,
+              "Tax": 0,
+              "Total": 358
+            }'
+      responses:
+        '200':
+          description: Success - return response of type Sale Order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleOrder'
+              example: '{
+                "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                "SaleOrderNumber": "SO-00001",
+                "Memo": "",
+                "Status": "DRAFT",
+                "Lines": [
+                  {
+                    "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                    "SKU": "Bread",
+                    "Name": "Baked Bread",
+                    "Quantity": 1,
+                    "Price": 8,
+                    "Discount": 0,
+                    "Tax": 0,
+                    "AverageCost": 5,
+                    "TaxRule": "Tax on Sales",
+                    "Comment": "",
+                    "DropShip": false,
+                    "BackorderQuantity": 0,
+                    "Total": 8
+                  }
+                ],
+                "AdditionalCharges": [
+                  {
+                    "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                    "Price": 350,
+                    "Quantity": 1,
+                    "Discount": 0,
+                    "Tax": 0,
+                    "Total": 350,
+                    "TaxRule": "Tax on Sales",
+                    "Comment": ""
+                  }
+                ],
+                "TotalBeforeTax": 358,
+                "Tax": 0,
+                "Total": 358
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
+  /sale/payment:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getSalePayment
+      summary: Allows you to retrieve the Sale Payments
+      parameters:
+        - $ref: '#/components/parameters/saleId'
+      responses:
+        '200':
+          description: Success - Returns Sale Payments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalePayments'
+              example: '[
+                {
+                  "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                  "TaskID": "4733ba69-21c5-48f5-95e5-307aa9889747",
+                  "ID": "ee093a0c-d177-9728-1df5-628a61a939e4",
+                  "SaleOrderNumber": "SO-00001",
+                  "InvoiceNumber": "INV-00005",
+                  "CreditNoteNumber": null,
+                  "Type": "Payment",
+                  "Reference": "",
+                  "Amount": 358,
+                  "DatePaid": "2017-11-30T00:00:00Z",
+                  "Account": "718",
+                  "CurrencyRate": 1,
+                  "DateCreated": "2017-11-28T05:08:30.6407568Z",
+                  "CreditID": null
+                },
+                {
+                  "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                  "TaskID": "529511e7-6ed6-4a99-a2a7-fab1d32198eb",
+                  "ID": "bbd45356-8aeb-6108-bd9c-a5e23162d209",
+                  "SaleOrderNumber": "SO-00001",
+                  "InvoiceNumber": null,
+                  "CreditNoteNumber": "CR-00004",
+                  "Type": "Refund",
+                  "Reference": "",
+                  "Amount": 358,
+                  "DatePaid": "2017-11-21T00:00:00Z",
+                  "Account": "718",
+                  "CurrencyRate": 1,
+                  "DateCreated": "2017-11-28T04:53:43.9825081Z",
+                  "CreditID": null
+                }
+              ]'
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: createSalePayment
+      summary: Allows you to create a Sale Payment
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a Sale Payment object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SalePayment'
+            example: '{
+              "TaskID": "4733ba69-21c5-48f5-95e5-307aa9889747",
+              "Type": "Payment",
+              "Reference": "",
+              "Amount": 1,
+              "DatePaid": "2017-11-30T00:00:00Z",
+              "Account": "718",
+              "CurrencyRate": 1
+            }'
+      responses:
+        '200':
+          description: Success - return response of type Sale Payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalePayment'
+              example: '{
+                "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                "TaskID": "4733ba69-21c5-48f5-95e5-307aa9889747",
+                "ID": "6d99006a-8965-4548-8743-0268b8130704",
+                "SaleOrderNumber": "SO-00001",
+                "InvoiceNumber": "INV-00005",
+                "CreditNoteNumber": null,
+                "Type": "Payment",
+                "Reference": "",
+                "Amount": 1,
+                "DatePaid": "2017-11-30T00:00:00Z",
+                "Account": "718",
+                "CurrencyRate": 1,
+                "DateCreated": "2017-11-28T06:10:37.5462677Z",
+                "CreditID": null
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    put:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: updateSalePayment
+      summary: Allows you to update a sale payment
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: a sale payment object with properties to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SalePayment'
+            example: '{
+              "ID": "ee093a0c-d177-9728-1df5-628a61a939e4",
+              "Reference": "",
+              "Amount": 357,
+              "DatePaid": "2017-11-30T00:00:00Z",
+              "Account": "718",
+              "CurrencyRate": 1,
+            }'
+      responses:
+        '200':
+          description: Success - return response of type Sale Payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalePayment'
+              example: '{
+                "SaleID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                "TaskID": "4733ba69-21c5-48f5-95e5-307aa9889747",
+                "ID": "ee093a0c-d177-9728-1df5-628a61a939e4",
+                "SaleOrderNumber": "SO-00001",
+                "InvoiceNumber": "INV-00005",
+                "CreditNoteNumber": null,
+                "Type": "Payment",
+                "Reference": "",
+                "Amount": 357,
+                "DatePaid": "2017-11-30T00:00:00Z",
+                "Account": "718",
+                "CurrencyRate": 1,
+                "DateCreated": "2017-11-28T05:08:30.6407568Z",
+                "CreditID": null
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: deleteSalePayment
+      summary: Allows you to delete a sale payment
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success - delete existing sale payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+              example: '{
+                "Success": true
+              }'
+        '400':
+          $ref: '#/components/responses/400Error'
   /sale/quote:
     get:
       security:
@@ -1796,6 +2966,34 @@ components:
       schema:
         type: boolean
         default: false
+    taskID:
+      in: query
+      name: ID
+      description: Default is nil
+      schema:
+        type: string
+        nullable: true
+    void:
+      in: query
+      name: Void
+      description: Default is false
+      schema:
+        type: boolean
+        default: false
+    hideInventoryMovements:
+      in: query
+      name: HideInventoryMovements
+      description: Hide inventory movements (Default = false)
+      schema:
+        type: boolean
+        default: false
+    includeTransactions:
+      in: query
+      name: IncludeTransactions
+      description: Show related transactions (Default = false)
+      schema:
+        type: boolean
+        default: false
   responses:
     400Error:
       description: A failed request due to validation error
@@ -1882,45 +3080,35 @@ components:
       type: object
     Address:
       externalDocs:
-        url: 'https://dearinventory.docs.apiary.io/#SupplierAddressModel'
+        url: 'https://dearinventory.docs.apiary.io/#AddressModel'
       properties:
-        ID:
-          description: If passed in PUT method, entry will be searched by id, found entry will be updated, otherwise created
+        DisplayAddressLine1:
+          description: Address Line 1 as displayed on Sale form. = Line1 + Line2
           type: string
-          format: uuid
+        DisplayAddressLine2:
+          description: Address Line 2 as displayed on Sale form. = City + State/Region + Zip/Postcode + Country
+          type: string
         Line1:
           description: Address Line 1
-          maxLength: 256
           type: string
         Line2:
           description: Address Line 2
-          maxLength: 256
           type: string
         City:
-          description: City / Suburb
-          maxLength: 256
+          description: City
           type: string
         State:
-          description: State / Province
-          maxLength: 256
+          description: State
           type: string
         PostCode:
-          description: Zip / PostCode
-          maxLength: 20
+          description: PostCode
           type: string
         Country:
-          description: Country name
+          description: Country
           type: string
-        Type:
-          description: 'Address Type. Should be one of the following values: `Billing`, `Business` or `Shipping`.'
-          type: string
-        DefaultForType:
-          description: Points that Address is used as default for chosen Type. `false` as default.
-          type: boolean
-          default: false
       required:
+        - Line1
         - Country
-        - Type
       type: object
     Contact:
       externalDocs:
@@ -2094,7 +3282,7 @@ components:
           description: List of addresses
           type: array
           items:
-            $ref: '#/components/schemas/Address'
+            $ref: '#/components/schemas/SupplierCustomerAddress'
         Contacts:
           description: List of contacts
           type: array
@@ -2317,6 +3505,179 @@ components:
         - AccountCode
         - ComponentOrder
       type: object
+    # Sale:
+    #   externalDocs:
+    #     url: 'https://dearinventory.docs.apiary.io/reference/sale/sale'
+    #   properties:
+    #     ID:
+    #       description: Unique DEAR Sale ID. Required for PUT
+    #       type: string
+    #       format: uuid
+    #     Customer:
+    #       description: Customer name
+    #       type: string
+    #     CustomerID:
+    #       description: Customer identifier
+    #       type: string
+    #       format: uuid
+    #     Contact:
+    #       description: Customer Contact name
+    #       type: string
+    #     Phone:
+    #       description: Customer Contact phone
+    #       type: string
+    #     Email:
+    #       description: Customer Contact email
+    #       type: string
+    #     DefaultAccount:
+    #       description: Account code used by default for invoice lines when no revenue account is defined on Product. By default it is equal to Customer Sale account
+    #       type: string
+    #     SkipQuote:
+    #       description: True if there is no quote in the sale
+    #       type: boolean
+    #     BillingAddress:
+    #       $ref: '#/components/schemas/Address'
+    #     ShippingAddress:
+    #       $ref: '#/components/schemas/ShippingAddress'
+    #     ShippingNotes:
+    #       description: Shipping Notes
+    #       type: string
+    #     BaseCurrency:
+    #       description: 3 character currency code of Base Currency defined in General Settings on the moment when Sale was created.
+    #       type: string
+    #     CustomerCurrency:
+    #       description: 3 character currency code of customer Currency defined in Customer card at the moment when customer is selected for the Sale.
+    #       type: string
+    #     TaxRule:
+    #       description: Default Tax Rule name selected for Sale
+    #       type: string
+    #     TaxCalculation:
+    #       description: Inclusive or Exclusive
+    #       type: string
+    #     Terms:
+    #       description: Payment terms name
+    #       type: string
+    #     PriceTier:
+    #       description: Price Tier name selected for Sale
+    #       type: string
+    #     ShipBy:
+    #       description: Date when shipment is due
+    #       type: string
+    #       format: date
+    #     Location:
+    #       description: Default location to pick stock from
+    #       type: string
+    #     SaleOrderDate:
+    #       description: Date when task was created
+    #       type: string
+    #       format: date
+    #     LastModifiedOn:
+    #       description: UTC Time
+    #       type: string
+    #       format: date
+    #     Note:
+    #       description: Custom Sale note
+    #       type: string
+    #     CustomerReference:
+    #       description: Reference number used by customer to identify this sale. Could be a purchase order number generated by customer.
+    #       type: string
+    #     COGSAmount:
+    #       description: COGS amount in base currency
+    #       type: number
+    #     Status:
+    #       description: Sale Status, see possible values
+    #       type: string
+    #     CombinedPickingStatus:
+    #       description: Pick status. Possible Values are VOIDED, NOT AVAILABLE, PICKED, PICKING , NOT PICKED , PARTIALLY PICKED
+    #       type: string
+    #     CombinedPackingStatus:
+    #       description: Pack status. Possible Values are VOIDED, NOT AVAILABLE, PACKED, PACKING, NOT PACKED, PARTIALLY PACKED
+    #       type: string
+    #     CombinedShippingStatus:
+    #       description: Ship status. Possible Values are VOIDED, NOT AVAILABLE, SHIPPED, SHIPPING , NOT SHIPPED , PARTIALLY SHIPPED
+    #       type: string
+    #     FulFilmentStatus:
+    #       description: Fulfilment status. Possible Values are FULFILLED, PARTIALLY FULFILLED, NOT AVAILABLE, NOT FULFILLED, VOIDED
+    #       type: string
+    #     CombinedInvoiceStatus:
+    #       description: Invoice status. Possible Values are INVOICED, INVOICED / CREDITED, NOT AVAILABLE, NOT INVOICED, PARTIALLY INVOICED, PARTIALLY INVOICED / CREDITED
+    #       type: string
+    #     CombinedPaymentStatus:
+    #       description: Payment status. Possible Values are NOT REFUNDED, PREPAID, PARTIALLY PAID, UNPAID, PAID, VOIDED
+    #       type: string
+    #     CombinedTrackingNumbers:
+    #       description: Tracking Numbers
+    #       type: string
+    #     Carrier:
+    #       description: Name of Carrier/shipping method
+    #       type: string
+    #     CurrencyRate:
+    #       description: Conversion Rate expressed as number of Base currency units for one Customer currency unit
+    #       type: number
+    #     SalesRepresentative:
+    #       description: Sales representative name
+    #       type: string
+    #     Type:
+    #       description: Type of sale Simple Sale or Advanced Sale, Service Sale
+    #       type: string
+    #     SourceChannel:
+    #       description: Source of the sale. read-only field
+    #       type: string
+    #     ExternalID:
+    #       description: Custom field that is only available in API and allows to set arbitrary value for the sale for later search and any custom logic
+    #       type: string
+    #     ServiceOnly:
+    #       description: true when it is service-only sale
+    #       type: string
+    #     Quote:
+    #       $ref: '#/components/schemas/SaleQuote'
+    #       description: Sale Quote
+    #     Order:
+    #       $ref: '#/components/schemas/SaleOrder'
+    #       description: Sale Order
+    #     Fulfilments:
+    #       description: Sale Fulfilments
+    #       type: array
+    #       items:
+    #         $ref: '#/components/schemas/SaleFulfilment'
+    #     Invoices:
+    #       description: Sale Invoices
+    #       type: array
+    #       items:
+    #         $ref: '#/components/schemas/SaleInvoice'
+    #     CreditNotes:
+    #       description: Sale Credit Notes
+    #       type: array
+    #       items:
+    #         $ref: '#/components/schemas/SaleCreditNote'
+    #     ManualJournals:
+    #       description: Sale Manual Journals
+    #       type: array
+    #       items:
+    #         $ref: '#/components/schemas/SaleManualJournal'
+    #     AdditionalAttributes:
+    #       description: Sale Additional Attributes
+    #       type: array
+    #       items:
+    #         $ref: '#/components/schemas/AdditionalAttribute'
+    #     Attachments:
+    #       description: Sale Attachments
+    #       type: array
+    #       items:
+    #         $ref: '#/components/schemas/AttachmentLine'
+    #     InventoryMovements:
+    #       description: Sale Inventory Movements
+    #       type: array
+    #       items:
+    #         $ref: '#/components/schemas/InventoryMovementLine'
+    #     Transactions:
+    #       description: Sale Transactions
+    #       type: array
+    #       items:
+    #         $ref: '#/components/schemas/SaleTransactionLine'
+    #   required:
+    #     - SaleID
+    #   type: object
     SaleAdditionalCharge:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#SaleAdditionalChargeModel'
@@ -2352,6 +3713,65 @@ components:
         - Tax
         - TaxRule
       type: object
+    # SaleCreditNote:
+    #   externalDocs:
+    #     url: 'https://dearinventory.docs.apiary.io/#SaleCreditNoteModel'
+    #   properties:
+    #     TaskID:
+    #       description: Identifier of sale Invoice task
+    #       type: string
+    #       format: uuid
+    #     CreditNoteInvoiceNumber:
+    #       description: Number of Invoice linked to this Credit Note
+    #       type: string
+    #     Memo:
+    #       description: Additional information for Credit Note.
+    #       type: string
+    #     Status:
+    #       description: Credit Note status. Possible Values are NOT AVAILABLE, DRAFT, AUTHORISED, VOIDED. For POST available values are DRAFT, AUTHORISED
+    #       type: string
+    #     CreditNoteDate:
+    #       description: Credit Note Date.
+    #       type: string
+    #       format: date
+    #     CreditNoteNumber:
+    #     CreditNoteConversionRate:
+    #     Lines:
+    #     AdditionalCharges:
+    #     Refunds:
+    #     Restock:
+    #     TotalBeforeTax:
+    #     Tax:
+    #     Total:
+    #   type: object
+    # SaleFulfilment:
+    #   externalDocs:
+    #     url: 'https://dearinventory.docs.apiary.io/#SaleFulfilmentModel'
+    #   properties:
+    #     TaskID:
+    #       description: Identifier of sale fulfilment task
+    #       type: string
+    #       format: uuid
+    #     FulfillmentNumber:
+    #       description: Fulfillment Number (auto-generated)
+    #       type: integer
+    #     LinkedInvoiceNumber:
+    #       description: Invoice number linked to this fulfilment
+    #       type: string
+    #     FulFilmentStatus:
+    #       description: Fulfilment status. Possible Values are NOT AVAILABLE, NOT FULFILLED, FULFILLED, PARTIALLY FULFILLED, VOIDED
+    #       type: string
+    #     Pick:
+    #       $ref: '#/components/schemas/SaleFulfilmentPickPack'
+    #     Pack:
+    #       $ref: '#/components/schemas/SaleFulfilmentPickPack'
+    #     Ship:
+    #       $ref: '#/components/schemas/SaleFulfilmentShip'
+    #   required:
+    #     - TaskID
+    #     - FulfillmentNumber
+    #     - FulFilmentStatus
+    #   type: object
     SaleInvoiceAdditionalCharge:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#SaleInvoiceAdditionalChargeModel'
@@ -2398,6 +3818,7 @@ components:
         ProductID:
           description: Product identifier referenced by this Line. Required If CombineAdditionalCharges param exist for this endpoint and it have values = false
           type: string
+          format: uuid
         SKU:
           description: Product SKU referenced by this Line. Required If CombineAdditionalCharges param exist for this endpoint and it have values = false
           type: string
@@ -2432,8 +3853,6 @@ components:
           description: Comment for this line
           type: string
       required:
-        - ProductID
-        - SKU
         - Name
         - Quantity
         - Price
@@ -2509,6 +3928,234 @@ components:
         - InvoiceDate
         - InvoiceDueDate
       type: object
+    SaleInvoicePost:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/sale/sale-invoice'
+      properties:
+        SaleID:
+          description: Unique DEAR Sale ID
+          type: string
+        TaskID:
+          description: Identifier of sale Invoice task
+          type: string
+          format: uuid
+        CombineAdditionalCharges:
+          description: If `true` then `additional charges` lines displayed in `Lines` array
+          type: boolean
+          default: false
+        Memo:
+          description: Additional information for Invoice.
+          type: string
+        Status:
+          description: Invoice status. Possible Values are values. For POST available values are DRAFT, AUTHORISED
+          type: string
+        InvoiceDate:
+          description: Invoice Date.
+          type: string
+        InvoiceDueDate:
+          description: Invoice Due Date.
+          type: string
+        CurrencyConversionRate:
+          description: Decimal with up to 4 decimal places
+          type: number
+        BillingAddressLine1:
+          description: Billing Address Line 1
+          type: string
+        BillingAddressLine2:
+          description: Billing Address Line 2
+          type: string
+        LinkedFulfillmentNumber:
+          description: Number of Fulfilment linked to this invoice
+          type: integer
+        Lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleInvoiceLine'
+          default: []
+        AdditionalCharges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleInvoiceAdditionalCharge'
+          default: []
+      required:
+        - SaleID
+        - TaskID
+        - CombineAdditionalCharges
+        - Status
+        - InvoiceDate
+        - InvoiceDueDate
+      type: object
+    SaleInvoiceDelete:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/sale/sale-invoice'
+      properties:
+        TaskID:
+          description: ID of Sale task to Void or Undo
+          type: string
+          format: uuid
+        Void:
+          description: Default false
+          type: boolean
+          default: false
+      required:
+        - TaskID
+    SaleOrder:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/reference/sale/sale-order'
+      properties:
+        SaleID:
+          description: Unique DEAR Sale ID
+          type: string
+          format: uuid
+        SaleOrderNumber:
+          description: Sale Order Number (auto-generated)
+          type: string
+        CombineAdditionalCharges:
+          description: If `true` then `additional charges` lines displayed in `Lines` array
+          type: boolean
+          default: false
+        Memo:
+          description: Additional information for Order.
+          type: string
+        Status:
+          description: Order Status. Possible Values are values. For POST only `DRAFT` and `AUTHORISED` values accepted
+          type: string
+        Lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleOrderLine'
+          default: []
+        AdditionalCharges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleAdditionalCharge'
+          default: []
+        TotalBeforeTax:
+          description: Decimal with up to 4 decimal places. Sum of order lines and additional charges without taxes. Not required for POST.
+          type: number
+        Tax:
+          description: Decimal with up to 4 decimal places. Sum of order lines and additional charges taxes. Not required for POST.
+          type: number
+        Total:
+          description: Decimal with up to 4 decimal places. Sum of order lines and additional charges with taxes. Not required for POST.
+          type: number
+      required:
+        - SaleID
+        - CombineAdditionalCharges
+        - Memo
+        - Status
+        - TotalBeforeTax
+        - Tax
+        - Total
+      type: object
+    SaleOrderLine:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#SaleOrderLineModel'
+      properties:
+        ProductID:
+          description: Product identifier referenced by this Line. Required If CombineAdditionalCharges param exist for this endpoint and it have values = false
+          type: string
+        SKU:
+          description: Product SKU referenced by this Line. Required If CombineAdditionalCharges param exist for this endpoint and it have values = false
+          type: string
+        Name:
+          description: Product Name referenced by this Line
+          type: string
+        Quantity:
+          description: Product or service quantity. Minimal value is 1.
+          type: number
+        Price:
+          description: Price per unit in Customer currency
+          type: number
+        Discount:
+          description: Discount. Value between 0 and 100. For free items discount is 100. Default value is 0
+          type: number
+        Tax:
+          description: Tax
+          type: number
+        AverageCost:
+          description: Average product cost
+          type: number
+        TaxRule:
+          description: Line Tax Rule name.
+          type: string
+        Comment:
+          description: Comment for this line
+          type: string
+        DropShip:
+          description: Required if product is not a service with “Optional Drop Ship” mode. Otherwise it ignored.
+          type: boolean
+        BackorderQuantity:
+          description: Quantity of the ordered product on backorder. Read Only for POST
+          type: number
+        Total:
+          description: Line Total. For validation
+          type: number
+      required:
+        - Name
+        - Quantity
+        - Price
+      type: object
+    SalePayment:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/reference/sale/sale-payment'
+      properties:
+        SaleID:
+          description: Unique DEAR Sale ID
+          type: string
+          format: uuid
+        TaskID:
+          description: Unique DEAR Sale Task ID. Available for POST
+          type: string
+          format: uuid
+        ID:
+          description: Identifier of payment. Available for PUT
+          type: string
+          format: uuid
+        SaleOrderNumber:
+          description: Sale Order Number
+          type: string
+        InvoiceNumber:
+          description: Sale Task Invoice Number
+          type: string
+        CreditNoteNumber:
+          description: Sale Task Credit Note Number
+          type: string
+        Type:
+          description: Available values are PREPAYMENT,PAYMENT,REFUND. Available for POST
+          type: string
+        Reference:
+          description: Payment reference number. Available for POST/PUT
+          type: string
+        Amount:
+          description: Payment amount in customer currency. Available for POST/PUT
+          type: number
+        DatePaid:
+          description: Date when payment has been made. Available for POST/PUT
+          type: string
+          format: date
+        Account:
+          description: Account Code of the bank/payment account from Chart of accounts. Available for POST/PUT
+          type: string
+        CurrencyRate:
+          description: Currency Conversion rate expressed as number of Base currency units for one Customer currency unit. Available for POST/PUT
+          type: number
+        DateCreated:
+          description: Date of creation payment record.
+          type: string
+          format: date
+        CreditID:
+          description: Id for Sale Credit entry
+          type: string
+          format: uuid
+      type: object
+    SalePayments:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/sale/sale-payment'
+      description: Array of Sale Payment
+      type: array
+      items:
+        $ref: '#/components/schemas/SalePayment'
     SaleQuote:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/reference/sale/sale-quote'
@@ -2580,33 +4227,111 @@ components:
         Tax:
           description: Tax
           type: number
-        Total:
-          description: Line Total. For validation
-          type: number
         AverageCost:
           description: Average product cost
           type: number
         TaxRule:
           description: Line Tax Rule name.
           type: string
-        Account:
-          description: Revenue account
-          type: string
         Comment:
           description: Comment for this line
           type: string
+        Total:
+          description: Line Total. For validation
+          type: number
       required:
-        - ProductID
-        - SKU
         - Name
         - Quantity
         - Price
+      type: object
+    ShippingAddress:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#ShippingAddressModel'
+      properties:
+        DisplayAddressLine1:
+          description: Address Line 1 as displayed on Sale form. = Line1 + Line2
+          type: string
+        DisplayAddressLine2:
+          description: Address Line 2 as displayed on Sale form. = City + State/Region + Zip/Postcode + Country
+          type: string
+        Line1:
+          description: Address Line 1
+          type: string
+        Line2:
+          description: Address Line 2
+          type: string
+        City:
+          description: City
+          type: string
+        State:
+          description: State
+          type: string
+        PostCode:
+          description: Post code
+          type: string
+        Country:
+          description: Country
+          type: string
+        Company:
+          description: Company Name
+          type: string
+        Contact:
+          description: Contact
+          type: string
+        ShipToOther:
+          description: If false and Customer's address matching Line 1 not found, than new customer shipping address will be created.
+          type: boolean
+      required:
+        - Line1
+        - Country
       type: object
     Success:
       properties:
         Success:
           description: Success
           type: boolean
+      type: object
+    SupplierCustomerAddress:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#SupplierAddressModel'
+      properties:
+        ID:
+          description: If passed in PUT method, entry will be searched by id, found entry will be updated, otherwise created
+          type: string
+          format: uuid
+        Line1:
+          description: Address Line 1
+          maxLength: 256
+          type: string
+        Line2:
+          description: Address Line 2
+          maxLength: 256
+          type: string
+        City:
+          description: City / Suburb
+          maxLength: 256
+          type: string
+        State:
+          description: State / Province
+          maxLength: 256
+          type: string
+        PostCode:
+          description: Zip / PostCode
+          maxLength: 20
+          type: string
+        Country:
+          description: Country name
+          type: string
+        Type:
+          description: 'Address Type. Should be one of the following values: `Billing`, `Business` or `Shipping`.'
+          type: string
+        DefaultForType:
+          description: Points that Address is used as default for chosen Type. `false` as default.
+          type: boolean
+          default: false
+      required:
+        - Country
+        - Type
       type: object
     Webhooks:
       externalDocs:
