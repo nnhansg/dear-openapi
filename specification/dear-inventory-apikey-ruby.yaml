@@ -2968,8 +2968,8 @@ components:
         default: false
     taskID:
       in: query
-      name: ID
-      description: Default is nil
+      name: TaskID
+      description: ID of Sale task to Void or Undo
       schema:
         type: string
         nullable: true
