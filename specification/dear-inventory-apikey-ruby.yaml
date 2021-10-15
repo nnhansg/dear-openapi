@@ -2639,7 +2639,7 @@ paths:
           appKey: []
       tags:
         - Inventory
-      operationId: createWebhooks
+      operationId: createWebhook
       summary: Allows you to create a Webhook
       parameters:
         - $ref: '#/components/parameters/summarizeErrors'
