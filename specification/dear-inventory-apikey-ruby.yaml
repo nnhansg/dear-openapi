@@ -2675,7 +2675,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Webhooks'
+                $ref: '#/components/schemas/Webhook'
               example: '{
                 "Webhooks": [
                   {
@@ -2751,7 +2751,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Webhooks'
+                $ref: '#/components/schemas/Webhook'
               example: '{
                 "Webhooks": [
                   {
@@ -3110,6 +3110,12 @@ components:
         - Line1
         - Country
       type: object
+    AuthorizationType:
+      type: string
+      enum:
+        - basicauth
+        - bearerauth
+        - noauth
     Contact:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#SupplierContactModel'
@@ -4387,6 +4393,29 @@ components:
         - ExternalURL
         - ExternalAuthorizationType
       type: object
+    WebhookType:
+      type: string
+      enum:
+        - Sale/QuoteAuthorised
+        - Sale/OrderAuthorised
+        - Sale/Voided
+        - Sale/Backordered
+        - Sale/ShipmentAuthorised
+        - Sale/InvoiceAuthorised
+        - Sale/PickAuthorised
+        - Sale/PackAuthorised
+        - Sale/CreditNoteAuthorised
+        - Sale/Undo
+        - Sale/PartialPaymentReceived
+        - Sale/FullPaymentReceived
+        - Sale/ShipmentTrackingNumberChanged
+        - Purchase/OrderAuthorised
+        - Purchase/InvoiceAuthorised
+        - Purchase/StockReceivedAuthorised
+        - Purchase/CreditNoteAuthorised
+        - Customer/Updated
+        - Supplier/Updated
+        - Stock/AvailableStockLevelChanged
     WeightUnit:
       description: Unit of measure for unit weight
       type: string
