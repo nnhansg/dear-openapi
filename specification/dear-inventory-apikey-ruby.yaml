@@ -1202,564 +1202,235 @@ paths:
                             }
                           ]
                         }'
-  # /sale:
-  #   get:
-  #     security:
-  #       - accountID: []
-  #         appKey: []
-  #     tags:
-  #       - Inventory
-  #     operationId: getSale
-  #     summary: Allows you to retrieve the Sale
-  #     parameters:
-  #       - $ref: '#/components/parameters/id'
-  #       - $ref: '#/components/parameters/combineAdditionalCharges'
-  #       - $ref: '#/components/parameters/hideInventoryMovements'
-  #       - $ref: '#/components/parameters/includeTransactions'
-  #     responses:
-  #       '200':
-  #         description: Success - Returns Sale
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/Sale'
-  #             example: '{
-  #               "ID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
-  #               "Customer": "Hamilton Smith Pty",
-  #               "CustomerID": "6c18f8e9-90e1-418f-aebc-1219e67e4b9c",
-  #               "Contact": "No Name",
-  #               "Phone": "03 3189080",
-  #               "Email": "infodemo@hsmithdemo.co",
-  #               "DefaultAccount": "200",
-  #               "SkipQuote": false,
-  #               "BillingAddress": {
-  #                 "DisplayAddressLine1": "3 Park Street Industrial Village Southbank",
-  #                 "DisplayAddressLine2": "Melbourne VIC 3331",
-  #                 "Line1": "3 Park Street Industrial Village",
-  #                 "Line2": "Southbank",
-  #                 "City": "Melbourne",
-  #                 "State": "VIC",
-  #                 "Postcode": "3331",
-  #                 "Country": "USA"
-  #               },
-  #               "ShippingAddress": {
-  #                 "DisplayAddressLine1": "3 Park Street Industrial Village Southbank",
-  #                 "DisplayAddressLine2": "Melbourne VIC 3331",
-  #                 "Line1": "3 Park Street Industrial Village",
-  #                 "Line2": "Southbank",
-  #                 "City": "Melbourne",
-  #                 "State": "VIC",
-  #                 "Postcode": "3331",
-  #                 "Country": "USA",
-  #                 "Company": "DIISR - Small Business Services",
-  #                 "Contact": "Sheree Bond",
-  #                 "ShipToOther": false
-  #               },
-  #               "ShippingNotes": "",
-  #               "BaseCurrency": "RUB",
-  #               "CustomerCurrency": "RUB",
-  #               "TaxRule": "Tax on Sales",
-  #               "TaxCalculation": "Exclusive",
-  #               "Terms": "30 days",
-  #               "PriceTier": "Tier 1",
-  #               "ShipBy": "2017-11-30T00:00:00Z",
-  #               "Location": "Main Warehouse",
-  #               "SaleOrderDate": "2017-10-28T00:00:00Z",
-  #               "LastModifiedOn": "2017-11-22T10:10:49.75Z",
-  #               "Note": "",
-  #               "CustomerReference": "",
-  #               "COGSAmount": 0,
-  #               "Status": "ORDERED",
-  #               "CombinedPickingStatus": "NOT AVAILABLE",
-  #               "CombinedPackingStatus": "NOT AVAILABLE",
-  #               "CombinedShippingStatus": "NOT AVAILABLE",
-  #               "FulFilmentStatus": "NOT AVAILABLE",
-  #               "CombinedInvoiceStatus": "NOT AVAILABLE",
-  #               "CombinedPaymentStatus": "UNPAID",
-  #               "CombinedTrackingNumbers": "",
-  #               "Carrier": "test carrier",
-  #               "CurrencyRate": 1,
-  #               "SalesRepresentative": "DEFAULT billing contact",
-  #               "ServiceOnly": false,
-  #               "Type": "Advanced Sale",
-  #               "SourceChannel": "Amazon_US",
-  #               "Quote": {
-  #                 "Memo": "",
-  #                 "Status": "AUTHORISED",
-  #                 "Prepayments": [],
-  #                 "Lines": [
-  #                   {
-  #                     "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                     "SKU": "Bread",
-  #                     "Name": "Baked Bread",
-  #                     "Quantity": 1,
-  #                     "Price": 8,
-  #                     "Discount": 0,
-  #                     "Tax": 0,
-  #                     "AverageCost": 5,
-  #                     "TaxRule": "Tax on Sales",
-  #                     "Comment": "",
-  #                     "Total": 8,
-  #                     "ProductLength": 0,
-  #                     "ProductWidth": 0,
-  #                     "ProductHeight": 0,
-  #                     "ProductWeight": 0,
-  #                     "WeightUnits": "",
-  #                     "DimensionsUnits": "",
-  #                     "ProductCustomField1": null,
-  #                     "ProductCustomField2": null,
-  #                     "ProductCustomField3": null,
-  #                     "ProductCustomField4": null,
-  #                     "ProductCustomField5": null,
-  #                     "ProductCustomField6": null,
-  #                     "ProductCustomField7": null,
-  #                     "ProductCustomField8": null,
-  #                     "ProductCustomField9": null,
-  #                     "ProductCustomField10": null
-  #                   }
-  #                 ],
-  #                 "AdditionalCharges": [
-  #                   {
-  #                     "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
-  #                     "Price": 350,
-  #                     "Quantity": 1,
-  #                     "Discount": 0,
-  #                     "Tax": 0,
-  #                     "Total": 350,
-  #                     "TaxRule": "Tax on Sales",
-  #                     "Comment": ""
-  #                   }
-  #                 ],
-  #                 "TotalBeforeTax": 358,
-  #                 "Tax": 0,
-  #                 "Total": 358
-  #               },
-  #               "Order": {
-  #                 "SaleOrderNumber": "SO-00001",
-  #                 "Memo": "",
-  #                 "Status": "AUTHORISED",
-  #                 "Lines": [
-  #                   {
-  #                     "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                     "SKU": "Bread",
-  #                     "Name": "Baked Bread",
-  #                     "Quantity": 1,
-  #                     "Price": 8,
-  #                     "Discount": 0,
-  #                     "Tax": 0,
-  #                     "AverageCost": 5,
-  #                     "TaxRule": "Tax on Sales",
-  #                     "Comment": "",
-  #                     "DropShip": false,
-  #                     "Backorder": false,
-  #                     "BackorderQuantity": 0,
-  #                     "Total": 8,
-  #                     "ProductLength": 0,
-  #                     "ProductWidth": 0,
-  #                     "ProductHeight": 0,
-  #                     "ProductWeight": 0,
-  #                     "WeightUnits": "",
-  #                     "DimensionsUnits": "",
-  #                     "ProductCustomField1": null,
-  #                     "ProductCustomField2": null,
-  #                     "ProductCustomField3": null,
-  #                     "ProductCustomField4": null,
-  #                     "ProductCustomField5": null,
-  #                     "ProductCustomField6": null,
-  #                     "ProductCustomField7": null,
-  #                     "ProductCustomField8": null,
-  #                     "ProductCustomField9": null,
-  #                     "ProductCustomField10": null
-  #                   }
-  #                 ],
-  #                 "AdditionalCharges": [
-  #                   {
-  #                     "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
-  #                     "Price": 350,
-  #                     "Quantity": 1,
-  #                     "Discount": 0,
-  #                     "Tax": 0,
-  #                     "Total": 350,
-  #                     "TaxRule": "Tax on Sales",
-  #                     "Comment": ""
-  #                   }
-  #                 ],
-  #                 "TotalBeforeTax": 8,
-  #                 "Tax": 0,
-  #                 "Total": 8
-  #               },
-  #               "Fulfilments": [
-  #                 {
-  #                   "TaskID": "cde5fb4a-1dac-4e9a-bc33-5dfa14eedb57",
-  #                   "FulfillmentNumber": 1,
-  #                   "LinkedInvoiceNumber": "INV-00001",
-  #                   "FulFilmentStatus": "NOT FULFILLED",
-  #                   "Pick": {
-  #                     "Status": "DRAFT",
-  #                     "Lines": [
-  #                       {
-  #                         "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                         "SKU": "Bread",
-  #                         "Name": "Baked Bread",
-  #                         "Location": "Main Warehouse",
-  #                         "LocationID": "19aeca31-bd49-4fbe-8abd-37a6169cc2cb",
-  #                         "Quantity": 1,
-  #                         "BatchSN": "PO-00001-1",
-  #                         "ExpiryDate": "2017-11-30T00:00:00Z",
-  #                         "ProductLength": 0,
-  #                         "ProductWidth": 0,
-  #                         "ProductHeight": 0,
-  #                         "ProductWeight": 0,
-  #                         "WeightUnits": "",
-  #                         "DimensionsUnits": "",
-  #                         "ProductCustomField1": null,
-  #                         "ProductCustomField2": null,
-  #                         "ProductCustomField3": null,
-  #                         "ProductCustomField4": null,
-  #                         "ProductCustomField5": null,
-  #                         "ProductCustomField6": null,
-  #                         "ProductCustomField7": null,
-  #                         "ProductCustomField8": null,
-  #                         "ProductCustomField9": null,
-  #                         "ProductCustomField10": null
-  #                       }
-  #                     ]
-  #                   },
-  #                   "Pack": {
-  #                     "Status": "NOT AVAILABLE",
-  #                     "Lines": [
-  #                       {
-  #                         "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                         "SKU": "Bread",
-  #                         "Name": "Baked Bread",
-  #                         "Location": "Main Warehouse",
-  #                         "LocationID": "19aeca31-bd49-4fbe-8abd-37a6169cc2cb",
-  #                         "Box": "Box 1",
-  #                         "Quantity": 1,
-  #                         "BatchSN": "PO-00001-1",
-  #                         "ExpiryDate": "2017-11-30T00:00:00Z",
-  #                         "ProductLength": 0,
-  #                         "ProductWidth": 0,
-  #                         "ProductHeight": 0,
-  #                         "ProductWeight": 0,
-  #                         "WeightUnits": "",
-  #                         "DimensionsUnits": "",
-  #                         "ProductCustomField1": null,
-  #                         "ProductCustomField2": null,
-  #                         "ProductCustomField3": null,
-  #                         "ProductCustomField4": null,
-  #                         "ProductCustomField5": null,
-  #                         "ProductCustomField6": null,
-  #                         "ProductCustomField7": null,
-  #                         "ProductCustomField8": null,
-  #                         "ProductCustomField9": null,
-  #                         "ProductCustomField10": null
-  #                       }
-  #                     ]
-  #                   },
-  #                   "Ship": {
-  #                     "Status": "NOT AVAILABLE",
-  #                     "RequireBy": null,
-  #                     "ShippingAddress": {
-  #                       "DisplayAddressLine1": "Line 1 Lines 2",
-  #                       "DisplayAddressLine2": "City State Code Russia",
-  #                       "Line1": "Line 1",
-  #                       "Line2": "Lines 2",
-  #                       "City": "City",
-  #                       "State": "State",
-  #                       "Postcode": "Code",
-  #                       "Country": "Russia",
-  #                       "Company": "DIISR - Small Business Services",
-  #                       "Contact": "Sheree Bond",
-  #                       "ShipToOther": false
-  #                     },
-  #                     "ShippingNotes": "",
-  #                     "Lines": [
-  #                       {
-  #                         "ID": "67f67884-8115-4546-93c9-48230f24bd56",
-  #                         "ShipmentDate": "2017-11-22T00:00:00Z",
-  #                         "Carrier": "DEFAULT Carrier",
-  #                         "Boxes": "Box 1",
-  #                         "TrackingNumber": "",
-  #                         "TrackingURL": "",
-  #                         "IsShipped": true
-  #                       }
-  #                     ]
-  #                   }
-  #                 }
-  #               ],
-  #               "Invoices": [
-  #                 {
-  #                   "TaskID": "b039f19e-66f8-4309-a4b1-abf928303c88",
-  #                   "InvoiceNumber": "INV-00001",
-  #                   "Memo": "",
-  #                   "Status": "AUTHORISED",
-  #                   "InvoiceDate": "2017-11-22T00:00:00Z",
-  #                   "InvoiceDueDate": "2017-12-22T00:00:00Z",
-  #                   "CurrencyConversionRate": 1,
-  #                   "BillingAddressLine1": "3 Park Street Industrial Village Southbank",
-  #                   "BillingAddressLine2": "Melbourne VIC 3331",
-  #                   "LinkedFulfillmentNumber": "1",
-  #                   "Lines": [
-  #                     {
-  #                       "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                       "SKU": "Bread",
-  #                       "Name": "Baked Bread",
-  #                       "Quantity": 1,
-  #                       "Price": 8,
-  #                       "Discount": 0,
-  #                       "Tax": 0,
-  #                       "Total": 8,
-  #                       "AverageCost": 5,
-  #                       "TaxRule": "Tax on Sales",
-  #                       "Account": "200",
-  #                       "Comment": "",
-  #                       "ProductLength": 0,
-  #                       "ProductWidth": 0,
-  #                       "ProductHeight": 0,
-  #                       "ProductWeight": 0,
-  #                       "WeightUnits": "",
-  #                       "DimensionsUnits": "",
-  #                       "ProductCustomField1": null,
-  #                       "ProductCustomField2": null,
-  #                       "ProductCustomField3": null,
-  #                       "ProductCustomField4": null,
-  #                       "ProductCustomField5": null,
-  #                       "ProductCustomField6": null,
-  #                       "ProductCustomField7": null,
-  #                       "ProductCustomField8": null,
-  #                       "ProductCustomField9": null,
-  #                       "ProductCustomField10": null
-  #                     }
-  #                   ],
-  #                   "AdditionalCharges": [
-  #                     {
-  #                       "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
-  #                       "Quantity": 1,
-  #                       "Price": 350,
-  #                       "Discount": 0,
-  #                       "Tax": 0,
-  #                       "Total": 350,
-  #                       "TaxRule": "Tax on Sales",
-  #                       "Account": "200",
-  #                       "Comment": ""
-  #                     }
-  #                   ],
-  #                   "Payments": [],
-  #                   "TotalBeforeTax": 358,
-  #                   "Tax": 0,
-  #                   "Total": 358,
-  #                   "Paid": 0
-  #                 }
-  #               ],
-  #               "CreditNotes": [
-  #                 {
-  #                   "TaskID": "280fba91-281c-4416-ad43-674ae2d17355",
-  #                   "CreditNoteInvoiceNumber": "INV-00001",
-  #                   "Memo": "",
-  #                   "Status": "DRAFT",
-  #                   "CreditNoteDate": "2017-11-22T00:00:00Z",
-  #                   "CreditNoteNumber": "CR-00001",
-  #                   "CreditNoteConversionRate": 1,
-  #                   "Lines": [
-  #                     {
-  #                       "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                       "SKU": "Bread",
-  #                       "Name": "Baked Bread",
-  #                       "Quantity": 1,
-  #                       "Price": 8,
-  #                       "Discount": 0,
-  #                       "Tax": 0,
-  #                       "Total": 8,
-  #                       "AverageCost": 5,
-  #                       "TaxRule": "Tax on Sales",
-  #                       "Account": "200",
-  #                       "Comment": "",
-  #                       "ProductLength": 0,
-  #                       "ProductWidth": 0,
-  #                       "ProductHeight": 0,
-  #                       "ProductWeight": 0,
-  #                       "WeightUnits": "",
-  #                       "DimensionsUnits": "",
-  #                       "ProductCustomField1": null,
-  #                       "ProductCustomField2": null,
-  #                       "ProductCustomField3": null,
-  #                       "ProductCustomField4": null,
-  #                       "ProductCustomField5": null,
-  #                       "ProductCustomField6": null,
-  #                       "ProductCustomField7": null,
-  #                       "ProductCustomField8": null,
-  #                       "ProductCustomField9": null,
-  #                       "ProductCustomField10": null
-  #                     }
-  #                   ],
-  #                   "AdditionalCharges": [
-  #                     {
-  #                       "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
-  #                       "Quantity": 1,
-  #                       "Price": 350,
-  #                       "Discount": 0,
-  #                       "Tax": 0,
-  #                       "Total": 350,
-  #                       "TaxRule": "Tax on Sales",
-  #                       "Account": "200",
-  #                       "Comment": ""
-  #                     }
-  #                   ],
-  #                   "Refunds": [
-  #                     {
-  #                       "ID": "20d5ff25-afa2-cd74-96d7-c7f0dd1fa1c1",
-  #                       "Reference": "",
-  #                       "Amount": 358,
-  #                       "DatePaid": "2017-11-23T00:00:00Z",
-  #                       "Account": "718",
-  #                       "CurrencyRate": 1,
-  #                       "DateCreated": "2017-11-22T06:58:21.8882229Z"
-  #                     }
-  #                   ],
-  #                   "Restock": [
-  #                     {
-  #                       "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                       "SKU": "Bread",
-  #                       "Name": "Baked Bread",
-  #                       "Location": "Main Warehouse",
-  #                       "LocationID": "19aeca31-bd49-4fbe-8abd-37a6169cc2cb",
-  #                       "Quantity": 1,
-  #                       "BatchSN": "PO-00001-1",
-  #                       "ExpiryDate": "2017-11-30T00:00:00Z",
-  #                       "RestockDate": "2017-11-30T00:00:00Z",
-  #                       "RestockLocationID": "19aeca31-bd49-4fbe-8abd-37a6169cc2cb",
-  #                       "RestockLocation": "Main Warehouse"
-  #                     }
-  #                   ],
-  #                   "TotalBeforeTax": 358,
-  #                   "Tax": 0,
-  #                   "Total": 358
-  #                 }
-  #               ],
-  #               "ManualJournals": {
-  #                 "Status": "NOT AVAILABLE",
-  #                 "Lines": []
-  #               },
-  #               "ExternalID": null,
-  #               "AdditionalAttributes": {
-  #                 "AdditionalAttribute1": "",
-  #                 "AdditionalAttribute2": "",
-  #                 "AdditionalAttribute3": "",
-  #                 "AdditionalAttribute4": "",
-  #                 "AdditionalAttribute5": "",
-  #                 "AdditionalAttribute6": "",
-  #                 "AdditionalAttribute7": "",
-  #                 "AdditionalAttribute8": "",
-  #                 "AdditionalAttribute9": "",
-  #                 "AdditionalAttribute10": ""
-  #               },
-  #               "Attachments": [
-  #                 {
-  #                   "ID": "1a103e3e-9837-4294-8cc3-640ebb4fc387",
-  #                   "ContentType": "image/jpeg",
-  #                   "FileName": "1471081716149.jpg",
-  #                   "DownloadUrl": "https://example.api.url/Attachment/Download?ID=1a103e3e-9837-4294-8cc3-640ebb4fc387&ContentType=image/jpeg&FileName=1471081716149.jpg"
-  #                 }
-  #               ],
-  #               "InventoryMovements": [
-  #                 {
-  #                   "TaskID": "cde5fb4a-1dac-4e9a-bc33-5dfa14eedb57",
-  #                   "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                   "Date": "2017-11-22T00:00:00Z",
-  #                   "COGS": 0,
-  #                   "ProductLength": 0,
-  #                   "ProductWidth": 0,
-  #                   "ProductHeight": 0,
-  #                   "ProductWeight": 0,
-  #                   "WeightUnits": "",
-  #                   "DimensionsUnits": "",
-  #                   "ProductCustomField1": null,
-  #                   "ProductCustomField2": null,
-  #                   "ProductCustomField3": null,
-  #                   "ProductCustomField4": null,
-  #                   "ProductCustomField5": null,
-  #                   "ProductCustomField6": null,
-  #                   "ProductCustomField7": null,
-  #                   "ProductCustomField8": null,
-  #                   "ProductCustomField9": null,
-  #                   "ProductCustomField10": null
-  #                 },
-  #                 {
-  #                   "TaskID": "529511e7-6ed6-4a99-a2a7-fab1d32198eb",
-  #                   "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                   "Date": "2017-11-22T00:00:00Z",
-  #                   "COGS": 0,
-  #                   "ProductLength": 0,
-  #                   "ProductWidth": 0,
-  #                   "ProductHeight": 0,
-  #                   "ProductWeight": 0,
-  #                   "WeightUnits": "",
-  #                   "DimensionsUnits": "",
-  #                   "ProductCustomField1": null,
-  #                   "ProductCustomField2": null,
-  #                   "ProductCustomField3": null,
-  #                   "ProductCustomField4": null,
-  #                   "ProductCustomField5": null,
-  #                   "ProductCustomField6": null,
-  #                   "ProductCustomField7": null,
-  #                   "ProductCustomField8": null,
-  #                   "ProductCustomField9": null,
-  #                   "ProductCustomField10": null
-  #                 },
-  #                 {
-  #                   "TaskID": "529511e7-6ed6-4a99-a2a7-fab1d32198eb",
-  #                   "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
-  #                   "Date": "2017-11-22T00:00:00Z",
-  #                   "COGS": 0,
-  #                   "ProductLength": 0,
-  #                   "ProductWidth": 0,
-  #                   "ProductHeight": 0,
-  #                   "ProductWeight": 0,
-  #                   "WeightUnits": "",
-  #                   "DimensionsUnits": "",
-  #                   "ProductCustomField1": null,
-  #                   "ProductCustomField2": null,
-  #                   "ProductCustomField3": null,
-  #                   "ProductCustomField4": null,
-  #                   "ProductCustomField5": null,
-  #                   "ProductCustomField6": null,
-  #                   "ProductCustomField7": null,
-  #                   "ProductCustomField8": null,
-  #                   "ProductCustomField9": null,
-  #                   "ProductCustomField10": null
-  #                 }
-  #               ],
-  #               "Transactions": [
-  #                 {
-  #                   "TaskID": "cc6e25b2-d9ad-434c-8d77-30f36f4cb7ed",
-  #                   "TransactionID": "e960bd83-23e4-44d3-9762-0589a09407cf",
-  #                   "Debit": "610",
-  #                   "Credit": "200",
-  #                   "Description": "3",
-  #                   "Amount": 1,
-  #                   "EffectiveDate": "2018-09-25T00:00:00Z"
-  #                 },
-  #                 {
-  #                   "TaskID": "cc6e25b2-d9ad-434c-8d77-30f36f4cb7ed",
-  #                   "TransactionID": "0ae21546-2491-4f98-a898-1e6f0af633bc",
-  #                   "Debit": "610",
-  #                   "Credit": "200",
-  #                   "Description": "3",
-  #                   "Amount": -1,
-  #                   "EffectiveDate": "2018-09-25T00:00:00Z"
-  #                 },
-  #                 {
-  #                   "TaskID": "cc6e25b2-d9ad-434c-8d77-30f36f4cb7ed",
-  #                   "TransactionID": "6f278fc1-da3c-4bf0-9e13-31d5942b97c3",
-  #                   "Debit": "610",
-  #                   "Credit": "200",
-  #                   "Description": "1",
-  #                   "Amount": -2,
-  #                   "EffectiveDate": "2018-09-25T00:00:00Z"
-  #                 }
-  #               ]
-  #             }'
+  /sale:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getSale
+      summary: Allows you to retrieve the Sale
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/combineAdditionalCharges'
+        - $ref: '#/components/parameters/hideInventoryMovements'
+        - $ref: '#/components/parameters/includeTransactions'
+      responses:
+        '200':
+          description: Success - Returns Sale
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sale'
+              example: '{
+                "ID": "916ab4c0-6ccb-4c93-873d-0603859050e4",
+                "Customer": "Hamilton Smith Pty",
+                "CustomerID": "6c18f8e9-90e1-418f-aebc-1219e67e4b9c",
+                "Contact": "No Name",
+                "Phone": "03 3189080",
+                "Email": "infodemo@hsmithdemo.co",
+                "DefaultAccount": "200",
+                "SkipQuote": false,
+                "ShippingNotes": "",
+                "BaseCurrency": "RUB",
+                "CustomerCurrency": "RUB",
+                "TaxRule": "Tax on Sales",
+                "TaxCalculation": "Exclusive",
+                "Terms": "30 days",
+                "PriceTier": "Tier 1",
+                "ShipBy": "2017-11-30T00:00:00Z",
+                "Location": "Main Warehouse",
+                "SaleOrderDate": "2017-10-28T00:00:00Z",
+                "LastModifiedOn": "2017-11-22T10:10:49.75Z",
+                "Note": "",
+                "CustomerReference": "",
+                "COGSAmount": 0,
+                "Status": "ORDERED",
+                "CombinedPickingStatus": "NOT AVAILABLE",
+                "CombinedPackingStatus": "NOT AVAILABLE",
+                "CombinedShippingStatus": "NOT AVAILABLE",
+                "FulFilmentStatus": "NOT AVAILABLE",
+                "CombinedInvoiceStatus": "NOT AVAILABLE",
+                "CombinedPaymentStatus": "UNPAID",
+                "CombinedTrackingNumbers": "",
+                "Carrier": "test carrier",
+                "CurrencyRate": 1,
+                "SalesRepresentative": "DEFAULT billing contact",
+                "ServiceOnly": false,
+                "Type": "Advanced Sale",
+                "SourceChannel": "Amazon_US",
+                "Quote": {
+                  "Memo": "",
+                  "Status": "AUTHORISED",
+                  "Prepayments": [],
+                  "Lines": [
+                    {
+                      "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                      "SKU": "Bread",
+                      "Name": "Baked Bread",
+                      "Quantity": 1,
+                      "Price": 8,
+                      "Discount": 0,
+                      "Tax": 0,
+                      "AverageCost": 5,
+                      "TaxRule": "Tax on Sales",
+                      "Comment": "",
+                      "Total": 8,
+                      "ProductLength": 0,
+                      "ProductWidth": 0,
+                      "ProductHeight": 0,
+                      "ProductWeight": 0,
+                      "WeightUnits": "",
+                      "DimensionsUnits": "",
+                      "ProductCustomField1": null,
+                      "ProductCustomField2": null,
+                      "ProductCustomField3": null,
+                      "ProductCustomField4": null,
+                      "ProductCustomField5": null,
+                      "ProductCustomField6": null,
+                      "ProductCustomField7": null,
+                      "ProductCustomField8": null,
+                      "ProductCustomField9": null,
+                      "ProductCustomField10": null
+                    }
+                  ],
+                  "AdditionalCharges": [
+                    {
+                      "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                      "Price": 350,
+                      "Quantity": 1,
+                      "Discount": 0,
+                      "Tax": 0,
+                      "Total": 350,
+                      "TaxRule": "Tax on Sales",
+                      "Comment": ""
+                    }
+                  ],
+                  "TotalBeforeTax": 358,
+                  "Tax": 0,
+                  "Total": 358
+                },
+                "Order": {
+                  "SaleOrderNumber": "SO-00001",
+                  "Memo": "",
+                  "Status": "AUTHORISED",
+                  "Lines": [
+                    {
+                      "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                      "SKU": "Bread",
+                      "Name": "Baked Bread",
+                      "Quantity": 1,
+                      "Price": 8,
+                      "Discount": 0,
+                      "Tax": 0,
+                      "AverageCost": 5,
+                      "TaxRule": "Tax on Sales",
+                      "Comment": "",
+                      "DropShip": false,
+                      "Backorder": false,
+                      "BackorderQuantity": 0,
+                      "Total": 8,
+                      "ProductLength": 0,
+                      "ProductWidth": 0,
+                      "ProductHeight": 0,
+                      "ProductWeight": 0,
+                      "WeightUnits": "",
+                      "DimensionsUnits": "",
+                      "ProductCustomField1": null,
+                      "ProductCustomField2": null,
+                      "ProductCustomField3": null,
+                      "ProductCustomField4": null,
+                      "ProductCustomField5": null,
+                      "ProductCustomField6": null,
+                      "ProductCustomField7": null,
+                      "ProductCustomField8": null,
+                      "ProductCustomField9": null,
+                      "ProductCustomField10": null
+                    }
+                  ],
+                  "AdditionalCharges": [
+                    {
+                      "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                      "Price": 350,
+                      "Quantity": 1,
+                      "Discount": 0,
+                      "Tax": 0,
+                      "Total": 350,
+                      "TaxRule": "Tax on Sales",
+                      "Comment": ""
+                    }
+                  ],
+                  "TotalBeforeTax": 8,
+                  "Tax": 0,
+                  "Total": 8
+                },
+                "Invoices": [
+                  {
+                    "TaskID": "b039f19e-66f8-4309-a4b1-abf928303c88",
+                    "InvoiceNumber": "INV-00001",
+                    "Memo": "",
+                    "Status": "AUTHORISED",
+                    "InvoiceDate": "2017-11-22T00:00:00Z",
+                    "InvoiceDueDate": "2017-12-22T00:00:00Z",
+                    "CurrencyConversionRate": 1,
+                    "BillingAddressLine1": "3 Park Street Industrial Village Southbank",
+                    "BillingAddressLine2": "Melbourne VIC 3331",
+                    "LinkedFulfillmentNumber": "1",
+                    "Lines": [
+                      {
+                        "ProductID": "4aadd8f6-4d3d-46ca-acbb-1a9a662f9bc1",
+                        "SKU": "Bread",
+                        "Name": "Baked Bread",
+                        "Quantity": 1,
+                        "Price": 8,
+                        "Discount": 0,
+                        "Tax": 0,
+                        "Total": 8,
+                        "AverageCost": 5,
+                        "TaxRule": "Tax on Sales",
+                        "Account": "200",
+                        "Comment": "",
+                        "ProductLength": 0,
+                        "ProductWidth": 0,
+                        "ProductHeight": 0,
+                        "ProductWeight": 0,
+                        "WeightUnits": "",
+                        "DimensionsUnits": "",
+                        "ProductCustomField1": null,
+                        "ProductCustomField2": null,
+                        "ProductCustomField3": null,
+                        "ProductCustomField4": null,
+                        "ProductCustomField5": null,
+                        "ProductCustomField6": null,
+                        "ProductCustomField7": null,
+                        "ProductCustomField8": null,
+                        "ProductCustomField9": null,
+                        "ProductCustomField10": null
+                      }
+                    ],
+                    "AdditionalCharges": [
+                      {
+                        "Description": "Desktop/network support via phone. Per month fixed fee for minimum 20 hours/month.",
+                        "Quantity": 1,
+                        "Price": 350,
+                        "Discount": 0,
+                        "Tax": 0,
+                        "Total": 350,
+                        "TaxRule": "Tax on Sales",
+                        "Account": "200",
+                        "Comment": ""
+                      }
+                    ],
+                    "Payments": [],
+                    "TotalBeforeTax": 358,
+                    "Tax": 0,
+                    "Total": 358,
+                    "Paid": 0
+                  }
+                ],
+                "ExternalID": null
+              }'
   #   post:
   #     security:
   #       - accountID: []
@@ -3511,179 +3182,144 @@ components:
         - AccountCode
         - ComponentOrder
       type: object
-    # Sale:
-    #   externalDocs:
-    #     url: 'https://dearinventory.docs.apiary.io/reference/sale/sale'
-    #   properties:
-    #     ID:
-    #       description: Unique DEAR Sale ID. Required for PUT
-    #       type: string
-    #       format: uuid
-    #     Customer:
-    #       description: Customer name
-    #       type: string
-    #     CustomerID:
-    #       description: Customer identifier
-    #       type: string
-    #       format: uuid
-    #     Contact:
-    #       description: Customer Contact name
-    #       type: string
-    #     Phone:
-    #       description: Customer Contact phone
-    #       type: string
-    #     Email:
-    #       description: Customer Contact email
-    #       type: string
-    #     DefaultAccount:
-    #       description: Account code used by default for invoice lines when no revenue account is defined on Product. By default it is equal to Customer Sale account
-    #       type: string
-    #     SkipQuote:
-    #       description: True if there is no quote in the sale
-    #       type: boolean
-    #     BillingAddress:
-    #       $ref: '#/components/schemas/Address'
-    #     ShippingAddress:
-    #       $ref: '#/components/schemas/ShippingAddress'
-    #     ShippingNotes:
-    #       description: Shipping Notes
-    #       type: string
-    #     BaseCurrency:
-    #       description: 3 character currency code of Base Currency defined in General Settings on the moment when Sale was created.
-    #       type: string
-    #     CustomerCurrency:
-    #       description: 3 character currency code of customer Currency defined in Customer card at the moment when customer is selected for the Sale.
-    #       type: string
-    #     TaxRule:
-    #       description: Default Tax Rule name selected for Sale
-    #       type: string
-    #     TaxCalculation:
-    #       description: Inclusive or Exclusive
-    #       type: string
-    #     Terms:
-    #       description: Payment terms name
-    #       type: string
-    #     PriceTier:
-    #       description: Price Tier name selected for Sale
-    #       type: string
-    #     ShipBy:
-    #       description: Date when shipment is due
-    #       type: string
-    #       format: date
-    #     Location:
-    #       description: Default location to pick stock from
-    #       type: string
-    #     SaleOrderDate:
-    #       description: Date when task was created
-    #       type: string
-    #       format: date
-    #     LastModifiedOn:
-    #       description: UTC Time
-    #       type: string
-    #       format: date
-    #     Note:
-    #       description: Custom Sale note
-    #       type: string
-    #     CustomerReference:
-    #       description: Reference number used by customer to identify this sale. Could be a purchase order number generated by customer.
-    #       type: string
-    #     COGSAmount:
-    #       description: COGS amount in base currency
-    #       type: number
-    #     Status:
-    #       description: Sale Status, see possible values
-    #       type: string
-    #     CombinedPickingStatus:
-    #       description: Pick status. Possible Values are VOIDED, NOT AVAILABLE, PICKED, PICKING , NOT PICKED , PARTIALLY PICKED
-    #       type: string
-    #     CombinedPackingStatus:
-    #       description: Pack status. Possible Values are VOIDED, NOT AVAILABLE, PACKED, PACKING, NOT PACKED, PARTIALLY PACKED
-    #       type: string
-    #     CombinedShippingStatus:
-    #       description: Ship status. Possible Values are VOIDED, NOT AVAILABLE, SHIPPED, SHIPPING , NOT SHIPPED , PARTIALLY SHIPPED
-    #       type: string
-    #     FulFilmentStatus:
-    #       description: Fulfilment status. Possible Values are FULFILLED, PARTIALLY FULFILLED, NOT AVAILABLE, NOT FULFILLED, VOIDED
-    #       type: string
-    #     CombinedInvoiceStatus:
-    #       description: Invoice status. Possible Values are INVOICED, INVOICED / CREDITED, NOT AVAILABLE, NOT INVOICED, PARTIALLY INVOICED, PARTIALLY INVOICED / CREDITED
-    #       type: string
-    #     CombinedPaymentStatus:
-    #       description: Payment status. Possible Values are NOT REFUNDED, PREPAID, PARTIALLY PAID, UNPAID, PAID, VOIDED
-    #       type: string
-    #     CombinedTrackingNumbers:
-    #       description: Tracking Numbers
-    #       type: string
-    #     Carrier:
-    #       description: Name of Carrier/shipping method
-    #       type: string
-    #     CurrencyRate:
-    #       description: Conversion Rate expressed as number of Base currency units for one Customer currency unit
-    #       type: number
-    #     SalesRepresentative:
-    #       description: Sales representative name
-    #       type: string
-    #     Type:
-    #       description: Type of sale Simple Sale or Advanced Sale, Service Sale
-    #       type: string
-    #     SourceChannel:
-    #       description: Source of the sale. read-only field
-    #       type: string
-    #     ExternalID:
-    #       description: Custom field that is only available in API and allows to set arbitrary value for the sale for later search and any custom logic
-    #       type: string
-    #     ServiceOnly:
-    #       description: true when it is service-only sale
-    #       type: string
-    #     Quote:
-    #       $ref: '#/components/schemas/SaleQuote'
-    #       description: Sale Quote
-    #     Order:
-    #       $ref: '#/components/schemas/SaleOrder'
-    #       description: Sale Order
-    #     Fulfilments:
-    #       description: Sale Fulfilments
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/SaleFulfilment'
-    #     Invoices:
-    #       description: Sale Invoices
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/SaleInvoice'
-    #     CreditNotes:
-    #       description: Sale Credit Notes
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/SaleCreditNote'
-    #     ManualJournals:
-    #       description: Sale Manual Journals
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/SaleManualJournal'
-    #     AdditionalAttributes:
-    #       description: Sale Additional Attributes
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/AdditionalAttribute'
-    #     Attachments:
-    #       description: Sale Attachments
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/AttachmentLine'
-    #     InventoryMovements:
-    #       description: Sale Inventory Movements
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/InventoryMovementLine'
-    #     Transactions:
-    #       description: Sale Transactions
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/SaleTransactionLine'
-    #   required:
-    #     - SaleID
-    #   type: object
+    Sale:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/reference/sale/sale'
+      properties:
+        ID:
+          description: Unique DEAR Sale ID. Required for PUT
+          type: string
+          format: uuid
+        Customer:
+          description: Customer name
+          type: string
+        CustomerID:
+          description: Customer identifier
+          type: string
+          format: uuid
+        Contact:
+          description: Customer Contact name
+          type: string
+        Phone:
+          description: Customer Contact phone
+          type: string
+        Email:
+          description: Customer Contact email
+          type: string
+        DefaultAccount:
+          description: Account code used by default for invoice lines when no revenue account is defined on Product. By default it is equal to Customer Sale account
+          type: string
+        SkipQuote:
+          description: True if there is no quote in the sale
+          type: boolean
+        BillingAddress:
+          $ref: '#/components/schemas/Address'
+        ShippingAddress:
+          $ref: '#/components/schemas/ShippingAddress'
+        ShippingNotes:
+          description: Shipping Notes
+          type: string
+        BaseCurrency:
+          description: 3 character currency code of Base Currency defined in General Settings on the moment when Sale was created.
+          type: string
+        CustomerCurrency:
+          description: 3 character currency code of customer Currency defined in Customer card at the moment when customer is selected for the Sale.
+          type: string
+        TaxRule:
+          description: Default Tax Rule name selected for Sale
+          type: string
+        TaxCalculation:
+          description: Inclusive or Exclusive
+          type: string
+        Terms:
+          description: Payment terms name
+          type: string
+        PriceTier:
+          description: Price Tier name selected for Sale
+          type: string
+        ShipBy:
+          description: Date when shipment is due
+          type: string
+          format: date
+        Location:
+          description: Default location to pick stock from
+          type: string
+        SaleOrderDate:
+          description: Date when task was created
+          type: string
+          format: date
+        LastModifiedOn:
+          description: UTC Time
+          type: string
+          format: date
+        Note:
+          description: Custom Sale note
+          type: string
+        CustomerReference:
+          description: Reference number used by customer to identify this sale. Could be a purchase order number generated by customer.
+          type: string
+        COGSAmount:
+          description: COGS amount in base currency
+          type: number
+        Status:
+          description: Sale Status, see possible values
+          type: string
+        CombinedPickingStatus:
+          description: Pick status. Possible Values are VOIDED, NOT AVAILABLE, PICKED, PICKING , NOT PICKED , PARTIALLY PICKED
+          type: string
+        CombinedPackingStatus:
+          description: Pack status. Possible Values are VOIDED, NOT AVAILABLE, PACKED, PACKING, NOT PACKED, PARTIALLY PACKED
+          type: string
+        CombinedShippingStatus:
+          description: Ship status. Possible Values are VOIDED, NOT AVAILABLE, SHIPPED, SHIPPING , NOT SHIPPED , PARTIALLY SHIPPED
+          type: string
+        FulFilmentStatus:
+          description: Fulfilment status. Possible Values are FULFILLED, PARTIALLY FULFILLED, NOT AVAILABLE, NOT FULFILLED, VOIDED
+          type: string
+        CombinedInvoiceStatus:
+          description: Invoice status. Possible Values are INVOICED, INVOICED / CREDITED, NOT AVAILABLE, NOT INVOICED, PARTIALLY INVOICED, PARTIALLY INVOICED / CREDITED
+          type: string
+        CombinedPaymentStatus:
+          description: Payment status. Possible Values are NOT REFUNDED, PREPAID, PARTIALLY PAID, UNPAID, PAID, VOIDED
+          type: string
+        CombinedTrackingNumbers:
+          description: Tracking Numbers
+          type: string
+        Carrier:
+          description: Name of Carrier/shipping method
+          type: string
+        CurrencyRate:
+          description: Conversion Rate expressed as number of Base currency units for one Customer currency unit
+          type: number
+        SalesRepresentative:
+          description: Sales representative name
+          type: string
+        Type:
+          description: Type of sale Simple Sale or Advanced Sale, Service Sale
+          type: string
+        SourceChannel:
+          description: Source of the sale. read-only field
+          type: string
+        ExternalID:
+          description: Custom field that is only available in API and allows to set arbitrary value for the sale for later search and any custom logic
+          type: string
+        ServiceOnly:
+          description: true when it is service-only sale
+          type: string
+        Quote:
+          $ref: '#/components/schemas/SaleQuote'
+          description: Sale Quote
+        Order:
+          $ref: '#/components/schemas/SaleOrder'
+          description: Sale Order
+        Invoices:
+          description: Sale Invoices
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleInvoice'
+      required:
+        - SaleID
+      type: object
     SaleAdditionalCharge:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#SaleAdditionalChargeModel'
