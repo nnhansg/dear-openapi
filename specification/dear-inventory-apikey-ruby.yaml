@@ -3717,13 +3717,81 @@ components:
           description: Array of Invoices
           type: array
           items:
-            $ref: '#/components/schemas/SaleInvoice'
+            $ref: '#/components/schemas/SaleInvoicePartial'
       required:
         - SaleID
       type: object
     SaleInvoice:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#reference/sale/sale-invoice'
+      properties:
+        TaskID:
+          description: Identifier of sale Invoice task
+          type: string
+          format: uuid
+        InvoiceNumber:
+          description: Invoice Number (auto-generated)
+          type: string
+        Memo:
+          description: Additional information for Invoice.
+          type: string
+        Status:
+          description: Invoice status. Possible Values are values. For POST available values are DRAFT, AUTHORISED
+          type: string
+        InvoiceDate:
+          description: Invoice Date.
+          type: string
+        InvoiceDueDate:
+          description: Invoice Due Date.
+          type: string
+        CurrencyConversionRate:
+          description: Decimal with up to 4 decimal places
+          type: number
+        BillingAddressLine1:
+          description: Billing Address Line 1
+          type: string
+        BillingAddressLine2:
+          description: Billing Address Line 2
+          type: string
+        LinkedFulfillmentNumber:
+          description: Number of Fulfilment linked to this invoice
+          type: integer
+        Lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleInvoiceLine'
+          default: []
+        AdditionalCharges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleInvoiceAdditionalCharge'
+          default: []
+        Payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalePaymentLine'
+          default: []
+        TotalBeforeTax:
+          description: Decimal with up to 4 decimal places. Sum of Invoice lines and additional charges without taxes.
+          type: number
+        Tax:
+          description: Decimal with up to 4 decimal places. Sum of Invoice lines and additional charges taxes.
+          type: number
+        Total:
+          description: Decimal with up to 4 decimal places. Sum of Invoice lines and additional charges with taxes.
+          type: number
+        Paid:
+          description: Decimal with up to 4 decimal places. Sum of payments.
+          type: number
+      required:
+        - TaskID
+        - Status
+        - InvoiceDate
+        - InvoiceDueDate
+      type: object
+    SaleInvoicePartial:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#SaleInvoicePartialModel'
       properties:
         TaskID:
           description: Identifier of sale Invoice task
@@ -3772,7 +3840,6 @@ components:
           default: []
       required:
         - TaskID
-        - CombineAdditionalCharges
         - Status
         - InvoiceDate
         - InvoiceDueDate
@@ -4118,6 +4185,35 @@ components:
           description: Id for Sale Credit entry
           type: string
           format: uuid
+      type: object
+    SalePaymentLine:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#SalePaymentLineModel'
+      properties:
+        ID:
+          description: Identifier of payment.
+          type: string
+          format: uuid
+        Reference:
+          description: Payment reference number.
+          type: string
+        Amount:
+          description: Decimal with up to 2 decimal places. Payment amount in customer currency.
+          type: number
+        DatePaid:
+          description: Date when payment has been made.
+          type: string
+          format: date
+        Account:
+          description: Account Code of the bank/payment account from Chart of accounts.
+          type: string
+        CurrencyRate:
+          description: Decimal with up to 4 decimal places. Currency Conversion rate expressed as number of Base currency units for one Customer currency unit.
+          type: number
+        DateCreated:
+          description: Date of creation payment record.
+          type: string
+          format: date
       type: object
     SalePayments:
       externalDocs:
