@@ -25,8 +25,10 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/id'
         - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/contactFilter'
         - $ref: '#/components/parameters/modifiedSince'
         - $ref: '#/components/parameters/includeDeprecated'
+        - $ref: '#/components/parameters/includeProductPrices'
       responses:
         '200':
           description: Success - return response of type Customers array with 0 to n Customers
@@ -2656,6 +2658,13 @@ components:
       schema:
         type: string
         nullable: true
+    contactFilter:
+      in: query
+      name: ContactFilter
+      description: Default is nil
+      schema:
+        type: string
+        nullable: true
     createdSince:
       in: query
       name: CreatedSince
@@ -2706,6 +2715,14 @@ components:
       description: Show all used products in additional array
       schema:
         type: boolean
+        default: false
+    includeProductPrices:
+      in: query
+      name: IncludeProductPrices
+      description: Default is false
+      example: false
+      schema:
+        type: string
         default: false
     includeTransactions:
       in: query
