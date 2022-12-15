@@ -3341,7 +3341,6 @@ components:
           format: uuid
         Name:
           description: Tax Name
-          maxLength: 50
           type: string
         Account:
           description: 'ChartOfAccount Code with Class == `LIABILITY` && Status == `ACTIVE`'
@@ -3358,8 +3357,6 @@ components:
           description: Tax percentage, should be between 0 and 100. Read-only
           type: number
           format: double
-          minimum: 0
-          maximum: 100
         IsTaxForSale:
           description: Points that tax is used for Sale
           type: boolean
