@@ -1431,7 +1431,27 @@ paths:
                               "Paid": 0
                             }
                           ],
-                          "ExternalID": null
+                          "ExternalID": "",
+                          "Attachments": [
+                            {
+                              "ID": "0f194d33-012c-4bff-8c9f-0fcc40a50535",
+                              "ContentType": "application/pdf",
+                              "FileName": "PencilPayInvoice+INV-May23-00034+for+COPCOFFEEAAPTYLTD.pdf",
+                              "DownloadUrl": "https://inventory.dearsystems.com/Attachment/Download?ID=xxxxxxx-012c-4bff-8c9f-0fcc40a50535&ContentType=application/pdf&FileName=PencilPayInvoice+INV-May23-00034+for+COPCOFFEEAAPTYLTD.pdf"
+                            },
+                            {
+                              "ID": "50db40ab-2f17-4038-afa6-98df50735148",
+                              "ContentType": "application/pdf",
+                              "FileName": "InvoiceMatrix+INV-May23-00034+for+COPCOFFEEAAPTYLTD.pdf",
+                              "DownloadUrl": "https://inventory.dearsystems.com/Attachment/Download?ID=xxxxxxx-2f17-4038-afa6-98df50735148&ContentType=application/pdf&FileName=InvoiceMatrix+INV-May23-00034+for+COPCOFFEEAAPTYLTD.pdf"
+                            },
+                            {
+                              "ID": "fbefd7c2-78fe-4bfa-b532-e896f174d750",
+                              "ContentType": "application/pdf",
+                              "FileName": "PencilPaySaleQuote+SO-Oct22-03927+for+COPCOFFEEAAPTYLTD.pdf",
+                              "DownloadUrl": "https://inventory.dearsystems.com/Attachment/Download?ID=xxxxxxx-78fe-4bfa-b532-e896f174d750&ContentType=application/pdf&FileName=PencilPaySaleQuote+SO-Oct22-03927+for+COPCOFFEEAAPTYLTD.pdf"
+                            }
+                          ]
                         }'
   #   post:
   #     security:
@@ -1624,7 +1644,7 @@ paths:
                               "FulFilmentStatus": "NOT FULFILLED",
                               "Type": "Advanced Sale",
                               "SourceChannel": "Amazon_US",
-                              "ExternalID": null,
+                              "ExternalID": "",
                               "OrderLocationID": "8b5d4343-c007-43d7-8e8f-6fa6c0d29f22"
                             },
                             {
@@ -1657,7 +1677,7 @@ paths:
                               "FulFilmentStatus": "NOT FULFILLED",
                               "Type": "Simple Sale",
                               "SourceChannel": null,
-                              "ExternalID": null,
+                              "ExternalID": "",
                               "OrderLocationID": "8b5d4343-c007-43d7-8e8f-6fa6c0d29f22"
                             }
                           ]
@@ -3005,6 +3025,27 @@ components:
         - Line1
         - Country
       type: object
+    AttachmentLine:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#AttachmentLineModel'
+      properties:
+        ID:
+          description: Attached file ID
+          type: string
+          format: uuid
+        ContentType:
+          description: Attached file content type
+          type: string
+        IsDefault:
+          description: Is this attachment will be used as default product image. Is visible only for product Attachment Endpoint.
+          type: boolean
+        FileName:
+          description: Attached file name
+          type: string
+        DownloadUrl:
+          description: Url to download attached File
+          type: string
+      type: object
     AuthorizationType:
       type: string
       enum:
@@ -3538,6 +3579,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SaleInvoice'
+        Attachments:
+          description: Sale Attachments
+          type: array
+          items:
+            $ref: '#/components/schemas/AttachmentLine'
       required:
         - SaleID
       type: object
