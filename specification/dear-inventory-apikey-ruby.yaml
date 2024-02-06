@@ -2939,19 +2939,15 @@ components:
       properties:
         Code:
           description: Unique code of Account
-          maxLength: 50
           type: string
         Name:
           description: Account Name
-          maxLength: 256
           type: string
         Type:
           description: Type
-          maxLength: 50
           type: string
         Status:
           description: Account status
-          maxLength: 50
           type: string
         Description:
           description: Account description
@@ -3062,33 +3058,27 @@ components:
           format: uuid
         Name:
           description: Name of Contact
-          maxLength: 256
           type: string
         JobTitle:
           description: Job Title
           type: string
         Phone:
           description: Phone
-          maxLength: 50
           type: string
         MobilePhone:
           description: Mobile Phone
           type: string
         Fax:
           description: Fax
-          maxLength: 50
           type: string
         Email:
           description: Email
-          maxLength: 256
           type: string
         Website:
           description: Website
-          maxLength: 256
           type: string
         Comment:
           description: Comment
-          maxLength: 256
           type: string
         Default:
           description: Points that Contact is used as default. `false` as default.
@@ -3130,7 +3120,6 @@ components:
           format: uuid
         Name:
           description: Name of Customer
-          maxLength: 256
           type: string
         Status:
           description: Points that Customer is Active. Available values are Active and Deprecated. Required for POST
@@ -3168,7 +3157,6 @@ components:
           format: double
         Comments:
           description: Comments
-          maxLength: 2000
           type: string
         TaxNumber:
           description: Tax number
@@ -3316,7 +3304,6 @@ components:
           format: uuid
         Name:
           description: Name of Payment Term
-          maxLength: 256
           type: string
         Duration:
           description: Minimum Payment Term duration in days
@@ -3423,7 +3410,6 @@ components:
       properties:
         Name:
           description: Name of product. Read-only.
-          maxLength: 50
           type: string
         Percent:
           description: Cost. Required if product type is `Service`. Default value = 0.
@@ -4427,23 +4413,18 @@ components:
           format: uuid
         Line1:
           description: Address Line 1
-          maxLength: 256
           type: string
         Line2:
           description: Address Line 2
-          maxLength: 256
           type: string
         City:
           description: City / Suburb
-          maxLength: 256
           type: string
         State:
           description: State / Province
-          maxLength: 256
           type: string
         PostCode:
           description: Zip / PostCode
-          maxLength: 20
           type: string
         Country:
           description: Country name
