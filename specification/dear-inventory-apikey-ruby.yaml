@@ -501,6 +501,174 @@ paths:
                       }'
         '400':
           $ref: '#/components/responses/400Error'
+  /ref/carrier:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getCarriers
+      summary: Allows you to retrieve the carriers
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/carrierID'
+        - $ref: '#/components/parameters/description'
+      responses:
+        '200':
+          description: Success - return response of type Carriers array with 0 to n Carriers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carriers'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "CarrierList": [
+                            {
+                              "CarrierID": "729cd659-c0ca-4a8a-9771-84539cd2e7e8",
+                              "Description": "DEFAULT Carrier"
+                            }
+                          ]
+                        }'
+  /ref/location:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getLocations
+      summary: Allows you to retrieve the locations
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/deprecated'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Success - return response of type Locations array with 0 to n Locations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Locations'
+              example: '{
+                          "Total": 4,
+                          "Page": 1,
+                          "LocationList": [
+                            {
+                              "ID": "aa4ab1cf-c989-45cd-8926-23d1edd6601e",
+                              "Name": "Fixed asset test",
+                              "IsDefault": false,
+                              "IsDeprecated": false,
+                              "Bins": null,
+                              "FixedAssetsLocation": true,
+                              "ParentID": null,
+                              "ParentName": null,
+                              "ReferenceCount": 0,
+                              "AddressLine1": "",
+                              "AddressLine2": "",
+                              "AddressCitySuburb": "",
+                              "AddressStateProvince": "",
+                              "AddressZipPostCode": "",
+                              "AddressCountry": "",
+                              "PickZones": null,
+                              "IsShopfloor": true,
+                              "IsCoMan": false,
+                              "IsStaging": false
+                            },
+                            {
+                              "ID": "6b7f713d-aad1-4ae6-850c-2db7a0afa321",
+                              "Name": "Test new location",
+                              "IsDefault": true,
+                              "IsDeprecated": false,
+                              "FixedAssetsLocation": false,
+                              "ParentID": null,
+                              "Bins": [
+                                {
+                                  "ID": "5F8EE220-DFEA-4E8D-8095-A074E44FA955",
+                                  "Name": "Test bin",
+                                  "IsDeprecated": false,
+                                  "IsStaging": false
+                                },
+                                {
+                                  "ID": "52DDBCF5-05AD-4DF5-B66D-F14C09823052",
+                                  "Name": "Test bin 2",
+                                  "IsDeprecated": false,
+                                  "IsStaging": false
+                                },
+                                {
+                                  "ID": "D88A25EF-44ED-4B9F-8FF9-DD6E66A3C7C9",
+                                  "Name": "Test bin post",
+                                  "IsDeprecated": false,
+                                  "IsStaging": false
+                                },
+                                {
+                                  "ID": "9361C7E0-F702-4F51-9B31-CD032ED3CE6D",
+                                  "Name": "Test bin post wrong ParentID",
+                                  "IsDeprecated": false,
+                                  "IsStaging": true
+                                }
+                              ],
+                              "ParentName": null,
+                              "ReferenceCount": 31,
+                              "AddressLine1": "Test address line",
+                              "AddressLine2": "Test address line 2",
+                              "AddressCitySuburb": "Test address city",
+                              "AddressStateProvince": "Test address state",
+                              "AddressZipPostCode": "Test address ZIP",
+                              "AddressCountry": "Test address country",
+                              "PickZones": "Test pick zone,Test pick zone 2",
+                              "IsShopfloor": false,
+                              "IsCoMan": false,
+                              "IsStaging": false
+                            },
+                            {
+                              "ID": "5f8ee220-dfea-4e8d-8095-a074e44fa955",
+                              "Name": "Test bin",
+                              "IsDefault": false,
+                              "IsDeprecated": false,
+                              "Bins": null,
+                              "FixedAssetsLocation": false,
+                              "ParentID": "6b7f713d-aad1-4ae6-850c-2db7a0afa321",
+                              "ParentName": "Test new location",
+                              "ReferenceCount": 0,
+                              "AddressLine1": "",
+                              "AddressLine2": "",
+                              "AddressCitySuburb": "",
+                              "AddressStateProvince": "",
+                              "AddressZipPostCode": "",
+                              "AddressCountry": "",
+                              "PickZones": null,
+                              "IsShopfloor": false,
+                              "IsCoMan": false,
+                              "IsStaging": false
+                            },
+                            {
+                              "ID": "52ddbcf5-05ad-4df5-b66d-f14c09823052",
+                              "Name": "Test bin second",
+                              "IsDefault": false,
+                              "IsDeprecated": false,
+                              "Bins": null,
+                              "FixedAssetsLocation": false,
+                              "ParentID": "6b7f713d-aad1-4ae6-850c-2db7a0afa321",
+                              "ParentName": "Test new location",
+                              "ReferenceCount": 0,
+                              "AddressLine1": "",
+                              "AddressLine2": "",
+                              "AddressCitySuburb": "",
+                              "AddressStateProvince": "",
+                              "AddressZipPostCode": "",
+                              "AddressCountry": "",
+                              "PickZones": null,
+                              "IsShopfloor": false,
+                              "IsCoMan": false,
+                              "IsStaging": false
+                            }
+                          ]
+                        }'
   /ref/paymentterm:
     get:
       security:
@@ -1143,6 +1311,50 @@ paths:
                           "DefaultDimensionsUnits": "m",
                           "LockDate": null,
                           "OpeningBalanceDate": "2017-11-30T00:00:00Z"
+                        }'
+  /me/contacts:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getMeContacts
+      summary: Allows you to retrieve the me contacts (Sales Representatives)
+      responses:
+        '200':
+          description: Success - return response of type Me Contacts array with 0 to n Me Contacts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeContacts'
+              example: '{
+                          "Total": 2,
+                          "Page": 1,
+                          "MeContactsList": [
+                            {
+                              "ContactID": "1a917f5a-4d68-41a0-8b07-7b26841ffb9d",
+                              "Name": "DEFAULT billing contact",
+                              "Phone": "12345678",
+                              "Fax": null,
+                              "Email": "vlad.b@dearsystems.com",
+                              "Website": null,
+                              "Comment": null,
+                              "Type": "Billing",
+                              "DefaultForType": true
+                            },
+                            {
+                              "ContactID": "d1a6e908-2fe4-42d3-8772-daace0fe80a3",
+                              "Name": "DEFAULT shipping contact",
+                              "Phone": "12345678",
+                              "Fax": null,
+                              "Email": "vlad.b@dearsystems.com",
+                              "Website": null,
+                              "Comment": null,
+                              "Type": "Shipping",
+                              "DefaultForType": true
+                            }
+                          ]
                         }'
   /ref/priceTier:
     get:
@@ -2629,6 +2841,13 @@ components:
       schema:
         type: string
         nullable: true
+    carrierID:
+      in: query
+      name: CarrierID
+      description: Only return Carrier with the specific CarrierID
+      schema:
+        type: string
+        nullable: true
     class:
       in: query
       name: Class
@@ -2700,6 +2919,21 @@ components:
       schema:
         type: string
         nullable: true
+    deprecated:
+      in: query
+      name: Deprecated
+      description: Default is false
+      example: false
+      schema:
+        type: boolean
+        default: false
+    description:
+      in: query
+      name: Description
+      description: Only return Carriers that start with the specific Description
+      schema:
+        type: string
+        nullable: true
     externalID:
       in: query
       name: ExternalID
@@ -2727,7 +2961,7 @@ components:
       description: Default is false
       example: false
       schema:
-        type: string
+        type: boolean
         default: false
     includeProductInfo:
       in: query
@@ -2742,7 +2976,7 @@ components:
       description: Default is false
       example: false
       schema:
-        type: string
+        type: boolean
         default: false
     includeTransactions:
       in: query
@@ -3048,6 +3282,46 @@ components:
         - basicauth
         - bearerauth
         - noauth
+    Bin:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/location/get'
+      properties:
+        ID:
+          description: Unique ID
+          type: string
+          format: uuid
+        Name:
+          description: Name of `Bin`
+          type: string
+      type: object
+    Carriers:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/carrier/get'
+      properties:
+        Total:
+          description: Total
+          type: number
+        Page:
+          description: Page
+          type: number
+        CarrierList:
+          description: Array of Carriers
+          type: array
+          items:
+            $ref: '#/components/schemas/Carrier'
+      type: object
+    Carrier:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/carrier/get'
+      properties:
+        CarrierID:
+          description: Unique `Carrier` ID
+          type: string
+          format: uuid
+        Description:
+          description: Name of `Carrier`
+          type: string
+      type: object
     Contact:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#SupplierContactModel'
@@ -3250,6 +3524,91 @@ components:
           description: Value
           type: string
       type: object
+    Locations:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/location/get'
+      properties:
+        Total:
+          description: Total
+          type: number
+        Page:
+          description: Page
+          type: number
+        LocationList:
+          description: Array of Locations
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+      type: object
+    Location:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/location/get'
+      properties:
+        ID:
+          description: Required for `PUT` and `DELETE`, Ignored for `POST` operations
+          type: string
+          format: uuid
+        Name:
+          description: Location name
+          type: string
+        IsDefault:
+          description: Points that location is used as default
+          type: boolean
+          default: false
+        Deprecated:
+          description: Points that location is deprecated
+          type: boolean
+          default: false
+        Bins:
+          description: Array (ID, Name) with related Bins
+          type: array
+          items:
+            $ref: '#/components/schemas/Bin'
+        FixedAssetsLocation:
+          description: Points that location is used as Fixed Asset
+          type: boolean
+          default: false
+        ParentID:
+          description: Parent ID (used for Bins)
+          type: string
+          format: uuid
+        ReferenceCount:
+          description: Reference linked to current location
+          type: integer
+        AddressLine1:
+          description: Address line
+          type: string
+        AddressLine2:
+          description: Address line second
+          type: string
+        AddressCitySuburb:
+          description: City suburb
+          type: string
+        AddressStateProvince:
+          description: State province
+          type: string
+        AddressZipPostCode:
+          description: Zip post code
+          type: string
+        AddressCountry:
+          description: Country
+          type: string
+        PickZones:
+          description: Pick zones
+          type: string
+        IsShopfloor:
+          description: Points that location is shopfloor
+          type: boolean
+          default: false
+        IsCoMan:
+          description: Points that location is location of co-manufacturer
+          type: boolean
+          default: false
+        IsStaging:
+          description: Points that location is staging. It is used only for Bins
+          type: boolean
+          default: false
+      type: object
     Me:
       externalDocs:
         url: 'https://dearinventory.docs.apiary.io/#reference/me'
@@ -3277,6 +3636,56 @@ components:
           description: Date of opening balances in the system. Formatted in Tenant date format
           type: string
           format: date
+      type: object
+    MeContacts:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/me/me-contact/get'
+      properties:
+        Total:
+          description: Total
+          type: number
+        Page:
+          description: Page
+          type: number
+        MeContactsList:
+          description: Array of MeContacts
+          type: array
+          items:
+            $ref: '#/components/schemas/MeContact'
+      type: object
+    MeContact:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/me/me-contact/get'
+      properties:
+        ContactID:
+          description: Unique `MeContact` ID
+          type: string
+          format: uuid
+        Name:
+          description: Name of `MeContact`
+          type: string
+        Phone:
+          description: Phone
+          type: string
+        Fax:
+          description: Fax
+          type: string
+        Email:
+          description: Email
+          type: string
+        Website:
+          description: Website
+          type: string
+        Comment:
+          description: Comment
+          type: string
+        Type:
+          description: '`MeContact` Type. Should be one of the following values: `Billing`, `Business`, `Sale`, `Shipping` or `Employee`'
+          type: string
+        DefaultForType:
+          description: 'Points that `MeContact` is used as default for chosen `Type`. `False` as default.'
+          type: boolean
+          default: false
       type: object
     PaymentTerms:
       externalDocs:

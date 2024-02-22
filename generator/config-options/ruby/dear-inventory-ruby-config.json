@@ -9,7 +9,7 @@
   "gemMetadataSourceCodeUri": "https://github.com/nnhansg/dear-ruby",
   "gemName": "dear-inventory-ruby",
   "gemSummary": "DEAR Inventory Ruby SDK generated from DEAR-OpenAPI Spec 3.0 for https://inventory.dearsystems.com",
-  "gemVersion": "0.2.10.1",
+  "gemVersion": "0.2.11",
   "httpUserAgent": "dear-inventory-ruby-#{VERSION}",
   "library": "faraday",
   "moduleName": "DearInventoryRuby"
