@@ -4832,7 +4832,7 @@ components:
         State:
           description: State / Province
           type: string
-        PostCode:
+        Postcode:
           description: Zip / PostCode
           type: string
         Country:
