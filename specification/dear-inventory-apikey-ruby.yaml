@@ -501,6 +501,309 @@ paths:
                       }'
         '400':
           $ref: '#/components/responses/400Error'
+  /ref/attributeset:
+    get:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: getAttributeSets
+      summary: Allows you to retrieve the attribute sets
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Success - return response of type Attribute Sets array with 0 to n Attribute Sets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeSets'
+              example: '{
+                          "Total": 1,
+                          "Page": 1,
+                          "AttributeSetList": [
+                            {
+                              "ID": "0ba27d98-42ca-4bf6-9b9e-9f71538bd53d",
+                              "Name": "Test set",
+                              "Attribute1Name": "List attribute name",
+                              "Attribute1Type": "List",
+                              "Attribute1Values": "Red, Black, Blue, Aqua",
+                              "Attribute2Name": "Check box attribute name",
+                              "Attribute2Type": "Checkbox",
+                              "Attribute2Values": "",
+                              "Attribute3Name": "Text attribute name",
+                              "Attribute3Type": "Text",
+                              "Attribute3Values": "",
+                              "Attribute4Name": "",
+                              "Attribute4Type": "Not used",
+                              "Attribute4Values": "",
+                              "Attribute5Name": "",
+                              "Attribute5Type": "Not used",
+                              "Attribute5Values": "",
+                              "Attribute6Name": "",
+                              "Attribute6Type": "Not used",
+                              "Attribute6Values": "",
+                              "Attribute7Name": "",
+                              "Attribute7Type": "Not used",
+                              "Attribute7Values": "",
+                              "Attribute8Name": "",
+                              "Attribute8Type": "Not used",
+                              "Attribute8Values": "",
+                              "Attribute9Name": "",
+                              "Attribute9Type": "Not used",
+                              "Attribute9Values": "",
+                              "Attribute10Name": "",
+                              "Attribute10Type": "Not used",
+                              "Attribute10Values": "",
+                              "Attributes": [
+                                {
+                                  "Name": "List attribute name",
+                                  "Type": "List",
+                                  "Values": "Red, Black, Blue, Aqua"
+                                },
+                                {
+                                  "Name": "Check box attribute name",
+                                  "Type": "Checkbox",
+                                  "Values": ""
+                                },
+                                {
+                                  "Name": "Text attribute name",
+                                  "Type": "Text",
+                                  "Values": ""
+                                }
+                              ]
+                            }
+                          ]
+                        }'
+    post:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: createAttributeSet
+      summary: Allows you to create an attribute set
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: an attribute set object with properties to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeSet'
+            example: '{
+                        "Name": "Test set",
+                        "Attribute1Name": "List attribute name",
+                        "Attribute1Type": "List",
+                        "Attribute1Values": "Red, Black, Blue, Aqua",
+                        "Attribute2Name": "Check box attribute name",
+                        "Attribute2Type": "Checkbox",
+                        "Attribute2Values": "",
+                        "Attribute3Name": "Text attribute name",
+                        "Attribute3Type": "Text",
+                        "Attribute3Values": ""
+                      }'
+      responses:
+        '200':
+          description: Success - return response of type Attribute Set with newly created Attribute Set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeSet'
+              example: '{
+                          "ID": "0ba27d98-42ca-4bf6-9b9e-9f71538bd53d",
+                          "Name": "Test set",
+                          "Attribute1Name": "List attribute name",
+                          "Attribute1Type": "List",
+                          "Attribute1Values": "Red, Black, Blue, Aqua",
+                          "Attribute2Name": "Check box attribute name",
+                          "Attribute2Type": "Checkbox",
+                          "Attribute2Values": "",
+                          "Attribute3Name": "Text attribute name",
+                          "Attribute3Type": "Text",
+                          "Attribute3Values": "",
+                          "Attribute4Name": "",
+                          "Attribute4Type": "Not used",
+                          "Attribute4Values": "",
+                          "Attribute5Name": "",
+                          "Attribute5Type": "Not used",
+                          "Attribute5Values": "",
+                          "Attribute6Name": "",
+                          "Attribute6Type": "Not used",
+                          "Attribute6Values": "",
+                          "Attribute7Name": "",
+                          "Attribute7Type": "Not used",
+                          "Attribute7Values": "",
+                          "Attribute8Name": "",
+                          "Attribute8Type": "Not used",
+                          "Attribute8Values": "",
+                          "Attribute9Name": "",
+                          "Attribute9Type": "Not used",
+                          "Attribute9Values": "",
+                          "Attribute10Name": "",
+                          "Attribute10Type": "Not used",
+                          "Attribute10Values": "",
+                          "Attributes": [
+                            {
+                              "Name": "Color",
+                              "Type": "List",
+                              "Values": "Red, Black, Blue, Aqua"
+                            },
+                            {
+                              "Name": "Male?",
+                              "Type": "Checkbox",
+                              "Values": ""
+                            },
+                            {
+                              "Name": "Special wish",
+                              "Type": "Text",
+                              "Values": ""
+                            }
+                          ]
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    put:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: updateAttributeSet
+      summary: Allows you to update an attribute set
+      parameters:
+        - $ref: '#/components/parameters/summarizeErrors'
+      requestBody:
+        description: an attribute set object with properties to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeSet'
+            example: '{
+                        "ID": "0ba27d98-42ca-4bf6-9b9e-9f71538bd53d",
+                        "Name": "Test set name",
+                        "Attribute1Name": "List attribute name",
+                        "Attribute1Type": "List",
+                        "Attribute1Values": "Red, Black, Blue, Aqua",
+                        "Attribute2Name": "Check box attribute name",
+                        "Attribute2Type": "Checkbox",
+                        "Attribute2Values": "",
+                        "Attribute3Name": "Text attribute name",
+                        "Attribute3Type": "Text",
+                        "Attribute3Values": "",
+                        "Attribute4Name": "Additional attribute",
+                        "Attribute4Type": "Text",
+                        "Attribute4Values": "",
+                        "Attribute5Name": "Hidden attribute name",
+                        "Attribute5Type": "Not used",
+                        "Attribute5Values": "",
+                        "Attribute6Name": "Additional attribute name 2",
+                        "Attribute6Type": "Checkbox",
+                        "Attribute6Values": ""
+                      }'
+      responses:
+        '200':
+          description: Success - return response of type Attribute Set with updated Attribute Set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeSet'
+              example: '{
+                          "ID": "0ba27d98-42ca-4bf6-9b9e-9f71538bd53d",
+                          "Name": "Test set name",
+                          "Attribute1Name": "List attribute name",
+                          "Attribute1Type": "List",
+                          "Attribute1Values": "Red, Black, Blue, Aqua",
+                          "Attribute2Name": "Check box attribute name",
+                          "Attribute2Type": "Checkbox",
+                          "Attribute2Values": "",
+                          "Attribute3Name": "Text attribute name",
+                          "Attribute3Type": "Text",
+                          "Attribute3Values": "",
+                          "Attribute4Name": "Additional attribute",
+                          "Attribute4Type": "Text",
+                          "Attribute4Values": "",
+                          "Attribute5Name": "Hidden attribute name",
+                          "Attribute5Type": "Not used",
+                          "Attribute5Values": "",
+                          "Attribute6Name": "Additional attribute name 2",
+                          "Attribute6Type": "Checkbox",
+                          "Attribute6Values": "",
+                          "Attribute7Name": "",
+                          "Attribute7Type": "Not used",
+                          "Attribute7Values": "",
+                          "Attribute8Name": "",
+                          "Attribute8Type": "Not used",
+                          "Attribute8Values": "",
+                          "Attribute9Name": "",
+                          "Attribute9Type": "Not used",
+                          "Attribute9Values": "",
+                          "Attribute10Name": "",
+                          "Attribute10Type": "Not used",
+                          "Attribute10Values": "",
+                          "Attributes": [
+                            {
+                              "Name": "Color",
+                              "Type": "List",
+                              "Values": "Red, Black, Blue, Aqua"
+                            },
+                            {
+                              "Name": "Male?",
+                              "Type": "Checkbox",
+                              "Values": ""
+                            },
+                            {
+                              "Name": "Special wish",
+                              "Type": "Text",
+                              "Values": ""
+                            },
+                            {
+                              "Name": "Text attribute name",
+                              "Type": "Text",
+                              "Values": ""
+                            },
+                            {
+                              "Name": "Hidden attribute name",
+                              "Type": "Not used",
+                              "Values": ""
+                            },
+                            {
+                              "Name": "Additional attribute name 2",
+                              "Type": "Checkbox",
+                              "Values": ""
+                            }
+                          ]
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      security:
+        - accountID: []
+          appKey: []
+      tags:
+        - Inventory
+      operationId: deleteAttributeSet
+      summary: Allows you to delete an attribute set
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success - delete existing Attribute Set and return success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+              example: '{
+                          "Success": true
+                        }'
+        '400':
+          $ref: '#/components/responses/400Error'
   /ref/carrier:
     get:
       security:
@@ -3166,6 +3469,149 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Account'
+      type: object
+    AttributeSets:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/attribute-sets'
+      properties:
+        Total:
+          description: Total
+          type: number
+        Page:
+          description: Page
+          type: number
+        AttributeSetList:
+          description: Array of Attribute Sets
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+      type: object
+    AttributeSet:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/attribute-sets'
+      properties:
+        ID:
+          description: Unique Attribute Set identifier
+          type: string
+          format: uuid
+        Name:
+          description: Name of Attribute Set
+          type: string
+        Attribute1Name:
+          description: Name of first attribute
+          type: string
+        Attribute1Type:
+          description: 'Type of first attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute1Values:
+          description: Comma-separated list of values for first attribute (applicable when Type is List)
+          type: string
+        Attribute2Name:
+          description: Name of second attribute
+          type: string
+        Attribute2Type:
+          description: 'Type of second attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute2Values:
+          description: Comma-separated list of values for second attribute (applicable when Type is List)
+          type: string
+        Attribute3Name:
+          description: Name of third attribute
+          type: string
+        Attribute3Type:
+          description: 'Type of third attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute3Values:
+          description: Comma-separated list of values for third attribute (applicable when Type is List)
+          type: string
+        Attribute4Name:
+          description: Name of fourth attribute
+          type: string
+        Attribute4Type:
+          description: 'Type of fourth attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute4Values:
+          description: Comma-separated list of values for fourth attribute (applicable when Type is List)
+          type: string
+        Attribute5Name:
+          description: Name of fifth attribute
+          type: string
+        Attribute5Type:
+          description: 'Type of fifth attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute5Values:
+          description: Comma-separated list of values for fifth attribute (applicable when Type is List)
+          type: string
+        Attribute6Name:
+          description: Name of sixth attribute
+          type: string
+        Attribute6Type:
+          description: 'Type of sixth attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute6Values:
+          description: Comma-separated list of values for sixth attribute (applicable when Type is List)
+          type: string
+        Attribute7Name:
+          description: Name of seventh attribute
+          type: string
+        Attribute7Type:
+          description: 'Type of seventh attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute7Values:
+          description: Comma-separated list of values for seventh attribute (applicable when Type is List)
+          type: string
+        Attribute8Name:
+          description: Name of eighth attribute
+          type: string
+        Attribute8Type:
+          description: 'Type of eighth attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute8Values:
+          description: Comma-separated list of values for eighth attribute (applicable when Type is List)
+          type: string
+        Attribute9Name:
+          description: Name of ninth attribute
+          type: string
+        Attribute9Type:
+          description: 'Type of ninth attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute9Values:
+          description: Comma-separated list of values for ninth attribute (applicable when Type is List)
+          type: string
+        Attribute10Name:
+          description: Name of tenth attribute
+          type: string
+        Attribute10Type:
+          description: 'Type of tenth attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Attribute10Values:
+          description: Comma-separated list of values for tenth attribute (applicable when Type is List)
+          type: string
+        Attributes:
+          description: Array of Attribute Set Attributes
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeSetAttribute'
+          default: []
+      required:
+        - Name
+      type: object
+    AttributeSetAttribute:
+      externalDocs:
+        url: 'https://dearinventory.docs.apiary.io/#reference/attribute-sets'
+      properties:
+        Name:
+          description: Name of the attribute
+          type: string
+        Type:
+          description: 'Type of the attribute. Should be one of the following values: `Text`, `List`, `Checkbox`, `Not used`, `Date`, `Numeric`'
+          type: string
+        Values:
+          description: Comma-separated list of values (applicable when Type is List)
+          type: string
+      required:
+        - Name
+        - Type
       type: object
     Account:
       externalDocs:
